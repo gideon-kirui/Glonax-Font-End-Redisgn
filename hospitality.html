@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hospitality Academy — Glonax Holdings Limited</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div id="loader"><div class="loader-logo"><img src="./logo.png" alt=""></div><div class="loader-bar"><div class="loader-bar-fill"></div></div></div>
+<div class="toast" id="toast"><div class="toast-icon">✦</div><div><strong id="toastTitle"></strong><span id="toastMsg"></span></div></div>
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<nav id="mainNav">
+  <div class="nav-logo" onclick="window.location.href='./index.html'"><img src="./logo.png" alt=""><div class="nav-brand">Glonax Holdings<span>Limited</span></div></div>
+  <div class="nav-links">
+    <a href="./index.html">Home</a>
+    <a href="#hosp-services" style="color:var(--red)">Services</a>
+    <a href="#hosp-opportunities">Opportunities</a>
+    <a href="#hosp-stories">Stories</a>
+    <a href="#hosp-apply">Apply</a>
+    <a href="#" class="nav-cta" onclick="openModal('login');return false">Login</a>
+  </div>
+  <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()"><div class="theme-toggle-thumb"><span class="theme-toggle-icon" id="themeIcon">☀</span></div></button>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="./index.html" onclick="closeMobileMenu()">Home</a>
+  <a href="#hosp-services" onclick="closeMobileMenu()">Services</a>
+  <a href="#hosp-opportunities" onclick="closeMobileMenu()">Opportunities</a>
+  <a href="#hosp-apply" onclick="closeMobileMenu()">Apply Now</a>
+  <a href="#" onclick="openModal('login');closeMobileMenu();return false" style="color:var(--red)">Login / Register</a>
+</div>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div><div class="page-hero-grid"></div>
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="./index.html">Home</a><span>/</span><span style="color:rgba(255,255,255,.6)">Hospitality Academy</span></div>
+    <div class="page-hero-eyebrow">Premium International Hospitality Academy</div>
+    <h1>Train for <em>Five-Star</em><br>Hospitality. Work the <em>World</em>.</h1>
+    <p class="page-hero-sub">Backed by 19+ years of international experience at Atlantis Dubai, Emirates Airlines, and luxury brands across the Gulf — we train Kenyan professionals to compete and win globally.</p>
+    <div style="display:flex;gap:16px;flex-wrap:wrap">
+      <a href="#hosp-opportunities" class="btn-primary">View Opportunities</a>
+      <a href="#hosp-apply" class="btn-outline">Apply Now</a>
+    </div>
+  </div>
+</section>
+<!-- SERVICES -->
+<section id="hosp-services">
+  <div class="section-inner">
+    <div class="reveal"><div class="section-label">What We Offer</div><h2 class="section-title">Hospitality <em>Services</em></h2><p class="section-sub">Four flagship programmes designed to prepare you for the highest-tier hospitality environments — locally and internationally.</p></div>
+    <div class="hosp-services-grid">
+      <div class="hosp-svc-card reveal">
+        <div class="hsvc-title">Five-Star Hospitality Training</div>
+        <p class="hsvc-desc">Comprehensive training programmes designed to meet international luxury hospitality standards — covering service excellence, professional etiquette, guest relations, and operational skills.</p>
+        <ul class="hsvc-list"><li>5-day and 20-day programme tracks</li><li>Food & Beverage, Rooms Division, Housekeeping</li><li>Culinary Arts & Pastry specialisations</li><li>Mock hotel environment training</li></ul>
+        <a href="#hosp-apply" class="hsvc-cta">Enroll Now</a>
+      </div>
+      <div class="hosp-svc-card reveal reveal-delay-1">
+        <div class="hsvc-title">Local & International Recruitment</div>
+        <p class="hsvc-desc">We provide recruitment support and placement assistance for leading hotels, resorts, airlines, cruise lines, and hospitality brands across local and global markets — UAE, Qatar, Europe, and beyond.</p>
+        <ul class="hsvc-list"><li>Partner network across Gulf, Europe & Asia</li><li>CV preparation and professional profiling</li><li>Employer introductions and referrals</li><li>Post-placement follow-up support</li></ul>
+        <a href="#hosp-apply" class="hsvc-cta">Get Started</a>
+      </div>
+      <div class="hosp-svc-card reveal">
+        <div class="hsvc-title">Interview Preparation</div>
+        <p class="hsvc-desc">Specialised interview coaching to help you perform confidently in front of international employers — including airlines, luxury hotels, and cruise lines with high-standard selection processes.</p>
+        <ul class="hsvc-list"><li>International interview techniques</li><li>CV and resume preparation</li><li>Mock interview sessions (video + in-person)</li><li>Industry-specific question handling</li></ul>
+        <a href="#hosp-apply" class="hsvc-cta">Book Session</a>
+      </div>
+      <div class="hosp-svc-card reveal reveal-delay-1">
+        <div class="hsvc-title">Personal & Image Branding</div>
+        <p class="hsvc-desc">A key differentiator of Glonax — our personal branding programmes focus on the total professional package that luxury hospitality employers look for and competitors can't replicate.</p>
+        <ul class="hsvc-list"><li>Professional grooming & appearance</li><li>Body language & confidence building</li><li>Communication and soft skills</li><li>Personal presentation for luxury environments</li></ul>
+        <a href="#hosp-apply" class="hsvc-cta">Learn More</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUCCESS STORIES -->
+<section id="hosp-stories">
+  <div class="section-inner">
+    <div class="reveal"><div class="section-label">Alumni Voices</div><h2 class="section-title">Success <em>Stories</em></h2><p class="section-sub">Watch our graduates share their journey — from training in Nakuru to working at world-class establishments internationally.</p></div>
+    <div class="stories-grid">
+      <div class="story-card reveal">
+        <div class="story-video">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/x8kdXiyZrPg?si=vHgvcXgN2xm1ZOqN" 
+          title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
+          encrypted-media; gyroscope; picture-in-picture; web-share" 
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="story-body"><div class="story-name">Academy Graduate</div><div class="story-role">Placed in Qatar · Food & Beverage</div></div>
+      </div>
+      <div class="story-card reveal reveal-delay-1">
+        <div class="story-video">
+          <video controls preload="none" poster="">
+            <source src="./videos/success2.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="story-body"><div class="story-name">Academy Graduate</div><div class="story-role">Placed in Dubai · Rooms Division</div></div>
+      </div>
+      <div class="story-card reveal reveal-delay-2">
+        <div class="story-video">
+          <video controls preload="none" poster="">
+            <source src="./videos/success3.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="story-body"><div class="story-name">Academy Graduate</div><div class="story-role">Placed in Europe · Cruise Line</div></div>
+      </div>
+    </div>
+    <div class="about-btns">
+      <a href="./testimonials.html" class="btn-primary">Explore More Stories</a>
+    </div>
+  </div>
+</section>
+
+<!-- JOB OPPORTUNITIES -->
+<section id="hosp-opportunities">
+  <div class="section-inner">
+    <div class="reveal"><div class="section-label">Open Listings</div><h2 class="section-title">Explore <em>Opportunities</em></h2><p class="section-sub">Current training programmes, recruitment drives, and international placement opportunities available through the Glonax Academy network.</p></div>
+    <div class="filter-tabs">
+      <button class="filter-tab active" onclick="filterOpportunities(this, 'all')">All Opportunities</button>
+      <button class="filter-tab" onclick="filterOpportunities(this, 'trainings')">Trainings</button>
+      <button class="filter-tab" onclick="filterOpportunities(this, 'placement')">Placement</button>
+    </div>
+    <div class="opp-grid">
+      <div class="opp-card reveal" data-division="trainings">
+        <div class="opp-deadline">Deadline: 30 June 2025</div>
+        <div class="opp-title">Five-Star Hospitality Training — Cohort 7</div>
+        <div class="opp-location">Nakuru, Kenya</div>
+        <p class="opp-desc">Comprehensive 20-day training programme covering Food & Beverage service, guest relations, grooming, and interview preparation. Open to all backgrounds — no prior experience required.</p>
+        <div class="opp-tags"><span class="opp-tag">Training</span><span class="opp-tag">20 Days</span><span class="opp-tag">Certificate</span><span class="opp-tag">All Levels</span></div>
+        <div class="opp-footer"><span class="opp-type">Training Programme</span><a href="#hosp-apply" class="hsvc-cta">Apply Now</a></div>
+      </div>
+      <div class="opp-card reveal reveal-delay-1" data-division="trainings">
+        <div class="opp-deadline">Deadline: 15 June 2025</div>
+        <div class="opp-title">Food & Beverage Professional — Dubai Hotel Group</div>
+        <div class="opp-location">Dubai, United Arab Emirates</div>
+        <p class="opp-desc">A luxury 5-star hotel group in Dubai is seeking experienced F&B professionals. All candidates must have completed Glonax or equivalent international hospitality training.</p>
+        <div class="opp-tags"><span class="opp-tag">F&B</span><span class="opp-tag">5-Star</span><span class="opp-tag">Dubai</span><span class="opp-tag">International</span></div>
+        <div class="opp-footer"><span class="opp-type">International Placement</span><a href="#hosp-apply" class="hsvc-cta">Apply Now</a></div>
+      </div>
+      <div class="opp-card reveal" data-division="placement">
+        <div class="opp-deadline">Deadline: 20 July 2025</div>
+        <div class="opp-title">Housekeeping Supervisor — Qatar Resort</div>
+        <div class="opp-location">Doha, Qatar</div>
+        <p class="opp-desc">Premium resort in Qatar requires experienced housekeeping supervisors. Applicants must demonstrate strong attention to detail, leadership skills, and professional grooming standards.</p>
+        <div class="opp-tags"><span class="opp-tag">Housekeeping</span><span class="opp-tag">Supervisor</span><span class="opp-tag">Qatar</span><span class="opp-tag">International</span></div>
+        <div class="opp-footer"><span class="opp-type">1 min ago</span><a href="#hosp-apply" class="hsvc-cta">Apply Now</a></div>
+      </div>
+      <div class="opp-card reveal reveal-delay-1" data-division="trainings">
+        <div class="opp-deadline">Rolling intake</div>
+        <div class="opp-title">Short Course — Interview & Image Coaching (5 Days)</div>
+        <div class="opp-location">Nakuru, Kenya</div>
+        <p class="opp-desc">Intensive 5-day programme focused exclusively on interview preparation, professional grooming, and personal branding. Ideal for candidates with prior hospitality experience seeking international roles.</p>
+        <div class="opp-tags"><span class="opp-tag">Short Course</span><span class="opp-tag">5 Days</span><span class="opp-tag">Interview Prep</span></div>
+        <div class="opp-footer"><span class="opp-type">2 days ago</span><span class="opp-badge-status status-open">Open</span><a href="#hosp-apply" class="hsvc-cta">More details</a></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:48px">
+      <button class="btn-outline" style="color:var(--text-primary);border-color:var(--card-border)" onclick="showToast('Loading…','More listings coming soon.')">Load More Listings</button>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT MAKES US THRIVE -->
+<section id="hosp-pillars">
+  <div class="section-inner">
+    <div class="reveal"><div class="section-label">Our Formula</div><h2 class="section-title">What Makes Us <em>Thrive</em></h2></div>
+    <div class="pillars-grid">
+      <div class="pillar-card reveal"><div class="pillar-num">01</div><div class="pillar-title">Talent</div><p class="pillar-desc">Success depends on developing skilled, well-groomed, and service-driven hospitality professionals through expert trainers and mentors with real international luxury experience.</p></div>
+      <div class="pillar-card reveal reveal-delay-1"><div class="pillar-num">02</div><div class="pillar-title">Infrastructure</div><p class="pillar-desc">Training facilities, mock hotel environments, grooming labs, and digital learning tools ensure quality delivery and scalability for every cohort we train.</p></div>
+      <div class="pillar-card reveal"><div class="pillar-num">03</div><div class="pillar-title">Operational Methods</div><p class="pillar-desc">Strong Standard Operating Procedures ensure clarity, minimise bottlenecks, and support quality assurance across all training programmes and placement processes.</p></div>
+      <div class="pillar-card reveal reveal-delay-1"><div class="pillar-num">04</div><div class="pillar-title">Resource Allocation</div><p class="pillar-desc">Strategic investment in trainer development, cloud-based learning tools, marketing, and partnerships ensures the Academy continues to grow its placement success rate year on year.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- APPLY FORM -->
+<section id="hosp-apply">
+  <div class="section-inner">
+    <div class="reveal"><div class="section-label">Join the Academy</div><h2 class="section-title">Apply <em>Today</em></h2><p class="section-sub">Ready to take your hospitality career to the next level? Fill in the application form and our team will contact you within 48 hours.</p></div>
+    <div class="apply-grid">
+      <div class="apply-card reveal">
+        <h3>Application Form</h3><p>Tell us about yourself and what you're looking to achieve through Glonax.</p>
+        <div class="form-row">
+          <div class="form-group"><label>First Name</label><input type="text" placeholder="First name"></div>
+          <div class="form-group"><label>Last Name</label><input type="text" placeholder="Last name"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Email</label><input type="email" placeholder="you@example.com"></div>
+          <div class="form-group"><label>Phone</label><input type="tel" placeholder="+254 7XX XXX XXX"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Programme of Interest</label><select><option>20-Day Full Training</option><option>5-Day Short Course</option><option>International Recruitment</option><option>Interview Coaching Only</option><option>Image & Personal Branding</option></select></div>
+          <div class="form-group"><label>Preferred Department</label><select><option>Food & Beverage</option><option>Rooms Division</option><option>Housekeeping</option><option>Culinary Arts</option><option>Pastry</option><option>Other</option></select></div>
+        </div>
+        <div class="form-group"><label>Do you have prior hospitality experience?</label><select><option>No — this is my first time</option><option>Yes — local hospitality (1–2 years)</option><option>Yes — local hospitality (3+ years)</option><option>Yes — international hospitality experience</option></select></div>
+        <div class="form-group"><label>Target Market</label><select><option>Kenya (local placement)</option><option>UAE / Dubai</option><option>Qatar</option><option>Europe</option><option>Cruise Lines</option><option>Open to any</option></select></div>
+        <div class="form-group"><label>Why do you want to join Glonax?</label><textarea placeholder="Tell us your motivation and what you hope to achieve..."></textarea></div>
+        <button class="btn-primary" style="width:100%;padding:16px" onclick="showToast('Application Received ✦','Our team will contact you within 48 hours.')">Submit Application</button>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="apply-info">
+          <h4>Application Process</h4>
+          <div class="apply-step"><div class="step-num">1</div><div class="step-content"><h5>Submit Application</h5><p>Fill in the form with your details and programme preference.</p></div></div>
+          <div class="apply-step"><div class="step-num">2</div><div class="step-content"><h5>Initial Assessment Call</h5><p>Our team will call you within 48 hours for a brief assessment and orientation conversation.</p></div></div>
+          <div class="apply-step"><div class="step-num">3</div><div class="step-content"><h5>Programme Enrolment</h5><p>Upon approval, you'll receive your enrolment package, payment details, and programme schedule.</p></div></div>
+          <div class="apply-step"><div class="step-num">4</div><div class="step-content"><h5>Training Begins</h5><p>Join your cohort and begin your journey toward a world-class hospitality career.</p></div></div>
+          <div class="apply-step"><div class="step-num">5</div><div class="step-content"><h5>Placement Support</h5><p>After graduating, we actively support your placement — locally or internationally — through our partner network.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<div id="hosp-partners">
+  <div class="section-inner">
+    <div class="reveal"><div class="section-label">Our Network</div><h2 class="section-title">Partner <em>Establishments</em></h2></div>
+    <div class="marquee-wrap">
+      <div class="marquee-track-p">
+        <div class="partner-logo">Atlantis Dubai</div><div class="partner-logo">Emirates Air</div><div class="partner-logo">Etihad</div><div class="partner-logo">Oman Air</div><div class="partner-logo">Victoria Falls</div><div class="partner-logo">Alps Hotel</div><div class="partner-logo">Origins Hotel</div><div class="partner-logo">Platinum 7D</div>
+        <div class="partner-logo">Atlantis Dubai</div><div class="partner-logo">Emirates Air</div><div class="partner-logo">Etihad</div><div class="partner-logo">Oman Air</div><div class="partner-logo">Victoria Falls</div><div class="partner-logo">Alps Hotel</div><div class="partner-logo">Origins Hotel</div><div class="partner-logo">Platinum 7D</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="contact-cta"><div class="cta-inner"><div class="cta-text"><h2>Let's Elevate Your Hospitality Career</h2><p>Gate House Nakuru, 5th Floor, Suite 506 · 0732 028 129 · 0716 517 561</p></div><div class="cta-btns"><a href="tel:+254732028129" class="btn-white">Call Us Now</a><a href="#hosp-apply" class="btn-ghost">Apply Now</a></div></div></div>
+<script src="./script.js"></script>
+</body>
+</html>

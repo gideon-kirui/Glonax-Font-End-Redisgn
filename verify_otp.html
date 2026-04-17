@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verify OTP — Glonax Holdings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- Nav -->
+<nav class="otp-nav">
+  <a href="./index.html">
+    <img src="./logo.png" alt="Glonax">
+    <div class="otp-nav-brand">Glonax Holdings<span>Limited</span></div>
+  </a>
+  <a href="./login.html" style="font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);font-weight:500">← Back to Login</a>
+</nav>
+
+<div class="auth-center" style="padding-top:100px">
+  <div class="otp-card">
+    <img src="./logo.png" alt="Glonax" class="otp-logo">
+    <div class="otp-title">Verify Your <em>Email</em></div>
+    <p class="otp-desc">We sent a 6-digit code to <strong>mail***@gmail.com</strong>. Enter it below to verify your identity and activate your account.</p>
+
+    <div class="auth-alert" id="otpAlert"></div>
+
+    <div class="otp-inputs">
+      <input class="otp-digit" type="text" maxlength="1" id="d1" oninput="moveNext(this,'d2')" onkeydown="movePrev(event,this,null)">
+      <input class="otp-digit" type="text" maxlength="1" id="d2" oninput="moveNext(this,'d3')" onkeydown="movePrev(event,this,'d1')">
+      <input class="otp-digit" type="text" maxlength="1" id="d3" oninput="moveNext(this,'d4')" onkeydown="movePrev(event,this,'d2')">
+      <input class="otp-digit" type="text" maxlength="1" id="d4" oninput="moveNext(this,'d5')" onkeydown="movePrev(event,this,'d3')">
+      <input class="otp-digit" type="text" maxlength="1" id="d5" oninput="moveNext(this,'d6')" onkeydown="movePrev(event,this,'d4')">
+      <input class="otp-digit" type="text" maxlength="1" id="d6" oninput="moveNext(this,null)" onkeydown="movePrev(event,this,'d5')">
+    </div>
+
+    <div class="otp-timer">Code expires in <strong id="timerVal">4:59</strong></div>
+    <div>
+      <button class="otp-resend" id="resendBtn" onclick="resendOtp()" disabled>Resend Code</button>
+    </div>
+
+    <button class="otp-submit" onclick="verifyOtp()">Verify & Continue →</button>
+    <div class="otp-back">Wrong email? <a href="./register.html">Go back and update</a></div>
+  </div>
+</div>
+<script src="./script.js"></script>
+</body>
+</html>

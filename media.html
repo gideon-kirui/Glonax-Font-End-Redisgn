@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Creative Media — Glonax Holdings Limited</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div id="loader"><div class="loader-logo"><img src="./logo.png" alt=""></div><div class="loader-bar"><div class="loader-bar-fill"></div></div></div>
+<div class="toast" id="toast"><div class="toast-icon">✦</div><div><strong id="toastTitle"></strong><span id="toastMsg"></span></div></div>
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<nav id="mainNav">
+  <div class="nav-logo" onclick="window.location.href='./index.html'"><img src="./logo.png" alt=""><div class="nav-brand">Glonax Holdings<span>Limited</span></div></div>
+  <div class="nav-links">
+    <a href="./index.html">Home</a>
+    <a href="#media-services" style="color:var(--red)">Services</a>
+    <a href="#media-pricing">Pricing</a>
+    <a href="#media-projects">Projects</a>
+    <a href="#media-consult">Consult</a>
+    <a href="#" class="nav-cta" onclick="openModal('login');return false">Login</a>
+  </div>
+  <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()"><div class="theme-toggle-thumb"><span class="theme-toggle-icon" id="themeIcon">☀</span></div></button>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="./index.html" onclick="closeMobileMenu()">Home</a>
+  <a href="#media-services" onclick="closeMobileMenu()">Services</a>
+  <a href="#media-pricing" onclick="closeMobileMenu()">Pricing</a>
+  <a href="#media-projects" onclick="closeMobileMenu()">Projects</a>
+  <a href="#" onclick="openModal('login');closeMobileMenu();return false" style="color:var(--red)">Login / Register</a>
+</div>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div><div class="page-hero-grid"></div>
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="./index.html">Home</a><span>/</span><span style="color:rgba(255,255,255,.6)">Creative Media</span></div>
+    <div class="page-hero-eyebrow">Creative Media Division</div>
+    <h1>From Concept<br>to <em>Viral</em></h1>
+    <p class="page-hero-sub">We craft compelling digital narratives, premium audio/visual content, and scalable brand experiences that move people — and move markets.</p>
+    <div style="display:flex;gap:16px;flex-wrap:wrap">
+      <a href="#media-services" class="btn-primary">Our Services</a>
+      <a href="#media-consult" class="btn-outline">Book Consultation</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="media-services">
+  <div class="section-inner">
+    <div class="reveal"><div class="section-label">What We Do</div><h2 class="section-title">Our Creative <em>Services</em></h2><p class="section-sub">Four core disciplines, each built to deliver tangible business outcomes and measurable ROI for your brand.</p></div>
+    <div class="media-services-grid">
+      <div class="media-svc-card reveal">
+        <span class="msvc-icon"></span><div class="msvc-num">01</div>
+        <div class="msvc-title">Digital Marketing & Social Media</div>
+        <p class="msvc-desc">Brand visibility, content strategy, paid advertising, and audience growth. We manage your entire digital presence — from ideation to analytics — ensuring every campaign drives real results across Facebook, Instagram, TikTok, and beyond.</p>
+        <div class="msvc-tags"><span class="msvc-tag">Meta Ads</span><span class="msvc-tag">Google Ads</span><span class="msvc-tag">Content Creation</span><span class="msvc-tag">Analytics</span><span class="msvc-tag">Community Management</span></div>
+        <a href="#media-consult" class="msvc-cta">Book Consultation</a>
+      </div>
+      <div class="media-svc-card reveal reveal-delay-1">
+        <span class="msvc-icon"></span><div class="msvc-num">02</div>
+        <div class="msvc-title">Software & Web Development</div>
+        <p class="msvc-desc">Modern, responsive websites and custom web applications optimised for performance, SEO, and conversions. From landing pages to full e-commerce platforms and enterprise management systems — we build digital infrastructure that scales.</p>
+        <div class="msvc-tags"><span class="msvc-tag">Django</span><span class="msvc-tag">React</span><span class="msvc-tag">E-commerce</span><span class="msvc-tag">REST APIs</span><span class="msvc-tag">SEO</span></div>
+        <a href="#media-consult" class="msvc-cta">Book Consultation</a>
+      </div>
+      <div class="media-svc-card reveal">
+        <span class="msvc-icon"></span><div class="msvc-num">03</div>
+        <div class="msvc-title">Graphic Design & Brand Identity</div>
+        <p class="msvc-desc">Complete visual identity systems — logos, typography, colour systems, brand guidelines, and all marketing collateral. We craft brands that are instantly recognisable and emotionally resonant with your target audience.</p>
+        <div class="msvc-tags"><span class="msvc-tag">Logo Design</span><span class="msvc-tag">Brand Guidelines</span><span class="msvc-tag">Print Design</span><span class="msvc-tag">UI/UX</span><span class="msvc-tag">Marketing Assets</span></div>
+        <a href="#media-consult" class="msvc-cta">Book Consultation</a>
+      </div>
+      <div class="media-svc-card reveal reveal-delay-1">
+        <span class="msvc-icon"></span><div class="msvc-num">04</div>
+        <div class="msvc-title">ICT Consultancy & Support</div>
+        <p class="msvc-desc">Stay safe and ahead of the curve. Our ICT consultancy services cover cybersecurity, system audits, cloud migration, IT infrastructure planning, and ongoing technical support tailored to your business size and sector.</p>
+        <div class="msvc-tags"><span class="msvc-tag">Cybersecurity</span><span class="msvc-tag">Cloud Solutions</span><span class="msvc-tag">IT Support</span><span class="msvc-tag">System Audits</span></div>
+        <a href="#media-consult" class="msvc-cta">Book Consultation</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="media-pricing">
+  <div class="section-inner">
+    <div class="reveal"><div class="section-label">Transparent Pricing</div><h2 class="section-title">Simple, Clear <em>Pricing</em></h2><p class="section-sub">Choose your service category and explore our plan tiers. All packages are customisable — contact us for a tailored quote.</p></div>
+    <div class="pricing-tabs-wrap">
+      <button class="pricing-tab active" onclick="switchPricingTab(this,'p-marketing')">Digital Marketing</button>
+      <button class="pricing-tab" onclick="switchPricingTab(this,'p-web')">Web Development</button>
+      <button class="pricing-tab" onclick="switchPricingTab(this,'p-design')">Graphic Design</button>
+      <button class="pricing-tab" onclick="switchPricingTab(this,'p-software')">Software</button>
+    </div>
+    <!-- Digital Marketing -->
+    <div class="pricing-panel active" id="p-marketing">
+      <div class="price-card reveal">
+        <div class="price-tier">Starter</div>
+        <div class="price-amount">$199</div><div class="price-period">/ month</div>
+        <ul class="price-features"><li>2 social platforms</li><li>12 posts/month</li><li>Basic analytics report</li><li>1 paid ad campaign</li></ul>
+        <a href="#media-consult" class="btn-primary" style="text-decoration:none;text-align:center;display:block">Get Started</a>
+      </div>
+      <div class="price-card featured-price reveal reveal-delay-1" style="margin-top:16px">
+        <div class="price-tier">Growth</div>
+        <div class="price-amount">$399</div><div class="price-period">/ month</div>
+        <ul class="price-features"><li>4 social platforms</li><li>24 posts/month</li><li>Advanced analytics</li><li>3 paid campaigns</li><li>Community management</li><li>Monthly strategy call</li></ul>
+        <a href="#media-consult" class="btn-primary" style="text-decoration:none;text-align:center;display:block">Get Started</a>
+      </div>
+      <div class="price-card reveal reveal-delay-2">
+        <div class="price-tier">Enterprise</div>
+        <div class="price-amount">$799</div><div class="price-period">/ month</div>
+        <ul class="price-features"><li>All platforms</li><li>Unlimited posts</li><li>Full analytics suite</li><li>Unlimited campaigns</li><li>Dedicated manager</li><li>Weekly strategy calls</li></ul>
+        <a href="#media-consult" class="btn-primary" style="text-decoration:none;text-align:center;display:block">Get Started</a>
+      </div>
+    </div>
+    <!-- Web Dev -->
+    <div class="pricing-panel" id="p-web">
+      <div class="price-card reveal"><div class="price-tier">Landing Page</div><div class="price-amount">$299</div><div class="price-period">once-off</div><ul class="price-features"><li>1-page responsive design</li><li>SEO optimised</li><li>Contact form</li><li>Google Analytics</li></ul><a href="#media-consult" class="btn-primary" style="text-decoration:none;text-align:center;display:block">Request Quote</a></div>
+      <div class="price-card featured-price reveal reveal-delay-1" style="margin-top:16px"><div class="price-tier">Business Website</div><div class="price-amount">$599</div><div class="price-period">once-off</div><ul class="price-features"><li>Up to 10 pages</li><li>Responsive design</li><li>CMS integration</li><li>SEO + performance</li><li>3-month support</li></ul><a href="#media-consult" class="btn-primary" style="text-decoration:none;text-align:center;display:block">Request Quote</a></div>
+      <div class="price-card reveal reveal-delay-2"><div class="price-tier">E-commerce</div><div class="price-amount">$1,299</div><div class="price-period">once-off</div><ul class="price-features"><li>Full online store</li><li>Payment integration</li><li>Product management</li><li>Order tracking</li><li>6-month support</li></ul><a href="#media-consult" class="btn-primary" style="text-decoration:none;text-align:center;display:block">Request Quote</a></div>
+    </div>
+    <!-- Design -->
+    <div class="pricing-panel" id="p-design">
+      <div class="price-card reveal"><div class="price-tier">Logo Only</div><div class="price-amount">$99</div><div class="price-period">once-off</div><ul class="price-features"><li>3 logo concepts</li><li>2 revision rounds</li><li>All file formats</li></ul><a href="#media-consult" class="btn-primary" style="text-decoration:none;text-align:center;display:block">Request Quote</a></div>
+      <div class="price-card featured-price reveal reveal-delay-1" style="margin-top:16px"><div class="price-tier">Brand Package</div><div class="price-amount">$299</div><div class="price-period">once-off</div><ul class="price-features"><li>Logo + identity</li><li>Brand guidelines</li><li>Business card design</li><li>Social media kit</li><li>Marketing assets</li></ul><a href="#media-consult" class="btn-primary" style="text-decoration:none;text-align:center;display:block">Request Quote</a></div>
+      <div class="price-card reveal reveal-delay-2"><div class="price-tier">Full Identity</div><div class="price-amount">$599</div><div class="price-period">once-off</div><ul class="price-features"><li>Complete brand system</li><li>Website mockups</li><li>All print materials</li><li>Brand strategy doc</li><li>Unlimited revisions</li></ul><a href="#media-consult" class="btn-primary" style="text-decoration:none;text-align:center;display:block">Request Quote</a></div>
+    </div>
+    <!-- Software -->
+    <div class="pricing-panel" id="p-software">
+      <div class="price-card reveal"><div class="price-tier">MVP System</div><div class="price-amount">$1,500</div><div class="price-period">starting from</div><ul class="price-features"><li>Core features only</li><li>Web-based</li><li>Basic reporting</li><li>3-month support</li></ul><a href="#media-consult" class="btn-primary" style="text-decoration:none;text-align:center;display:block">Request Quote</a></div>
+      <div class="price-card featured-price reveal reveal-delay-1" style="margin-top:16px"><div class="price-tier">Business System</div><div class="price-amount">$3,500</div><div class="price-period">starting from</div><ul class="price-features"><li>Custom features</li><li>User management</li><li>Full analytics</li><li>API integration</li><li>6-month support</li></ul><a href="#media-consult" class="btn-primary" style="text-decoration:none;text-align:center;display:block">Request Quote</a></div>
+      <div class="price-card reveal reveal-delay-2"><div class="price-tier">Enterprise</div><div class="price-amount">Custom</div><div class="price-period">tailored quote</div><ul class="price-features"><li>Full custom build</li><li>Multi-user / roles</li><li>Advanced integrations</li><li>Scalable architecture</li><li>12-month support + SLA</li></ul><a href="#media-consult" class="btn-primary" style="text-decoration:none;text-align:center;display:block">Request Quote</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="media-projects">
+  <div class="section-inner">
+    <div class="reveal"><div class="section-label">Our Work</div><h2 class="section-title">Selected <em>Projects</em></h2><p class="section-sub">A selection of projects across our four creative disciplines — delivered for clients across Kenya and beyond.</p></div>
+    <div class="projects-tabs-wrap">
+      <button class="pricing-tab active" onclick="switchProjectTab(this,'proj-web')">Web & Software</button>
+      <button class="pricing-tab" onclick="switchProjectTab(this,'proj-design')">Design</button>
+      <button class="pricing-tab" onclick="switchProjectTab(this,'proj-marketing')">Marketing</button>
+    </div>
+    <div class="projects-panel active" id="proj-web">
+      <div class="project-card-m reveal"><div class="project-img-m">🖥️</div><div class="project-body-m"><div class="project-cat">Web Development</div><div class="project-title-m">E-commerce Platform</div><p class="project-desc-m">Fully responsive online store with product management, secure checkout, and M-Pesa payment integration.</p><div class="tech-stack">Django • React • Stripe • M-Pesa</div></div></div>
+      <div class="project-card-m reveal reveal-delay-1"><div class="project-img-m">📊</div><div class="project-body-m"><div class="project-cat">Software</div><div class="project-title-m">Business Management System</div><p class="project-desc-m">Custom-built internal system for managing users, inventory, analytics, and reporting workflows.</p><div class="tech-stack">Python • Django • PostgreSQL • REST API</div></div></div>
+      <div class="project-card-m reveal reveal-delay-2"><div class="project-img-m">🏨</div><div class="project-body-m"><div class="project-cat">Web + Software</div><div class="project-title-m">Hotel Booking Portal</div><p class="project-desc-m">Room booking system with availability calendar, guest management, and automated invoice generation.</p><div class="tech-stack">Django • Vue.js • Celery • Redis</div></div></div>
+    </div>
+    <div class="projects-panel" id="proj-design">
+      <div class="project-card-m reveal"><div class="project-img-m">🎨</div><div class="project-body-m"><div class="project-cat">Brand Identity</div><div class="project-title-m">NGO Visual Rebrand</div><p class="project-desc-m">Complete visual identity overhaul including logo, brand guidelines, and all print and digital collateral.</p><div class="tech-stack">Illustrator • Figma • Photoshop</div></div></div>
+      <div class="project-card-m reveal reveal-delay-1"><div class="project-img-m">📦</div><div class="project-body-m"><div class="project-cat">Packaging Design</div><div class="project-title-m">FMCG Product Packaging</div><p class="project-desc-m">Product label and packaging design for a Kenyan consumer goods brand — shelf-ready and print-optimised.</p><div class="tech-stack">Illustrator • Photoshop</div></div></div>
+      <div class="project-card-m reveal reveal-delay-2"><div class="project-img-m">🏢</div><div class="project-body-m"><div class="project-cat">Corporate Identity</div><div class="project-title-m">SME Brand Package</div><p class="project-desc-m">Full brand identity for a growing Nakuru-based SME — logo, stationery, social kit, and signage system.</p><div class="tech-stack">Figma • Canva Pro • Illustrator</div></div></div>
+    </div>
+    <div class="projects-panel" id="proj-marketing">
+      <div class="project-card-m reveal"><div class="project-img-m">📈</div><div class="project-body-m"><div class="project-cat">Social Media</div><div class="project-title-m">SME Growth Campaign</div><p class="project-desc-m">3× follower growth and 200% increase in page engagement over 90 days through targeted content strategy.</p><div class="tech-stack">Meta Ads • Content Strategy • Analytics</div></div></div>
+      <div class="project-card-m reveal reveal-delay-1"><div class="project-img-m">🎥</div><div class="project-body-m"><div class="project-cat">Video Marketing</div><div class="project-title-m">Brand Documentary Series</div><p class="project-desc-m">5-part video series documenting client success stories — produced, edited, and distributed across YouTube and social.</p><div class="tech-stack">Adobe Premiere • After Effects • YouTube</div></div></div>
+      <div class="project-card-m reveal reveal-delay-2"><div class="project-img-m">💰</div><div class="project-body-m"><div class="project-cat">Paid Advertising</div><div class="project-title-m">Lead Generation Campaign</div><p class="project-desc-m">Facebook and Google Ads campaign generating 400+ qualified leads per month for a real estate client.</p><div class="tech-stack">Google Ads • Meta Ads • CRM Integration</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS MARQUEE -->
+<div id="media-partners">
+  <div class="section-inner">
+    <div class="reveal"><div class="section-label">Companies We've Worked With</div><h2 class="section-title">Our <em>Partners</em></h2></div>
+    <div class="marquee-wrap">
+      <div class="marquee-track-p">
+        <div class="partner-logo">SmokeH</div><div class="partner-logo">Local NGO</div><div class="partner-logo">Nakuru SME</div><div class="partner-logo">Tech Co.</div><div class="partner-logo">Hotel Client</div><div class="partner-logo">Startup KE</div>
+        <div class="partner-logo">SmokeH</div><div class="partner-logo">Local NGO</div><div class="partner-logo">Nakuru SME</div><div class="partner-logo">Tech Co.</div><div class="partner-logo">Hotel Client</div><div class="partner-logo">Startup KE</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONSULT FORM -->
+<section id="media-consult">
+  <div class="section-inner">
+    <div class="reveal"><div class="section-label">Let's Work Together</div><h2 class="section-title">Book a Creative <em>Consultation</em></h2><p class="section-sub">Tell us about your project and we'll get back to you within 24 hours with a tailored proposal.</p></div>
+    <div class="consult-grid">
+      <div class="consult-card reveal">
+        <h3>Project Brief Form</h3><p>Give us the details and we'll craft the perfect solution for your brand.</p>
+        <div class="form-group"><label>Full Name / Company</label><input type="text" placeholder="Your name or business"></div>
+        <div class="form-group"><label>Email Address</label><input type="email" placeholder="you@example.com"></div>
+        <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="+254 7XX XXX XXX"></div>
+        <div class="form-group"><label>Service Required</label><select><option>Digital Marketing</option><option>Web Development</option><option>Graphic Design / Branding</option><option>ICT Consultancy</option><option>Software Development</option><option>Full Package</option></select></div>
+        <div class="form-group"><label>Budget Range</label><select><option>Under $200</option><option>$200–$500</option><option>$500–$1,500</option><option>$1,500–$5,000</option><option>$5,000+</option></select></div>
+        <div class="form-group"><label>Project Brief</label><textarea placeholder="Describe your project, goals, and any specific requirements or inspiration..."></textarea></div>
+        <button class="btn-primary" style="width:100%;padding:16px" onclick="showToast('Sent ✦','Well reach out within 24 hours with your proposal.')">Submit Brief</button>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="why-us-media">
+          <h4>Why Choose Glonax Media?</h4>
+          <div class="why-item"><div class="why-dot"></div><div class="why-item-text"><h5>Results-First Philosophy</h5><p>Every deliverable is tied to measurable outcomes — not just aesthetics. We define success metrics before we start.</p></div></div>
+          <div class="why-item"><div class="why-dot"></div><div class="why-item-text"><h5>Local Knowledge, Global Standard</h5><p>Deep understanding of the Kenyan market combined with international creative and technical standards.</p></div></div>
+          <div class="why-item"><div class="why-dot"></div><div class="why-item-text"><h5>Full-Service Capability</h5><p>Design, develop, market, and manage — all under one roof. No fragmented vendor relationships.</p></div></div>
+          <div class="why-item"><div class="why-dot"></div><div class="why-item-text"><h5>Transparent Pricing</h5><p>No hidden costs, no scope creep surprises. All deliverables and costs agreed in writing before any work begins.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="contact-cta"><div class="cta-inner"><div class="cta-text"><h2>Ready to Elevate Your Brand?</h2><p>Gate House Nakuru, 5th Floor, Suite 506 · 0732 028 129 · 0716 517 561</p></div><div class="cta-btns"><a href="tel:+254732028129" class="btn-white">Call Us</a><a href="#media-consult" class="btn-ghost">Book Consultation</a></div></div></div>
+<script src="./script.js"></script>
+</body>
+</html>

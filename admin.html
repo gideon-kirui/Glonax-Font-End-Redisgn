@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glonax Admin — Control Centre</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red:#CC0000;--red-d:#990000;--red-xl:#7A0000;
+  --red-a15:rgba(204,0,0,.15);--red-a08:rgba(204,0,0,.08);
+  --gold:#C9960C;--gold-bg:#FFFBEB;
+  --navy:#08172E;--navy-2:#0E2240;--navy-3:#162D52;
+  --bg:#F4F3F0;--surface:#FFFFFF;--surface-2:#F0EEE9;--surface-3:#E8E5DF;
+  --border:#DDD9D0;--border-2:#CCCAC0;
+  --text:#18160F;--text-2:#5A5850;--text-3:#9A9888;
+  --ok:#14532D;--ok-bg:#F0FDF4;--ok-border:#BBF7D0;
+  --warn:#7C2D12;--warn-bg:#FFF7ED;--warn-border:#FED7AA;
+  --info:#1E3A5F;--info-bg:#EFF6FF;--info-border:#BFDBFE;
+  --danger:#7F1D1D;--danger-bg:#FEF2F2;--danger-border:#FECACA;
+  --div-re:#CC0000;--div-re-bg:#FFF5F5;--div-re-border:#FECACA;
+  --div-med:#1E3A5F;--div-med-bg:#EFF6FF;--div-med-border:#BFDBFE;
+  --div-hosp:#78350F;--div-hosp-bg:#FFFBEB;--div-hosp-border:#FDE68A;
+  --div-corp:#08172E;--div-corp-bg:#F1F5F9;--div-corp-border:#CBD5E1;
+  --sidebar-w:256px;
+  --topbar-h:60px;
+  --font-display:'Cormorant Garamond',Georgia,serif;
+  --font-body:'Outfit',system-ui,sans-serif;
+  --r:8px;--r-lg:13px;--r-xl:18px;
+  --sh:0 1px 8px rgba(0,0,0,.07);
+  --sh-lg:0 6px 28px rgba(0,0,0,.10);
+  --transition:all .2s cubic-bezier(.4,0,.2,1);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{font-size:15px;}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-height:100vh;}
+::-webkit-scrollbar{width:5px;height:5px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--border-2);border-radius:99px;}
+
+/* ─── AUTH SCREEN ─── */
+#authScreen{min-height:100vh;display:flex;background:var(--navy);}
+.auth-left{width:420px;flex-shrink:0;background:linear-gradient(160deg,var(--navy-2) 0%,var(--navy-3) 100%);padding:48px 44px;display:flex;flex-direction:column;justify-content:space-between;border-right:1px solid rgba(255,255,255,.05);}
+.auth-logo{display:flex;align-items:center;gap:12px;margin-bottom:48px;}
+.al-mark{width:46px;height:46px;background:var(--red);border-radius:11px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:24px;font-weight:700;color:#fff;flex-shrink:0;}
+.al-brand{font-family:var(--font-display);font-size:20px;font-weight:600;color:#fff;line-height:1.2;}
+.al-brand span{display:block;font-size:11px;font-weight:400;font-family:var(--font-body);color:rgba(255,255,255,.4);letter-spacing:.08em;text-transform:uppercase;}
+.auth-tagline{font-family:var(--font-display);font-size:34px;font-weight:600;color:#fff;line-height:1.25;margin-bottom:16px;}
+.auth-tagline em{color:var(--gold);font-style:normal;}
+.auth-desc{font-size:14px;color:rgba(255,255,255,.45);line-height:1.7;}
+.auth-roles{display:flex;flex-direction:column;gap:8px;margin-top:auto;padding-top:32px;}
+.role-chip{display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(255,255,255,.05);border-radius:var(--r);border:1px solid rgba(255,255,255,.07);}
+.rc-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.rc-label{font-size:13px;color:rgba(255,255,255,.7);}
+.rc-sub{font-size:11px;color:rgba(255,255,255,.3);margin-left:auto;}
+.auth-right{flex:1;display:flex;align-items:center;justify-content:center;padding:32px;}
+.auth-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:var(--r-xl);padding:40px 36px;width:100%;max-width:400px;}
+.auth-card h2{font-family:var(--font-display);font-size:26px;font-weight:600;color:#fff;margin-bottom:6px;}
+.auth-card p{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:28px;}
+.auth-err{background:rgba(204,0,0,.12);border:1px solid rgba(204,0,0,.3);color:#FCA5A5;border-radius:var(--r);padding:10px 14px;font-size:13px;margin-bottom:16px;display:none;}
+.af-group{margin-bottom:18px;}
+.af-group label{display:block;font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:7px;}
+.af-group input,.af-group select{width:100%;padding:11px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--r);font-family:var(--font-body);font-size:14px;color:#fff;outline:none;transition:var(--transition);}
+.af-group input::placeholder{color:rgba(255,255,255,.22);}
+.af-group input:focus,.af-group select:focus{border-color:rgba(204,0,0,.6);background:rgba(255,255,255,.08);}
+.af-group select option{background:#1a2540;color:#fff;}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:11px 20px;border-radius:var(--r);font-family:var(--font-body);font-size:13.5px;font-weight:500;cursor:pointer;border:none;transition:var(--transition);white-space:nowrap;text-decoration:none;}
+.btn-red{background:var(--red);color:#fff;}
+.btn-red:hover{background:var(--red-d);}
+.btn-ghost{background:transparent;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.15);}
+.btn-ghost:hover{background:rgba(255,255,255,.07);color:#fff;}
+.btn-surface{background:var(--surface);color:var(--text);border:1px solid var(--border);}
+.btn-surface:hover{background:var(--surface-2);}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border);}
+.btn-outline:hover{background:var(--surface-2);}
+.btn-danger{background:#991B1B;color:#fff;}
+.btn-danger:hover{background:#7F1D1D;}
+.btn-sm{padding:7px 14px;font-size:12.5px;}
+.btn-xs{padding:5px 10px;font-size:12px;}
+.btn-full{width:100%;}
+.btn-icon{width:34px;height:34px;padding:0;border-radius:var(--r);}
+.auth-demo{margin-top:20px;padding-top:20px;border-top:1px solid rgba(255,255,255,.07);}
+.demo-row{display:flex;align-items:center;justify-content:space-between;padding:7px 0;font-size:12px;}
+.demo-row span:first-child{color:rgba(255,255,255,.4);}
+.demo-row button{background:rgba(255,255,255,.07);border:none;color:rgba(255,255,255,.6);padding:4px 10px;border-radius:5px;cursor:pointer;font-family:var(--font-body);font-size:11px;transition:var(--transition);}
+.demo-row button:hover{background:rgba(255,255,255,.12);color:#fff;}
+
+/* ─── ADMIN SHELL ─── */
+#adminShell{display:none;min-height:100vh;display:none;}
+.shell-layout{display:flex;min-height:100vh;}
+
+/* ─── SIDEBAR ─── */
+.sidebar{width:var(--sidebar-w);background:var(--navy);flex-shrink:0;display:flex;flex-direction:column;position:fixed;top:0;left:0;height:100vh;overflow-y:auto;z-index:200;}
+.sb-header{padding:20px 18px 14px;border-bottom:1px solid rgba(255,255,255,.06);}
+.sb-logo{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+.sb-logomark{width:34px;height:34px;background:var(--red);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:17px;font-weight:700;color:#fff;flex-shrink:0;}
+.sb-logomark img{
+  width: 30px;
+  height: 30px;
+  border-radius:8px;
+}
+.sb-brand{font-family:var(--font-display);font-size:15px;font-weight:600;color:#fff;line-height:1.2;}
+.sb-brand small{display:block;font-family:var(--font-body);font-size:10px;color:rgba(255,255,255,.32);text-transform:uppercase;letter-spacing:.08em;}
+.admin-context{background:rgba(255,255,255,.05);border-radius:var(--r);padding:10px 12px;border:1px solid rgba(255,255,255,.07);}
+.ctx-label{font-size:10px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;}
+.ctx-name{font-size:13px;font-weight:600;color:#fff;display:flex;align-items:center;gap:6px;}
+.ctx-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.ctx-role{font-size:11px;color:rgba(255,255,255,.38);margin-top:2px;}
+.sb-nav{flex:1;padding:10px 10px;}
+.nav-group{margin-bottom:16px;}
+.ng-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.09em;color:rgba(255,255,255,.25);padding:0 8px;margin-bottom:5px;}
+.nav-item{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;border:none;background:transparent;color:rgba(255,255,255,.52);font-family:var(--font-body);font-size:13px;cursor:pointer;width:100%;text-align:left;transition:var(--transition);}
+.nav-item:hover{background:rgba(255,255,255,.07);color:#fff;}
+.nav-item.active{background:rgba(204,0,0,.18);color:#fff;font-weight:500;}
+.nav-item.active .ni-icon{opacity:1;}
+.ni-icon{font-size:15px;width:18px;text-align:center;flex-shrink:0;opacity:.7;}
+.ni-badge{margin-left:auto;background:var(--red);color:#fff;font-size:10px;padding:2px 6px;border-radius:99px;font-weight:600;}
+.ni-new{margin-left:auto;background:rgba(20,83,45,.4);color:#86EFAC;font-size:9px;padding:2px 7px;border-radius:99px;font-weight:600;letter-spacing:.05em;}
+.sb-footer{padding:14px 12px;border-top:1px solid rgba(255,255,255,.06);}
+.sb-user{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:var(--r);cursor:pointer;transition:var(--transition);}
+.sb-user:hover{background:rgba(255,255,255,.06);}
+.sb-avatar{width:32px;height:32px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#fff;flex-shrink:0;}
+.sb-uname{font-size:13px;font-weight:500;color:#fff;}
+.sb-urole{font-size:11px;color:rgba(255,255,255,.35);}
+.sb-logout{display:flex;align-items:center;gap:7px;width:100%;padding:8px 10px;border:none;background:rgba(204,0,0,.1);color:rgba(255,150,150,.8);font-family:var(--font-body);font-size:12.5px;cursor:pointer;border-radius:7px;margin-top:6px;transition:var(--transition);}
+.sb-logout:hover{background:rgba(204,0,0,.2);color:#fff;}
+
+/* ─── MAIN ─── */
+.main{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column;min-width:0;}
+.topbar{background:var(--surface);border-bottom:1px solid var(--border);height:var(--topbar-h);padding:0 26px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.tb-left{display:flex;align-items:center;gap:10px;}
+.tb-title{font-family:var(--font-display);font-size:19px;font-weight:600;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-3);}
+.breadcrumb span{color:var(--text-2);}
+.tb-right{display:flex;align-items:center;gap:10px;}
+.notif-btn{position:relative;width:36px;height:36px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:var(--transition);}
+.notif-btn:hover{background:var(--surface-3);}
+.nb-dot{position:absolute;top:6px;right:6px;width:7px;height:7px;background:var(--red);border-radius:50%;border:2px solid var(--surface);}
+.tb-admin-chip{display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:99px;font-size:12px;font-weight:500;}
+.page-body{padding:24px 26px;flex:1;}
+
+/* ─── DIVISION HEADER BANNER ─── */
+.div-banner{border-radius:var(--r-lg);padding:22px 26px;margin-bottom:22px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;}
+.div-banner::after{content:'';position:absolute;right:-20px;top:-20px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,.05);}
+.db-re{background:linear-gradient(135deg,#7A0000,#CC0000);}
+.db-med{background:linear-gradient(135deg,#08172E,#1E3A5F);}
+.db-hosp{background:linear-gradient(135deg,#4A1A00,#78350F);}
+.db-corp{background:linear-gradient(135deg,#08172E,#162D52);}
+.db-text h2{font-family:var(--font-display);font-size:22px;font-weight:600;color:#fff;}
+.db-text p{font-size:13px;color:rgba(255,255,255,.55);margin-top:3px;}
+.db-actions{display:flex;gap:8px;flex-shrink:0;}
+
+/* ─── STATS ─── */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:13px;margin-bottom:22px;}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:17px 18px;}
+.st-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-3);margin-bottom:8px;}
+.st-val{font-family:var(--font-display);font-size:28px;font-weight:600;color:var(--text);line-height:1;}
+.st-meta{font-size:12px;color:var(--text-2);margin-top:5px;}
+.st-trend{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:600;padding:2px 7px;border-radius:99px;}
+.st-up{background:var(--ok-bg);color:var(--ok);}
+.st-down{background:var(--danger-bg);color:var(--danger);}
+.st-neutral{background:var(--surface-2);color:var(--text-2);}
+.st-icon{font-size:20px;margin-bottom:8px;}
+
+/* ─── GRID ─── */
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.ga{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;}
+
+/* ─── CARDS ─── */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px 22px;}
+.card-sm{padding:14px 18px;}
+.card-title{font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--text);}
+.card-sub{font-size:12px;color:var(--text-3);margin-top:2px;}
+.card-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:18px;gap:10px;}
+.card-actions{display:flex;gap:6px;flex-shrink:0;}
+
+/* ─── TABLE ─── */
+.tbl-wrap{overflow-x:auto;border-radius:var(--r);border:1px solid var(--border);}
+table{width:100%;border-collapse:collapse;font-size:13.5px;}
+thead th{background:var(--surface-2);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--text-2);padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap;}
+tbody td{padding:12px 14px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:middle;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:var(--bg);}
+.td-name{font-weight:500;}
+.td-mono{font-family:monospace;font-size:12px;color:var(--text-3);}
+.sort-th{cursor:pointer;user-select:none;}
+.sort-th:hover{color:var(--text);}
+
+/* ─── BADGES ─── */
+.badge{display:inline-flex;align-items:center;gap:3px;padding:3px 8px;border-radius:99px;font-size:11px;font-weight:600;letter-spacing:.02em;white-space:nowrap;}
+.b-green{background:var(--ok-bg);color:var(--ok);border:1px solid var(--ok-border);}
+.b-red{background:var(--danger-bg);color:var(--danger);border:1px solid var(--danger-border);}
+.b-amber{background:var(--warn-bg);color:var(--warn);border:1px solid var(--warn-border);}
+.b-blue{background:var(--info-bg);color:var(--info);border:1px solid var(--info-border);}
+.b-gray{background:var(--surface-2);color:var(--text-2);border:1px solid var(--border);}
+.b-re{background:var(--div-re-bg);color:var(--div-re);border:1px solid var(--div-re-border);}
+.b-med{background:var(--div-med-bg);color:var(--div-med);border:1px solid var(--div-med-border);}
+.b-hosp{background:var(--div-hosp-bg);color:var(--div-hosp);border:1px solid var(--div-hosp-border);}
+.b-corp{background:var(--div-corp-bg);color:var(--div-corp);border:1px solid var(--div-corp-border);}
+.b-superuser{background:#1E0542;color:#C4B5FD;border:1px solid #7C3AED;}
+.b-dot::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:currentColor;margin-right:3px;}
+
+/* ─── FORMS ─── */
+.form-section{margin-bottom:22px;}
+.fs-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--text-3);padding-bottom:10px;border-bottom:1px solid var(--border);margin-bottom:14px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
+.form-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:13px;}
+.fg{margin-bottom:14px;}
+.fg label{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--text-2);margin-bottom:6px;}
+.fg input,.fg select,.fg textarea{width:100%;padding:10px 13px;border:1px solid var(--border);border-radius:var(--r);font-family:var(--font-body);font-size:13.5px;color:var(--text);background:var(--surface);outline:none;transition:var(--transition);}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(204,0,0,.07);}
+.fg textarea{resize:vertical;min-height:80px;}
+.fg input[readonly]{background:var(--surface-2);color:var(--text-3);cursor:default;}
+.fg .hint{font-size:11px;color:var(--text-3);margin-top:5px;}
+.cb-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);}
+.cb-row:last-child{border-bottom:none;}
+.cb-row input[type=checkbox]{width:16px;height:16px;accent-color:var(--red);cursor:pointer;flex-shrink:0;}
+.cb-row label{font-size:13px;cursor:pointer;flex:1;}
+.cb-row small{font-size:11px;color:var(--text-3);}
+
+/* ─── USER CARD ─── */
+.user-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px;transition:var(--transition);cursor:pointer;}
+.user-card:hover{box-shadow:var(--sh-lg);transform:translateY(-2px);}
+.uc-head{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.uc-avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;flex-shrink:0;}
+.uc-name{font-size:14px;font-weight:600;}
+.uc-email{font-size:12px;color:var(--text-3);}
+.uc-divs{display:flex;gap:5px;flex-wrap:wrap;margin-top:10px;}
+.uc-actions{display:flex;gap:6px;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);}
+
+/* ─── ACTIVITY FEED ─── */
+.act-item{display:flex;gap:12px;padding:11px 0;border-bottom:1px solid var(--border);}
+.act-item:last-child{border-bottom:none;}
+.act-icon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+.act-text{font-size:13px;color:var(--text);flex:1;}
+.act-time{font-size:11px;color:var(--text-3);margin-top:2px;}
+.act-text strong{font-weight:500;}
+
+/* ─── TABS ─── */
+.tab-nav{display:flex;gap:3px;background:var(--surface-2);padding:3px;border-radius:var(--r);margin-bottom:20px;width:fit-content;}
+.tab-btn{padding:7px 15px;border-radius:6px;border:none;background:transparent;font-family:var(--font-body);font-size:13px;font-weight:500;color:var(--text-2);cursor:pointer;transition:var(--transition);}
+.tab-btn.active{background:var(--surface);color:var(--text);box-shadow:0 1px 4px rgba(0,0,0,.08);}
+.tab-pane{display:none;}
+.tab-pane.active{display:block;}
+
+/* ─── MODAL ─── */
+.modal-backdrop{display:none;position:fixed;inset:0;background:rgba(8,23,46,.55);z-index:500;align-items:center;justify-content:center;padding:20px;}
+.modal-backdrop.open{display:flex;}
+.modal-box{background:var(--surface);border-radius:var(--r-xl);width:100%;max-width:580px;max-height:90vh;overflow-y:auto;box-shadow:var(--sh-lg);animation:mSlide .25s ease;}
+.modal-box-lg{max-width:740px;}
+@keyframes mSlide{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+.modal-header{padding:22px 26px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.modal-title{font-family:var(--font-display);font-size:19px;font-weight:600;}
+.modal-close{width:30px;height:30px;background:var(--surface-2);border:none;border-radius:50%;cursor:pointer;font-size:17px;display:flex;align-items:center;justify-content:center;color:var(--text-2);transition:var(--transition);}
+.modal-close:hover{background:var(--surface-3);}
+.modal-body{padding:22px 26px;}
+.modal-footer{padding:16px 26px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px;}
+
+/* ─── ALERTS ─── */
+.alert{padding:11px 15px;border-radius:var(--r);font-size:13px;margin-bottom:14px;display:none;}
+.alert-success{background:var(--ok-bg);color:var(--ok);border:1px solid var(--ok-border);}
+.alert-danger{background:var(--danger-bg);color:var(--danger);border:1px solid var(--danger-border);}
+.alert-info{background:var(--info-bg);color:var(--info);border:1px solid var(--info-border);}
+.alert-warn{background:var(--warn-bg);color:var(--warn);border:1px solid var(--warn-border);}
+
+/* ─── ROLE PERMISSIONS MATRIX ─── */
+.perm-matrix{width:100%;border-collapse:collapse;font-size:12.5px;}
+.perm-matrix th{padding:8px 12px;background:var(--surface-2);font-weight:600;text-transform:uppercase;font-size:10px;letter-spacing:.06em;color:var(--text-2);border:1px solid var(--border);text-align:center;}
+.perm-matrix th:first-child{text-align:left;}
+.perm-matrix td{padding:9px 12px;border:1px solid var(--border);text-align:center;vertical-align:middle;}
+.perm-matrix td:first-child{text-align:left;font-weight:500;color:var(--text);}
+.perm-matrix tr:hover td{background:var(--bg);}
+.perm-check{color:#14532D;font-size:15px;}
+.perm-cross{color:#991B1B;font-size:15px;}
+.perm-partial{color:var(--gold);font-size:15px;}
+
+/* ─── SEARCH BAR ─── */
+.search-bar{display:flex;align-items:center;gap:8px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r);padding:8px 13px;transition:var(--transition);}
+.search-bar:focus-within{border-color:var(--red);background:var(--surface);}
+.search-bar input{background:transparent;border:none;outline:none;font-family:var(--font-body);font-size:13.5px;color:var(--text);flex:1;}
+.search-bar input::placeholder{color:var(--text-3);}
+
+/* ─── DIVIDER ─── */
+.divider{height:1px;background:var(--border);margin:18px 0;}
+
+/* ─── CHIP ─── */
+.chip{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:99px;font-size:12px;background:var(--surface-2);color:var(--text-2);border:1px solid var(--border);}
+
+/* ─── EMPTY ─── */
+.empty{text-align:center;padding:44px 20px;}
+.empty-icon{font-size:38px;opacity:.35;margin-bottom:10px;}
+.empty h4{font-family:var(--font-display);font-size:16px;color:var(--text-2);margin-bottom:5px;}
+.empty p{font-size:13px;color:var(--text-3);}
+
+/* ─── TOAST ─── */
+#toast{position:fixed;bottom:24px;right:24px;background:var(--navy);color:#fff;padding:11px 18px;border-radius:10px;font-size:13.5px;font-weight:500;z-index:9999;opacity:0;transform:translateY(6px);transition:all .3s ease;pointer-events:none;max-width:320px;line-height:1.5;box-shadow:var(--sh-lg);}
+#toast.show{opacity:1;transform:translateY(0);}
+#toast.success{border-left:3px solid #4ADE80;}
+#toast.error{border-left:3px solid #F87171;}
+#toast.info{border-left:3px solid #60A5FA;}
+
+/* ─── PERMISSION DENIED ─── */
+.perm-denied{background:var(--danger-bg);border:1px solid var(--danger-border);border-radius:var(--r-lg);padding:28px;text-align:center;margin:20px 0;}
+.perm-denied h4{font-family:var(--font-display);font-size:18px;color:var(--danger);margin-bottom:6px;}
+.perm-denied p{font-size:13px;color:var(--text-2);}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.fade-in{animation:fadeIn .3s ease forwards;}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:960px){
+  .auth-left{display:none;}
+  .auth-right{background:var(--navy-2);}
+  .g2,.g3,.g4{grid-template-columns:1fr;}
+  .form-row,.form-row-3{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<div id="toast"></div>
+
+<!-- ═══════════ AUTH ═══════════ -->
+<div id="authScreen">
+  <div class="auth-left">
+    <div>
+      <div class="auth-logo">
+        <div class="al-mark">G</div>
+        <div class="al-brand">Glonax Holdings<span>Administrative Portal</span></div>
+      </div>
+      <div class="auth-tagline">Manage with <em>Precision</em> & Purpose</div>
+      <div class="auth-desc">The central command system for Glonax Holdings Limited. Role-specific administration for every division.</div>
+    </div>
+    <div class="auth-roles">
+      <div style="font-size:10px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:8px;">Access Levels</div>
+      <div class="role-chip"><div class="rc-dot" style="background:#C4B5FD;"></div><div class="rc-label">Super Administrator</div><div class="rc-sub">Full system access</div></div>
+      <div class="role-chip"><div class="rc-dot" style="background:#FCA5A5;"></div><div class="rc-label">Division Manager</div><div class="rc-sub">Division-scoped control</div></div>
+      <div class="role-chip"><div class="rc-dot" style="background:#FDE68A;"></div><div class="rc-label">Division Staff</div><div class="rc-sub">Assigned clients & tasks</div></div>
+      <div class="role-chip"><div class="rc-dot" style="background:#86EFAC;"></div><div class="rc-label">Finance Officer</div><div class="rc-sub">Transactions & reports</div></div>
+    </div>
+  </div>
+  <div class="auth-right">
+    <div class="auth-card">
+      <h2>Sign in to Admin</h2>
+      <p>Access your administrative dashboard</p>
+      <div class="auth-err" id="authErr"></div>
+      <div class="af-group"><label>Email Address</label><input type="email" id="aEmail" placeholder="admin@glonaxholdings.co.ke" value="super@glonax.co.ke"></div>
+      <div class="af-group"><label>Password</label><input type="password" id="aPass" placeholder="••••••••" value="admin2024"></div>
+      <div class="af-group">
+        <label>Role / Division</label>
+        <select id="aRole">
+          <option value="superadmin">Super Administrator</option>
+          <option value="re-manager">Real Estate — Division Manager</option>
+          <option value="re-staff">Real Estate — Staff</option>
+          <option value="med-manager">Creative Media — Division Manager</option>
+          <option value="hosp-manager">Hospitality — Division Manager</option>
+          <option value="finance">Finance Officer</option>
+        </select>
+      </div>
+      <button class="btn btn-red btn-full" onclick="doAdminLogin()" style="margin-top:4px;">Sign In to Admin</button>
+      <div class="auth-demo">
+        <div style="font-size:10px;color:rgba(255,255,255,.25);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;">Quick Demo Login</div>
+        <div class="demo-row"><span>Super Admin</span><button onclick="setDemo('super@glonax.co.ke','admin2024','superadmin')">Login as Super Admin</button></div>
+        <div class="demo-row"><span>RE Manager</span><button onclick="setDemo('re.mgr@glonax.co.ke','admin2024','re-manager')">Login as RE Manager</button></div>
+        <div class="demo-row"><span>Media Manager</span><button onclick="setDemo('media.mgr@glonax.co.ke','admin2024','med-manager')">Login as Media Mgr</button></div>
+        <div class="demo-row"><span>Hosp Manager</span><button onclick="setDemo('hosp.mgr@glonax.co.ke','admin2024','hosp-manager')">Login as Hosp Mgr</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ ADMIN SHELL ═══════════ -->
+<div id="adminShell">
+  <div class="shell-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sb-header">
+        <div class="sb-logo">
+          <div class="sb-logomark">
+            <img src="../logo.jpg" alt="" srcset="">
+          </div>
+          <div class="sb-brand">Glonax Admin<small>Control Centre</small></div>
+        </div>
+        <div class="admin-context" id="adminContext"></div>
+      </div>
+      <nav class="sb-nav" id="sidebarNav"></nav>
+      <div class="sb-footer">
+        <div class="sb-user" onclick="navigateTo('my-profile')">
+          <div class="sb-avatar" id="sbAvatar">SA</div>
+          <div>
+            <div class="sb-uname" id="sbName">Super Admin</div>
+            <div class="sb-urole" id="sbRole">Full Access</div>
+          </div>
+        </div>
+        <button class="sb-logout" onclick="doLogout()">⏻ Sign Out</button>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <div class="main">
+      <div class="topbar">
+        <div class="tb-left">
+          <div>
+            <div class="tb-title" id="topbarTitle">Dashboard</div>
+            <div class="breadcrumb" id="breadcrumb"><span>Admin</span></div>
+          </div>
+        </div>
+        <div class="tb-right">
+          <div class="search-bar" style="width:220px;">
+            <span style="color:var(--text-3);font-size:14px;">🔍</span>
+            <input type="text" placeholder="Search users, clients...">
+          </div>
+          <div class="notif-btn" onclick="showNotifModal()">🔔<div class="nb-dot"></div></div>
+          <div class="tb-admin-chip" id="tbAdminChip"></div>
+        </div>
+      </div>
+      <div class="page-body">
+        <div id="pageContent" class="fade-in"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MODALS ═══ -->
+<!-- User Add/Edit Modal -->
+<div class="modal-backdrop" id="userModal">
+  <div class="modal-box modal-box-lg">
+    <div class="modal-header">
+      <div class="modal-title" id="userModalTitle">Add User</div>
+      <button class="modal-close" onclick="closeModal('userModal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div id="userModalAlert" class="alert"></div>
+      <div class="form-section">
+        <div class="fs-title">Identity</div>
+        <div class="form-row">
+          <div class="fg"><label>First Name</label><input type="text" id="um_fname" placeholder="First name"></div>
+          <div class="fg"><label>Last Name</label><input type="text" id="um_lname" placeholder="Last name"></div>
+        </div>
+        <div class="form-row">
+          <div class="fg"><label>Email Address</label><input type="email" id="um_email" placeholder="user@example.com"></div>
+          <div class="fg"><label>Phone</label><input type="tel" id="um_phone" placeholder="+254 7XX XXX XXX"></div>
+        </div>
+        <div class="form-row">
+          <div class="fg"><label>ID / Passport No.</label><input type="text" id="um_idno" placeholder="National ID or Passport"></div>
+          <div class="fg"><label>Date of Birth</label><input type="date" id="um_dob"></div>
+        </div>
+      </div>
+      <div class="form-section">
+        <div class="fs-title">Role & Access</div>
+        <div class="form-row">
+          <div class="fg"><label>System Role</label>
+            <select id="um_role" onchange="handleRoleChange()">
+              <option value="">-- Select Role --</option>
+              <option value="client">Client (End User)</option>
+              <option value="staff">Division Staff</option>
+              <option value="manager">Division Manager</option>
+              <option value="finance">Finance Officer</option>
+              <option value="superadmin">Super Administrator</option>
+            </select>
+          </div>
+          <div class="fg"><label>Status</label>
+            <select id="um_status">
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+              <option value="suspended">Suspended</option>
+              <option value="pending">Pending Verification</option>
+            </select>
+          </div>
+        </div>
+        <div id="divisionAssign" class="form-section" style="margin-bottom:0;">
+          <div class="fs-title">Division Profiles</div>
+          <div id="divisionCbx" class="cb-row" style="flex-direction:column;gap:0;border:1px solid var(--border);border-radius:var(--r);padding:4px 12px;"></div>
+        </div>
+      </div>
+      <div class="form-section" id="staffPermsSection" style="display:none;">
+        <div class="fs-title">Staff Permissions</div>
+        <div id="staffPermsCbx" style="border:1px solid var(--border);border-radius:var(--r);padding:4px 12px;"></div>
+      </div>
+      <div class="form-section">
+        <div class="fs-title">Address</div>
+        <div class="form-row">
+          <div class="fg"><label>County / City</label><input type="text" id="um_city" placeholder="Nairobi"></div>
+          <div class="fg"><label>Sub-County / Area</label><input type="text" id="um_area" placeholder="Westlands"></div>
+        </div>
+      </div>
+      <div class="form-section">
+        <div class="fs-title">Account Security</div>
+        <div class="form-row">
+          <div class="fg"><label>Password</label><input type="password" id="um_pass" placeholder="Leave blank to auto-generate"></div>
+          <div class="fg"><label>Confirm Password</label><input type="password" id="um_pass2" placeholder="Repeat password"></div>
+        </div>
+        <div class="fg" style="margin-top:4px;">
+          <label style="display:flex;align-items:center;gap:8px;text-transform:none;font-size:13px;cursor:pointer;font-weight:400;">
+            <input type="checkbox" id="um_sendwelcome" checked style="accent-color:var(--red);">
+            Send welcome email with login credentials
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('userModal')">Cancel</button>
+      <button class="btn btn-red" onclick="saveUser()">Save User</button>
+    </div>
+  </div>
+</div>
+
+<!-- User Detail View Modal -->
+<div class="modal-backdrop" id="userDetailModal">
+  <div class="modal-box modal-box-lg">
+    <div class="modal-header">
+      <div class="modal-title">User Profile</div>
+      <button class="modal-close" onclick="closeModal('userDetailModal')">×</button>
+    </div>
+    <div class="modal-body" id="userDetailBody"></div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('userDetailModal')">Close</button>
+      <button class="btn btn-surface" onclick="closeModal('userDetailModal');openUserModal()">Edit User</button>
+    </div>
+  </div>
+</div>
+
+<!-- Notification Modal -->
+<div class="modal-backdrop" id="notifModal">
+  <div class="modal-box" style="max-width:420px;">
+    <div class="modal-header"><div class="modal-title">Notifications</div><button class="modal-close" onclick="closeModal('notifModal')">×</button></div>
+    <div class="modal-body" id="notifModalBody"></div>
+    <div class="modal-footer"><button class="btn btn-outline" onclick="closeModal('notifModal')">Close</button></div>
+  </div>
+</div>
+
+<!-- Confirm Modal -->
+<div class="modal-backdrop" id="confirmModal">
+  <div class="modal-box" style="max-width:380px;">
+    <div class="modal-header"><div class="modal-title" id="confirmTitle">Confirm Action</div><button class="modal-close" onclick="closeModal('confirmModal')">×</button></div>
+    <div class="modal-body"><p id="confirmMsg" style="font-size:14px;color:var(--text-2);"></p></div>
+    <div class="modal-footer"><button class="btn btn-outline" onclick="closeModal('confirmModal')">Cancel</button><button class="btn btn-danger" id="confirmBtn">Confirm</button></div>
+  </div>
+</div>
+
+<script>
+// ═══ DATA STORE ═══
+const ROLES = {
+  superadmin:{label:"Super Administrator",div:null,color:"#6D28D9",bg:"#1E0542",badge:"b-superuser"},
+  "re-manager":{label:"RE Manager",div:"real-estate",color:"var(--div-re)",bg:null,badge:"b-re"},
+  "re-staff":{label:"RE Staff",div:"real-estate",color:"var(--div-re)",bg:null,badge:"b-re"},
+  "med-manager":{label:"Media Manager",div:"media",color:"var(--div-med)",bg:null,badge:"b-med"},
+  "med-staff":{label:"Media Staff",div:"media",color:"var(--div-med)",bg:null,badge:"b-med"},
+  "hosp-manager":{label:"Hosp Manager",div:"hospitality",color:"var(--div-hosp)",bg:null,badge:"b-hosp"},
+  "hosp-staff":{label:"Hosp Staff",div:"hospitality",color:"var(--div-hosp)",bg:null,badge:"b-hosp"},
+  finance:{label:"Finance Officer",div:null,color:"var(--gold)",bg:null,badge:"b-amber"},
+  client:{label:"Client",div:null,color:"var(--text-2)",bg:null,badge:"b-gray"},
+};
+
+const DIVS = {
+  "real-estate":{name:"Commercial Agencies",icon:"🏠",short:"Real Estate",banner:"db-re"},
+  "media":{name:"Creative Media",icon:"🎬",short:"Media",banner:"db-med"},
+  "hospitality":{name:"Hospitality Academy",icon:"⭐",short:"Hospitality",banner:"db-hosp"},
+};
+
+const ADMIN_ROLES_META = {
+  superadmin:{label:"Super Administrator",chip_bg:"#1E0542",chip_color:"#C4B5FD",description:"All divisions — full access"},
+  "re-manager":{label:"RE Manager",chip_bg:"var(--div-re-bg)",chip_color:"var(--div-re)",description:"Real Estate Division"},
+  "re-staff":{label:"RE Staff",chip_bg:"var(--div-re-bg)",chip_color:"var(--div-re)",description:"Real Estate Division"},
+  "med-manager":{label:"Media Manager",chip_bg:"var(--div-med-bg)",chip_color:"var(--div-med)",description:"Creative Media Division"},
+  "hosp-manager":{label:"Hosp Manager",chip_bg:"var(--div-hosp-bg)",chip_color:"var(--div-hosp)",description:"Hospitality Division"},
+  finance:{label:"Finance Officer",chip_bg:"var(--warn-bg)",chip_color:"var(--gold)",description:"All divisions — finance"},
+};
+
+let USERS = [
+  {id:1,fname:"Amara",lname:"Wanjiku",email:"amara.w@email.com",phone:"+254 712 345 678",role:"client",status:"active",divisions:["real-estate","media","hospitality"],city:"Nairobi",area:"Westlands",idno:"34567890",joined:"2022-03-15",lastLogin:"2024-03-18"},
+  {id:2,fname:"Brian",lname:"Otieno",email:"b.otieno@email.com",phone:"+254 722 456 789",role:"client",status:"active",divisions:["real-estate"],city:"Nakuru",area:"Milimani",idno:"23456789",joined:"2023-01-10",lastLogin:"2024-03-15"},
+  {id:3,fname:"Cynthia",lname:"Mwangi",email:"cynthia.m@email.com",phone:"+254 733 567 890",role:"client",status:"active",divisions:["hospitality","media"],city:"Mombasa",area:"Nyali",idno:"45678901",joined:"2022-11-20",lastLogin:"2024-03-10"},
+  {id:4,fname:"Daniel",lname:"Kimani",email:"d.kimani@glonax.co.ke",phone:"+254 700 111 222",role:"staff",status:"active",divisions:["real-estate"],city:"Nakuru",area:"Town",idno:"56789012",joined:"2021-06-01",lastLogin:"2024-03-19"},
+  {id:5,fname:"Esther",lname:"Njoki",email:"e.njoki@glonax.co.ke",phone:"+254 700 333 444",role:"manager",status:"active",divisions:["real-estate"],city:"Nakuru",area:"Milimani",idno:"67890123",joined:"2020-01-15",lastLogin:"2024-03-19"},
+  {id:6,fname:"Felix",lname:"Ochieng",email:"f.ochieng@glonax.co.ke",phone:"+254 700 555 666",role:"manager",status:"active",divisions:["media"],city:"Nairobi",area:"Parklands",idno:"78901234",joined:"2021-08-10",lastLogin:"2024-03-18"},
+  {id:7,fname:"Grace",lname:"Wambui",email:"g.wambui@glonax.co.ke",phone:"+254 700 777 888",role:"manager",status:"active",divisions:["hospitality"],city:"Nakuru",area:"Section 58",idno:"89012345",joined:"2021-03-20",lastLogin:"2024-03-17"},
+  {id:8,fname:"Henry",lname:"Mutua",email:"h.mutua@glonax.co.ke",phone:"+254 700 999 000",role:"finance",status:"active",divisions:["real-estate","media","hospitality"],city:"Nakuru",area:"Town",idno:"90123456",joined:"2020-07-01",lastLogin:"2024-03-19"},
+  {id:9,fname:"Ivy",lname:"Chelangat",email:"i.chelangat@email.com",phone:"+254 711 222 333",role:"client",status:"pending",divisions:["hospitality"],city:"Eldoret",area:"Town",idno:"01234567",joined:"2024-03-18",lastLogin:"Never"},
+  {id:10,fname:"James",lname:"Kariuki",email:"j.kariuki@email.com",phone:"+254 722 333 444",role:"client",status:"suspended",divisions:["real-estate"],city:"Thika",area:"Town",idno:"12345678",joined:"2023-05-10",lastLogin:"2024-01-15"},
+  {id:11,fname:"Kelly",lname:"Achieng",email:"k.achieng@glonax.co.ke",phone:"+254 700 444 555",role:"staff",status:"active",divisions:["media"],city:"Kisumu",area:"Milimani",idno:"22334455",joined:"2022-09-01",lastLogin:"2024-03-16"},
+  {id:12,fname:"Liam",lname:"Nderitu",email:"l.nderitu@email.com",phone:"+254 733 555 666",role:"client",status:"active",divisions:["real-estate","media"],city:"Nairobi",area:"Karen",idno:"33445566",joined:"2022-07-20",lastLogin:"2024-03-12"},
+];
+
+const ACTIVITY_LOG = [
+  {icon:"👤",bg:"#EFF6FF",text:"<strong>Brian Otieno</strong> registered as a new client under Real Estate",time:"5 mins ago"},
+  {icon:"✏️",bg:"#F0FDF4",text:"<strong>Esther Njoki</strong> updated property listing — Karen Plot",time:"22 mins ago"},
+  {icon:"💳",bg:"#FFFBEB",text:"<strong>Henry Mutua</strong> approved transaction TXN-2024-0384",time:"1 hour ago"},
+  {icon:"🔑",bg:"#FEF2F2",text:"Failed login attempt for <strong>unknown@test.com</strong>",time:"2 hours ago"},
+  {icon:"📄",bg:"#F5F3FF",text:"<strong>Ivy Chelangat</strong> submitted enrolment application",time:"3 hours ago"},
+  {icon:"✅",bg:"#F0FDF4",text:"<strong>Felix Ochieng</strong> marked Project #M-0091 as delivered",time:"5 hours ago"},
+  {icon:"🏠",bg:"#FFF5F5",text:"Property #RE-0042 moved to conveyancing stage",time:"Yesterday"},
+];
+
+const SYSTEM_NOTIFS = [
+  {icon:"🔴",title:"Pending Verifications",msg:"3 new client accounts awaiting verification.",time:"Now",read:false},
+  {icon:"⚠️",title:"Suspended Account",msg:"James Kariuki account is flagged for review.",time:"1 hour ago",read:false},
+  {icon:"💳",title:"Transaction Approval",msg:"2 transactions pending finance approval.",time:"3 hours ago",read:false},
+  {icon:"📋",title:"New Service Request",msg:"Hospitality Academy received a bulk enrolment request.",time:"Yesterday",read:true},
+];
+
+// ═══ AUTH ═══
+let adminUser = null;
+
+function setDemo(e,p,r){document.getElementById('aEmail').value=e;document.getElementById('aPass').value=p;document.getElementById('aRole').value=r;}
+
+function doAdminLogin(){
+  const e=document.getElementById('aEmail').value;
+  const p=document.getElementById('aPass').value;
+  const r=document.getElementById('aRole').value;
+  if(!e||!p){showAuthErr("Please enter email and password.");return;}
+  if(p!=="admin2024"){showAuthErr("Invalid credentials. Use password: admin2024");return;}
+  adminUser={email:e,role:r,name:getAdminName(r),division:getAdminDivision(r)};
+  document.getElementById('authScreen').style.display='none';
+  document.getElementById('adminShell').style.display='block';
+  initAdmin();
+}
+
+function showAuthErr(m){const el=document.getElementById('authErr');el.textContent=m;el.style.display='block';}
+
+function getAdminName(r){
+  const names={superadmin:"Super Administrator","re-manager":"Esther Njoki","re-staff":"Daniel Kimani","med-manager":"Felix Ochieng","hosp-manager":"Grace Wambui",finance:"Henry Mutua"};
+  return names[r]||"Admin";
+}
+function getAdminDivision(r){
+  if(r.startsWith('re-')) return 'real-estate';
+  if(r.startsWith('med-')) return 'media';
+  if(r.startsWith('hosp-')) return 'hospitality';
+  return null;
+}
+function isSuperAdmin(){return adminUser.role==='superadmin';}
+function isManager(){return adminUser.role.endsWith('-manager');}
+function isFinance(){return adminUser.role==='finance';}
+function canAccessDiv(div){
+  if(isSuperAdmin()||isFinance()) return true;
+  return adminUser.division===div;
+}
+function getVisibleDivisions(){
+  if(isSuperAdmin()||isFinance()) return Object.keys(DIVS);
+  return adminUser.division?[adminUser.division]:[];
+}
+function getVisibleUsers(){
+  if(isSuperAdmin()||isFinance()) return USERS;
+  return USERS.filter(u=>u.divisions.some(d=>d===adminUser.division));
+}
+
+function doLogout(){
+  document.getElementById('adminShell').style.display='none';
+  document.getElementById('authScreen').style.display='flex';
+}
+
+// ═══ INIT ═══
+function initAdmin(){
+  const meta=ADMIN_ROLES_META[adminUser.role]||{label:adminUser.role,chip_bg:"var(--surface-2)",chip_color:"var(--text-2)",description:"Limited access"};
+  // sidebar header context
+  document.getElementById('adminContext').innerHTML=`
+    <div class="ctx-label">Signed in as</div>
+    <div class="ctx-name"><div class="ctx-dot" style="background:${meta.chip_color};"></div>${adminUser.name}</div>
+    <div class="ctx-role">${meta.description}</div>`;
+  document.getElementById('sbAvatar').textContent=initials(adminUser.name);
+  document.getElementById('sbName').textContent=adminUser.name;
+  document.getElementById('sbRole').textContent=meta.label;
+  document.getElementById('tbAdminChip').innerHTML=`<div style="background:${meta.chip_bg};color:${meta.chip_color};padding:5px 12px;border-radius:99px;font-size:12px;font-weight:600;">${meta.label}</div>`;
+  renderSidebarNav();
+  navigateTo('dashboard');
+}
+
+function renderSidebarNav(){
+  const nav=document.getElementById('sidebarNav');
+  const divs=getVisibleDivisions();
+  const notifCount=SYSTEM_NOTIFS.filter(n=>!n.read).length;
+  let html=`<div class="nav-group"><div class="ng-label">Overview</div>
+    <button class="nav-item" data-page="dashboard" onclick="navigateTo('dashboard')"><span class="ni-icon">⊞</span> Dashboard</button>`;
+  if(isSuperAdmin()||isFinance())
+    html+=`<button class="nav-item" data-page="analytics" onclick="navigateTo('analytics')"><span class="ni-icon">📈</span> Analytics</button>`;
+  html+=`</div>`;
+
+  divs.forEach(div=>{
+    const d=DIVS[div];
+    const divKey=div.replace('-','');
+    html+=`<div class="nav-group"><div class="ng-label">${d.icon} ${d.short}</div>
+      <button class="nav-item" data-page="${div}-users" onclick="navigateTo('${div}-users')"><span class="ni-icon">👥</span> ${d.short} Users</button>
+      <button class="nav-item" data-page="${div}-clients" onclick="navigateTo('${div}-clients')"><span class="ni-icon">🤝</span> Clients</button>
+      ${canAccessDiv(div)?`<button class="nav-item" data-page="${div}-transactions" onclick="navigateTo('${div}-transactions')"><span class="ni-icon">💳</span> Transactions</button>`:``}
+      ${div==='real-estate'?`<button class="nav-item" data-page="re-properties" onclick="navigateTo('re-properties')"><span class="ni-icon">🏠</span> Properties</button>`:''}
+      ${div==='media'?`<button class="nav-item" data-page="med-projects" onclick="navigateTo('med-projects')"><span class="ni-icon">🎬</span> Projects</button>`:''}
+      ${div==='hospitality'?`<button class="nav-item" data-page="hosp-courses" onclick="navigateTo('hosp-courses')"><span class="ni-icon">🎓</span> Courses</button>`:''}
+    </div>`;
+  });
+
+  html+=`<div class="nav-group"><div class="ng-label">Administration</div>`;
+  if(isSuperAdmin()) html+=`<button class="nav-item" data-page="all-users" onclick="navigateTo('all-users')"><span class="ni-icon">👤</span> All Users</button><button class="nav-item" data-page="roles" onclick="navigateTo('roles')"><span class="ni-icon">🔐</span> Roles & Permissions</button><button class="nav-item" data-page="audit" onclick="navigateTo('audit')"><span class="ni-icon">📋</span> Audit Log</button>`;
+  html+=`<button class="nav-item" data-page="notifications" onclick="navigateTo('notifications')"><span class="ni-icon">🔔</span> Notifications <span class="ni-badge">${notifCount}</span></button>`;
+  if(isSuperAdmin()) html+=`<button class="nav-item" data-page="settings" onclick="navigateTo('settings')"><span class="ni-icon">⚙</span> System Settings</button>`;
+  html+=`<button class="nav-item" data-page="my-profile" onclick="navigateTo('my-profile')"><span class="ni-icon">👤</span> My Profile</button></div>`;
+  nav.innerHTML=html;
+}
+
+// ═══ NAVIGATION ═══
+let currentPage='';
+function navigateTo(page){
+  currentPage=page;
+  document.querySelectorAll('.nav-item').forEach(el=>{el.classList.toggle('active',el.dataset.page===page);});
+  const pc=document.getElementById('pageContent');
+  pc.className='fade-in';pc.innerHTML='';pc.offsetWidth;
+  const map={
+    'dashboard':renderDashboard,
+    'analytics':renderAnalytics,
+    'all-users':renderAllUsers,
+    'roles':renderRoles,
+    'audit':renderAudit,
+    'notifications':renderNotifications,
+    'settings':renderSettings,
+    'my-profile':renderMyProfile,
+    'real-estate-users':()=>renderDivUsers('real-estate'),
+    'media-users':()=>renderDivUsers('media'),
+    'hospitality-users':()=>renderDivUsers('hospitality'),
+    'real-estate-clients':()=>renderDivClients('real-estate'),
+    'media-clients':()=>renderDivClients('media'),
+    'hospitality-clients':()=>renderDivClients('hospitality'),
+    'real-estate-transactions':()=>renderDivTransactions('real-estate'),
+    'media-transactions':()=>renderDivTransactions('media'),
+    'hospitality-transactions':()=>renderDivTransactions('hospitality'),
+    're-properties':renderProperties,
+    'med-projects':renderProjects,
+    'hosp-courses':renderCourses,
+  };
+  const titles={
+    'dashboard':'Dashboard','analytics':'Analytics','all-users':'All Users','roles':'Roles & Permissions',
+    'audit':'Audit Log','notifications':'Notifications','settings':'System Settings','my-profile':'My Profile',
+    'real-estate-users':'Real Estate — Users','media-users':'Media — Users','hospitality-users':'Hospitality — Users',
+    'real-estate-clients':'Real Estate — Clients','media-clients':'Media — Clients','hospitality-clients':'Hospitality — Clients',
+    'real-estate-transactions':'Real Estate — Transactions','media-transactions':'Media — Transactions','hospitality-transactions':'Hospitality — Transactions',
+    're-properties':'Properties','med-projects':'Projects','hosp-courses':'Courses',
+  };
+  document.getElementById('topbarTitle').textContent=titles[page]||page;
+  document.getElementById('breadcrumb').innerHTML=`<span>Admin</span> › <span>${titles[page]||page}</span>`;
+  if(map[page]) map[page]();
+  else pc.innerHTML=`<div class="empty"><div class="empty-icon">🚧</div><h4>Coming Soon</h4><p>This section is under construction.</p></div>`;
+}
+
+// ═══ DASHBOARD ═══
+function renderDashboard(){
+  const users=getVisibleUsers();
+  const clients=users.filter(u=>u.role==='client');
+  const staff=users.filter(u=>['staff','manager'].includes(u.role));
+  const divs=getVisibleDivisions();
+  const divSummary=divs.map(div=>{
+    const d=DIVS[div];
+    const c=USERS.filter(u=>u.divisions.includes(div)&&u.role==='client').length;
+    const s=USERS.filter(u=>u.divisions.includes(div)&&['staff','manager'].includes(u.role)).length;
+    return `<div class="card card-sm" style="border-left:3px solid ${div==='real-estate'?'var(--div-re)':div==='media'?'var(--div-med)':'var(--div-hosp)'}">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+        <span style="font-size:20px;">${d.icon}</span>
+        <span class="badge ${div==='real-estate'?'b-re':div==='media'?'b-med':'b-hosp'}">${d.short}</span>
+      </div>
+      <div style="font-family:var(--font-display);font-size:22px;font-weight:600;margin-bottom:3px;">${c}</div>
+      <div style="font-size:12px;color:var(--text-3);">${c===1?'client':'clients'} · ${s} staff</div>
+      <button class="btn btn-outline btn-sm" style="margin-top:10px;width:100%;" onclick="navigateTo('${div}-clients')">Manage</button>
+    </div>`;
+  }).join('');
+
+  document.getElementById('pageContent').innerHTML=`
+    <div class="stats-grid">
+      <div class="stat"><div class="st-icon">👥</div><div class="st-label">Total Users</div><div class="st-val">${users.length}</div><div class="st-meta"><span class="st-trend st-up">+3 this week</span></div></div>
+      <div class="stat"><div class="st-icon">🤝</div><div class="st-label">Active Clients</div><div class="st-val">${clients.filter(u=>u.status==='active').length}</div><div class="st-meta">${clients.filter(u=>u.status==='pending').length} pending verification</div></div>
+      <div class="stat"><div class="st-icon">🏢</div><div class="st-label">Staff Members</div><div class="st-val">${staff.length}</div><div class="st-meta">Across ${divs.length} division${divs.length>1?'s':''}</div></div>
+      <div class="stat"><div class="st-icon">⚠️</div><div class="st-label">Needs Attention</div><div class="st-val">${users.filter(u=>['pending','suspended'].includes(u.status)).length}</div><div class="st-meta"><span class="st-trend st-down">Pending/Suspended</span></div></div>
+    </div>
+
+    <div class="g2" style="margin-bottom:20px;">
+      <div class="card">
+        <div class="card-header"><div><div class="card-title">Division Overview</div><div class="card-sub">Client distribution by division</div></div></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;">${divSummary}</div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div><div class="card-title">Recent Activity</div></div></div>
+        <div style="max-height:260px;overflow-y:auto;">
+          ${ACTIVITY_LOG.map(a=>`<div class="act-item"><div class="act-icon" style="background:${a.bg};">${a.icon}</div><div><div class="act-text">${a.text}</div><div class="act-time">${a.time}</div></div></div>`).join('')}
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div><div class="card-title">Recent Users</div><div class="card-sub">Last registered users</div></div>
+        <button class="btn btn-surface btn-sm" onclick="navigateTo('all-users')">View All</button>
+      </div>
+      ${renderUsersTable(users.slice(0,6),false)}
+    </div>`;
+}
+
+// ═══ ALL USERS ═══
+function renderAllUsers(){
+  if(!isSuperAdmin()){showPermDenied();return;}
+  document.getElementById('pageContent').innerHTML=`
+    <div class="card">
+      <div class="card-header">
+        <div><div class="card-title">All System Users</div><div class="card-sub">${USERS.length} users across all divisions</div></div>
+        <div class="card-actions">
+          <div class="search-bar"><span style="color:var(--text-3);">🔍</span><input type="text" placeholder="Search..." id="userSearch" oninput="filterUsersTable()"></div>
+          <select id="userRoleFilter" onchange="filterUsersTable()" style="padding:7px 11px;border:1px solid var(--border);border-radius:var(--r);font-family:var(--font-body);font-size:13px;background:var(--surface);">
+            <option value="">All Roles</option>
+            <option value="client">Client</option>
+            <option value="staff">Staff</option>
+            <option value="manager">Manager</option>
+            <option value="finance">Finance</option>
+            <option value="superadmin">Super Admin</option>
+          </select>
+          <select id="userDivFilter" onchange="filterUsersTable()" style="padding:7px 11px;border:1px solid var(--border);border-radius:var(--r);font-family:var(--font-body);font-size:13px;background:var(--surface);">
+            <option value="">All Divisions</option>
+            <option value="real-estate">Real Estate</option>
+            <option value="media">Media</option>
+            <option value="hospitality">Hospitality</option>
+          </select>
+          <button class="btn btn-red btn-sm" onclick="openUserModal()">+ Add User</button>
+        </div>
+      </div>
+      <div id="usersTableWrap">${renderUsersTable(USERS,true)}</div>
+    </div>`;
+}
+
+function filterUsersTable(){
+  const q=(document.getElementById('userSearch')?.value||'').toLowerCase();
+  const role=document.getElementById('userRoleFilter')?.value||'';
+  const div=document.getElementById('userDivFilter')?.value||'';
+  let filtered=USERS.filter(u=>{
+    const matchQ=!q||`${u.fname} ${u.lname} ${u.email}`.toLowerCase().includes(q);
+    const matchRole=!role||u.role===role;
+    const matchDiv=!div||u.divisions.includes(div);
+    return matchQ&&matchRole&&matchDiv;
+  });
+  document.getElementById('usersTableWrap').innerHTML=renderUsersTable(filtered,true);
+}
+
+function renderUsersTable(users,actions){
+  if(!users.length) return `<div class="empty"><div class="empty-icon">👥</div><h4>No users found</h4><p>Try adjusting your filters.</p></div>`;
+  return `<div class="tbl-wrap"><table>
+    <thead><tr><th>User</th><th>Role</th><th>Divisions</th><th>Status</th><th>Joined</th><th>Last Login</th>${actions?'<th>Actions</th>':''}</tr></thead>
+    <tbody>${users.map(u=>`
+      <tr>
+        <td>
+          <div style="display:flex;align-items:center;gap:9px;">
+            <div style="width:33px;height:33px;border-radius:50%;background:${avatarColor(u.role)};display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#fff;flex-shrink:0;">${initials(`${u.fname} ${u.lname}`)}</div>
+            <div><div class="td-name">${u.fname} ${u.lname}</div><div style="font-size:11px;color:var(--text-3);">${u.email}</div></div>
+          </div>
+        </td>
+        <td><span class="badge ${roleBadge(u.role)}">${roleLabel(u.role)}</span></td>
+        <td>${u.divisions.map(d=>`<span class="badge ${divBadge(d)} b-dot" style="margin-right:3px;">${DIVS[d]?.short||d}</span>`).join('')}</td>
+        <td><span class="badge ${statusBadge(u.status)}">${u.status}</span></td>
+        <td style="white-space:nowrap;font-size:12.5px;">${u.joined}</td>
+        <td style="white-space:nowrap;font-size:12.5px;color:var(--text-3);">${u.lastLogin}</td>
+        ${actions?`<td><div style="display:flex;gap:4px;">
+          <button class="btn btn-surface btn-xs" onclick="viewUser(${u.id})">View</button>
+          <button class="btn btn-surface btn-xs" onclick="openUserModal(${u.id})">Edit</button>
+          ${isSuperAdmin()?`<button class="btn btn-xs" style="background:var(--danger-bg);color:var(--danger);" onclick="confirmAction('Suspend user ${u.fname}?','This will prevent them from logging in.',()=>suspendUser(${u.id}))">⊘</button>`:''}
+        </div></td>`:''}
+      </tr>`).join('')}
+    </tbody>
+  </table></div>`;
+}
+
+// ═══ DIV USERS (Staff) ═══
+function renderDivUsers(div){
+  if(!canAccessDiv(div)){showPermDenied();return;}
+  const d=DIVS[div];
+  const staff=USERS.filter(u=>u.divisions.includes(div)&&['staff','manager','finance'].includes(u.role));
+  document.getElementById('pageContent').innerHTML=`
+    <div class="div-banner ${d.banner}">
+      <div class="db-text"><h2>${d.icon} ${d.name}</h2><p>Staff & Management</p></div>
+      <div class="db-actions">
+        ${isManager()||isSuperAdmin()?`<button class="btn btn-ghost btn-sm" onclick="openUserModal(null,'${div}','staff')">+ Add Staff</button>`:''}
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div><div class="card-title">Division Staff</div><div class="card-sub">${staff.length} members in ${d.name}</div></div>
+        <button class="btn btn-red btn-sm" onclick="openUserModal(null,'${div}','staff')">+ Add Staff</button>
+      </div>
+      <div class="ga" style="margin-bottom:20px;">
+        ${staff.length?staff.map(u=>userCardHtml(u)).join(''):`<div class="empty"><div class="empty-icon">👤</div><h4>No staff members</h4><p>Add staff to this division.</p></div>`}
+      </div>
+    </div>
+    ${isSuperAdmin()||isManager()?`
+    <div class="card">
+      <div class="card-header"><div class="card-title">Permissions Summary</div></div>
+      ${staffPermMatrix(div)}
+    </div>`:''}`;
+}
+
+function userCardHtml(u){
+  return `<div class="user-card" onclick="viewUser(${u.id})">
+    <div class="uc-head">
+      <div class="uc-avatar" style="background:${avatarColor(u.role)};">${initials(`${u.fname} ${u.lname}`)}</div>
+      <div><div class="uc-name">${u.fname} ${u.lname}</div><div class="uc-email">${u.email}</div></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <span class="badge ${roleBadge(u.role)}">${roleLabel(u.role)}</span>
+      <span class="badge ${statusBadge(u.status)}">${u.status}</span>
+    </div>
+    <div class="uc-divs">${u.divisions.map(d=>`<span class="badge ${divBadge(d)}">${DIVS[d]?.icon||''} ${DIVS[d]?.short||d}</span>`).join('')}</div>
+    <div class="uc-actions">
+      <button class="btn btn-surface btn-xs" style="flex:1;" onclick="event.stopPropagation();openUserModal(${u.id})">Edit</button>
+      <button class="btn btn-xs" style="background:var(--ok-bg);color:var(--ok);" onclick="event.stopPropagation();showToast('Email sent to '+${JSON.stringify(u.fname)},'success')">✉</button>
+    </div>
+  </div>`;
+}
+
+function staffPermMatrix(div){
+  const perms=["View Clients","Edit Clients","Add Clients","View Transactions","Approve Transactions","Upload Documents","Generate Reports","Manage Listings","Send Notifications"];
+  return `<div class="tbl-wrap"><table class="perm-matrix">
+    <thead><tr><th>Permission</th><th>Staff</th><th>Manager</th><th>Finance Officer</th></tr></thead>
+    <tbody>${perms.map((p,i)=>`<tr><td>${p}</td>
+      <td>${[0,1,2,7].includes(i)?'<span class="perm-check">✓</span>':'<span class="perm-cross">✗</span>'}</td>
+      <td><span class="perm-check">✓</span></td>
+      <td>${[3,4,5,6].includes(i)?'<span class="perm-check">✓</span>':i===0?'<span class="perm-check">✓</span>':'<span class="perm-cross">✗</span>'}</td>
+    </tr>`).join('')}
+    </tbody>
+  </table></div>`;
+}
+
+// ═══ DIV CLIENTS ═══
+function renderDivClients(div){
+  if(!canAccessDiv(div)){showPermDenied();return;}
+  const d=DIVS[div];
+  const clients=USERS.filter(u=>u.divisions.includes(div)&&u.role==='client');
+  document.getElementById('pageContent').innerHTML=`
+    <div class="div-banner ${d.banner}">
+      <div class="db-text"><h2>${d.icon} ${d.name}</h2><p>${clients.length} registered clients</p></div>
+      <div class="db-actions">
+        <button class="btn btn-ghost btn-sm" onclick="openUserModal(null,'${div}','client')">+ Add Client</button>
+      </div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat"><div class="st-label">Total Clients</div><div class="st-val">${clients.length}</div></div>
+      <div class="stat"><div class="st-label">Active</div><div class="st-val">${clients.filter(u=>u.status==='active').length}</div></div>
+      <div class="stat"><div class="st-label">Pending</div><div class="st-val">${clients.filter(u=>u.status==='pending').length}</div></div>
+      <div class="stat"><div class="st-label">Suspended</div><div class="st-val">${clients.filter(u=>u.status==='suspended').length}</div></div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div><div class="card-title">Client Roster</div></div>
+        <div class="card-actions">
+          <div class="search-bar"><span style="color:var(--text-3);">🔍</span><input type="text" placeholder="Search clients..." id="clientSearch_${div}" oninput="filterClients('${div}')"></div>
+          <button class="btn btn-red btn-sm" onclick="openUserModal(null,'${div}','client')">+ Add Client</button>
+        </div>
+      </div>
+      <div id="clientsTable_${div}">${renderUsersTable(clients,true)}</div>
+    </div>`;
+}
+
+function filterClients(div){
+  const q=(document.getElementById(`clientSearch_${div}`)?.value||'').toLowerCase();
+  const all=USERS.filter(u=>u.divisions.includes(div)&&u.role==='client');
+  const filtered=q?all.filter(u=>`${u.fname} ${u.lname} ${u.email}`.toLowerCase().includes(q)):all;
+  document.getElementById(`clientsTable_${div}`).innerHTML=renderUsersTable(filtered,true);
+}
+
+// ═══ TRANSACTIONS ═══
+const TRANSACTIONS=[
+  {id:"TXN-001",date:"2024-03-15",client:"Amara Wanjiku",div:"real-estate",desc:"Lease Renewal — Westlands",amount:"78,000",type:"Payment",status:"Completed"},
+  {id:"TXN-002",date:"2024-03-10",client:"Brian Otieno",div:"real-estate",desc:"Conveyancing Fee",amount:"45,000",type:"Service Fee",status:"Completed"},
+  {id:"TXN-M01",date:"2024-03-08",client:"Amara Wanjiku",div:"media",desc:"Brand Identity Package",amount:"85,000",type:"Invoice",status:"Completed"},
+  {id:"TXN-H01",date:"2024-03-01",client:"Cynthia Mwangi",div:"hospitality",desc:"Academy Enrolment Fee",amount:"15,000",type:"Enrolment",status:"Completed"},
+  {id:"TXN-003",date:"2024-02-28",client:"Liam Nderitu",div:"real-estate",desc:"Valuation Report — Karen",amount:"8,500",type:"Service Fee",status:"Completed"},
+  {id:"TXN-004",date:"2024-02-20",client:"Amara Wanjiku",div:"real-estate",desc:"Commission — Ngong Road",amount:"120,000",type:"Commission",status:"Completed"},
+  {id:"TXN-005",date:"2024-02-15",client:"Brian Otieno",div:"real-estate",desc:"Security Deposit",amount:"150,000",type:"Deposit",status:"Processing"},
+  {id:"TXN-M02",date:"2024-02-10",client:"Amara Wanjiku",div:"media",desc:"Website Development Phase 1",amount:"120,000",type:"Invoice",status:"Processing"},
+  {id:"TXN-H02",date:"2024-01-20",client:"Cynthia Mwangi",div:"hospitality",desc:"5★ Training Module",amount:"8,500",type:"Course",status:"Completed"},
+  {id:"TXN-006",date:"2024-01-15",client:"Liam Nderitu",div:"real-estate",desc:"Architectural Drawing Review",amount:"25,000",type:"Service",status:"Completed"},
+];
+
+function renderDivTransactions(div){
+  if(!canAccessDiv(div)){showPermDenied();return;}
+  const d=DIVS[div];
+  const txns=TRANSACTIONS.filter(t=>t.div===div);
+  const total=txns.filter(t=>t.status==='Completed').reduce((a,t)=>a+parseInt(t.amount.replace(',','')),0);
+  document.getElementById('pageContent').innerHTML=`
+    <div class="div-banner ${d.banner}">
+      <div class="db-text"><h2>${d.icon} ${d.name} — Transactions</h2><p>Financial records for this division</p></div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat"><div class="st-label">Total Records</div><div class="st-val">${txns.length}</div></div>
+      <div class="stat"><div class="st-label">Total Revenue</div><div class="st-val" style="font-size:20px;">KES ${total.toLocaleString()}</div><div class="st-meta">Completed only</div></div>
+      <div class="stat"><div class="st-label">Completed</div><div class="st-val">${txns.filter(t=>t.status==='Completed').length}</div></div>
+      <div class="stat"><div class="st-label">Processing</div><div class="st-val">${txns.filter(t=>t.status==='Processing').length}</div></div>
+    </div>
+    <div class="card">
+      <div class="card-header"><div class="card-title">Transaction Records</div>
+        <div class="card-actions">
+          <button class="btn btn-surface btn-sm" onclick="showToast('Generating PDF report...','info')">📄 Export PDF</button>
+          <button class="btn btn-surface btn-sm" onclick="showToast('Downloading CSV...','info')">📊 Export CSV</button>
+          ${isSuperAdmin()||isManager()||isFinance()?`<button class="btn btn-red btn-sm" onclick="showToast('Add transaction form coming soon','info')">+ Add Transaction</button>`:''}
+        </div>
+      </div>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>ID</th><th>Date</th><th>Client</th><th>Description</th><th>Type</th><th>Amount (KES)</th><th>Status</th>${isManager()||isSuperAdmin()||isFinance()?'<th>Actions</th>':''}</tr></thead>
+        <tbody>${txns.map(t=>`<tr>
+          <td class="td-mono">${t.id}</td>
+          <td style="white-space:nowrap;font-size:12.5px;">${t.date}</td>
+          <td class="td-name">${t.client}</td>
+          <td style="font-size:13px;">${t.desc}</td>
+          <td><span class="chip">${t.type}</span></td>
+          <td style="font-weight:600;">KES ${t.amount}</td>
+          <td><span class="badge ${t.status==='Completed'?'b-green':'b-amber'}">${t.status}</span></td>
+          ${isManager()||isSuperAdmin()||isFinance()?`<td><button class="btn btn-surface btn-xs" onclick="showToast('Receipt generated','success')">Receipt</button></td>`:''}
+        </tr>`).join('')}
+        </tbody>
+      </table></div>
+    </div>`;
+}
+
+// ═══ DIVISION-SPECIFIC ═══
+const PROPERTIES=[
+  {id:"RE-001",name:"Westlands Apartment 4B",type:"Residential",client:"Amara Wanjiku",status:"Active Lease",value:"78,000/mo"},
+  {id:"RE-002",name:"Karen Residential Plot",type:"Land",client:"Amara Wanjiku",status:"On Market",value:"8,500,000"},
+  {id:"RE-003",name:"Industrial Area Unit 12",type:"Commercial",client:"Amara Wanjiku",status:"Pending Transfer",value:"3,200,000"},
+  {id:"RE-004",name:"Milimani Apartment 2A",type:"Residential",client:"Brian Otieno",status:"Active Lease",value:"55,000/mo"},
+  {id:"RE-005",name:"Nakuru CBD Office",type:"Commercial",client:"Liam Nderitu",status:"Available",value:"12,000,000"},
+];
+function renderProperties(){
+  if(!canAccessDiv('real-estate')){showPermDenied();return;}
+  document.getElementById('pageContent').innerHTML=`
+    <div class="div-banner db-re"><div class="db-text"><h2>🏠 Properties Registry</h2><p>All managed properties</p></div>
+    <div class="db-actions"><button class="btn btn-ghost btn-sm" onclick="showToast('Add property form','info')">+ Add Property</button></div></div>
+    <div class="card"><div class="card-header"><div class="card-title">All Properties</div><div class="card-actions"><button class="btn btn-surface btn-sm" onclick="showToast('Exporting...','info')">Export</button></div></div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>ID</th><th>Property</th><th>Type</th><th>Client</th><th>Status</th><th>Value (KES)</th><th>Actions</th></tr></thead>
+      <tbody>${PROPERTIES.map(p=>`<tr>
+        <td class="td-mono">${p.id}</td><td class="td-name">${p.name}</td><td><span class="chip">${p.type}</span></td>
+        <td>${p.client}</td>
+        <td><span class="badge ${p.status==='Active Lease'?'b-green':p.status==='On Market'?'b-blue':p.status==='Pending Transfer'?'b-amber':'b-gray'}">${p.status}</span></td>
+        <td style="font-weight:600;">KES ${p.value}</td>
+        <td><div style="display:flex;gap:4px;"><button class="btn btn-surface btn-xs">Edit</button><button class="btn btn-surface btn-xs">Docs</button></div></td>
+      </tr>`).join('')}</tbody>
+    </table></div></div>`;
+}
+
+const PROJECTS=[
+  {id:"M-001",name:"Brand Identity Redesign",client:"Amara Wanjiku",type:"Branding",status:"Delivered",value:"85,000",pm:"Kelly Achieng",progress:100},
+  {id:"M-002",name:"Corporate Website",client:"Amara Wanjiku",type:"Web Dev",status:"In Progress",value:"120,000",pm:"Kelly Achieng",progress:65},
+  {id:"M-003",name:"Social Media Campaign",client:"Amara Wanjiku",type:"Digital Marketing",status:"Active",value:"35,000/mo",pm:"Felix Ochieng",progress:50},
+  {id:"M-004",name:"Corporate Video",client:"Amara Wanjiku",type:"Audio/Video",status:"In Production",value:"95,000",pm:"Felix Ochieng",progress:30},
+];
+function renderProjects(){
+  if(!canAccessDiv('media')){showPermDenied();return;}
+  document.getElementById('pageContent').innerHTML=`
+    <div class="div-banner db-med"><div class="db-text"><h2>🎬 Creative Projects</h2><p>All active and delivered projects</p></div>
+    <div class="db-actions"><button class="btn btn-ghost btn-sm" onclick="showToast('New project form','info')">+ New Project</button></div></div>
+    <div class="card"><div class="card-header"><div class="card-title">Projects</div></div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>ID</th><th>Project</th><th>Client</th><th>Type</th><th>Progress</th><th>Value</th><th>PM</th><th>Status</th></tr></thead>
+      <tbody>${PROJECTS.map(p=>`<tr>
+        <td class="td-mono">${p.id}</td><td class="td-name">${p.name}</td><td>${p.client}</td><td><span class="chip">${p.type}</span></td>
+        <td style="min-width:120px;"><div style="display:flex;align-items:center;gap:6px;"><div style="flex:1;height:5px;background:var(--surface-2);border-radius:99px;overflow:hidden;"><div style="height:100%;background:${p.progress===100?'var(--ok)':'var(--red)'};width:${p.progress}%;"></div></div><span style="font-size:11px;color:var(--text-3);">${p.progress}%</span></div></td>
+        <td style="font-weight:600;">KES ${p.value}</td><td style="font-size:13px;">${p.pm}</td>
+        <td><span class="badge ${p.status==='Delivered'?'b-green':p.status==='Active'?'b-blue':'b-amber'}">${p.status}</span></td>
+      </tr>`).join('')}</tbody>
+    </table></div></div>`;
+}
+
+const COURSES=[
+  {id:"C-001",name:"5★ Hotel Service Excellence",students:18,duration:"4 weeks",status:"Active",instructor:"Grace Wambui"},
+  {id:"C-002",name:"Food & Beverage Professional",students:12,duration:"3 weeks",status:"Active",instructor:"Grace Wambui"},
+  {id:"C-003",name:"Housekeeping & Room Operations",students:9,duration:"2 weeks",status:"Planned",instructor:"TBD"},
+  {id:"C-004",name:"Guest Relations & Front Office",students:15,duration:"4 weeks",status:"Completed",instructor:"Grace Wambui"},
+];
+function renderCourses(){
+  if(!canAccessDiv('hospitality')){showPermDenied();return;}
+  document.getElementById('pageContent').innerHTML=`
+    <div class="div-banner db-hosp"><div class="db-text"><h2>⭐ Hospitality Courses</h2><p>Training programme management</p></div>
+    <div class="db-actions"><button class="btn btn-ghost btn-sm" onclick="showToast('Add course form','info')">+ Add Course</button></div></div>
+    <div class="card"><div class="card-header"><div class="card-title">Course Catalogue</div></div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>ID</th><th>Course Name</th><th>Students</th><th>Duration</th><th>Instructor</th><th>Status</th><th>Actions</th></tr></thead>
+      <tbody>${COURSES.map(c=>`<tr>
+        <td class="td-mono">${c.id}</td><td class="td-name">${c.name}</td>
+        <td><span class="badge b-blue">${c.students}</span></td>
+        <td>${c.duration}</td><td>${c.instructor}</td>
+        <td><span class="badge ${c.status==='Active'?'b-green':c.status==='Completed'?'b-gray':'b-amber'}">${c.status}</span></td>
+        <td><div style="display:flex;gap:4px;"><button class="btn btn-surface btn-xs">Manage</button><button class="btn btn-surface btn-xs">Enrollees</button></div></td>
+      </tr>`).join('')}</tbody>
+    </table></div></div>`;
+}
+
+// ═══ ROLES & PERMISSIONS ═══
+function renderRoles(){
+  if(!isSuperAdmin()){showPermDenied();return;}
+  document.getElementById('pageContent').innerHTML=`
+    <div class="g2" style="margin-bottom:20px;">
+      <div class="card">
+        <div class="card-header"><div class="card-title">System Roles</div><button class="btn btn-red btn-sm" onclick="showToast('Role creation UI coming','info')">+ New Role</button></div>
+        ${[
+          {role:"Super Administrator",desc:"Full system access. Manage all divisions, users, settings.",users:1,color:"#1E0542",badge:"b-superuser"},
+          {role:"Division Manager",desc:"Manage clients and staff within their assigned division.",users:3,color:"var(--div-re-bg)",badge:"b-re"},
+          {role:"Division Staff",desc:"View assigned clients and update records in division.",users:2,color:"var(--div-med-bg)",badge:"b-med"},
+          {role:"Finance Officer",desc:"View and approve transactions across all divisions.",users:1,color:"var(--warn-bg)",badge:"b-amber"},
+          {role:"Client",desc:"Access personal portal, view documents and transactions.",users:USERS.filter(u=>u.role==='client').length,color:"var(--surface-2)",badge:"b-gray"},
+        ].map(r=>`<div style="display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--border);">
+          <div style="flex:1;"><div style="font-size:14px;font-weight:500;">${r.role}</div><div style="font-size:12px;color:var(--text-3);margin-top:2px;">${r.desc}</div></div>
+          <span class="badge ${r.badge}" style="margin-right:6px;">${r.users} user${r.users!==1?'s':''}</span>
+          <button class="btn btn-surface btn-xs" onclick="showToast('Edit role: ${r.role}','info')">Edit</button>
+        </div>`).join('')}
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-title">Division Access Scope</div></div>
+        <div class="tbl-wrap">
+          <table class="perm-matrix">
+            <thead><tr><th>Feature</th><th>Superadmin</th><th>Div Manager</th><th>Staff</th><th>Finance</th><th>Client</th></tr></thead>
+            <tbody>
+              ${[
+                ["View All Divisions","✓","✗","✗","✓","✗"],
+                ["Manage All Users","✓","✗","✗","✗","✗"],
+                ["Division Users","✓","✓","✗","✗","✗"],
+                ["Division Clients","✓","✓","✓","✓","✗"],
+                ["Add Clients","✓","✓","✓","✗","✗"],
+                ["Approve Transactions","✓","✓","✗","✓","✗"],
+                ["View Transactions","✓","✓","✓","✓","✓"],
+                ["Generate Reports","✓","✓","✗","✓","✗"],
+                ["Manage Roles","✓","✗","✗","✗","✗"],
+                ["System Settings","✓","✗","✗","✗","✗"],
+              ].map(r=>`<tr><td>${r[0]}</td>${r.slice(1).map(v=>`<td><span class="${v==='✓'?'perm-check':v==='✗'?'perm-cross':'perm-partial'}">${v}</span></td>`).join('')}</tr>`).join('')}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ═══ AUDIT LOG ═══
+const AUDIT_FULL=[
+  {time:"2024-03-19 14:22",user:"Esther Njoki",role:"RE Manager",action:"Updated client profile",target:"Brian Otieno",ip:"196.202.x.x",div:"real-estate"},
+  {time:"2024-03-19 13:10",user:"Super Admin",role:"Super Admin",action:"Created new user",target:"Ivy Chelangat",ip:"196.201.x.x",div:"system"},
+  {time:"2024-03-19 11:55",user:"Henry Mutua",role:"Finance",action:"Approved transaction",target:"TXN-005",ip:"196.202.x.x",div:"real-estate"},
+  {time:"2024-03-18 16:30",user:"Felix Ochieng",role:"Media Manager",action:"Marked project delivered",target:"Brand Identity #M-001",ip:"196.200.x.x",div:"media"},
+  {time:"2024-03-18 10:15",user:"Grace Wambui",role:"Hosp Manager",action:"Enrolled student",target:"Cynthia Mwangi → C-002",ip:"196.203.x.x",div:"hospitality"},
+  {time:"2024-03-17 09:00",user:"Daniel Kimani",role:"RE Staff",action:"Added property",target:"Nakuru CBD Office RE-005",ip:"196.202.x.x",div:"real-estate"},
+  {time:"2024-03-16 15:40",user:"Unknown",role:"—",action:"Failed login attempt",target:"test@unknown.com",ip:"41.90.x.x",div:"system"},
+  {time:"2024-03-15 12:00",user:"Super Admin",role:"Super Admin",action:"Reset user password",target:"Amara Wanjiku",ip:"196.201.x.x",div:"system"},
+];
+function renderAudit(){
+  if(!isSuperAdmin()){showPermDenied();return;}
+  document.getElementById('pageContent').innerHTML=`
+    <div class="card">
+      <div class="card-header"><div class="card-title">System Audit Log</div>
+        <div class="card-actions">
+          <select style="padding:7px 11px;border:1px solid var(--border);border-radius:var(--r);font-family:var(--font-body);font-size:13px;">
+            <option>All Divisions</option><option>Real Estate</option><option>Media</option><option>Hospitality</option><option>System</option>
+          </select>
+          <button class="btn btn-surface btn-sm" onclick="showToast('Exporting audit log...','info')">Export CSV</button>
+        </div>
+      </div>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Timestamp</th><th>Admin User</th><th>Role</th><th>Action</th><th>Target</th><th>Division</th><th>IP</th></tr></thead>
+        <tbody>${AUDIT_FULL.map(a=>`<tr>
+          <td class="td-mono" style="white-space:nowrap;">${a.time}</td>
+          <td class="td-name">${a.user}</td>
+          <td><span class="badge b-gray">${a.role}</span></td>
+          <td style="font-size:13px;">${a.action}</td>
+          <td style="font-size:13px;color:var(--text-2);">${a.target}</td>
+          <td>${a.div==='system'?'<span class="badge b-corp">System</span>':`<span class="badge ${divBadge(a.div)}">${DIVS[a.div]?.short||a.div}</span>`}</td>
+          <td class="td-mono">${a.ip}</td>
+        </tr>`).join('')}</tbody>
+      </table></div>
+    </div>`;
+}
+
+// ═══ NOTIFICATIONS ═══
+function renderNotifications(){
+  document.getElementById('pageContent').innerHTML=`
+    <div class="card">
+      <div class="card-header"><div class="card-title">System Notifications</div><button class="btn btn-surface btn-sm" onclick="showToast('All marked as read','success')">Mark All Read</button></div>
+      ${SYSTEM_NOTIFS.map(n=>`
+        <div style="display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--border);${!n.read?'background:transparent;':''}" onclick="showToast('Notification opened','info')">
+          <div style="width:38px;height:38px;border-radius:50%;background:${!n.read?'var(--red-a08)':'var(--surface-2)'};display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">${n.icon}</div>
+          <div style="flex:1;"><div style="font-size:14px;font-weight:${!n.read?600:400};color:var(--text);">${n.title}</div><div style="font-size:13px;color:var(--text-2);">${n.msg}</div><div style="font-size:11px;color:var(--text-3);margin-top:4px;">${n.time}</div></div>
+          ${!n.read?'<div style="width:8px;height:8px;border-radius:50%;background:var(--red);margin-top:6px;flex-shrink:0;"></div>':''}
+        </div>`).join('')}
+    </div>`;
+}
+
+// ═══ ANALYTICS ═══
+function renderAnalytics(){
+  if(!isSuperAdmin()&&!isFinance()){showPermDenied();return;}
+  document.getElementById('pageContent').innerHTML=`
+    <div class="stats-grid">
+      <div class="stat"><div class="st-icon">💰</div><div class="st-label">Total Revenue YTD</div><div class="st-val">KES 4.8M</div><div class="st-meta"><span class="st-trend st-up">+18% vs 2023</span></div></div>
+      <div class="stat"><div class="st-icon">🏠</div><div class="st-label">RE Revenue</div><div class="st-val">KES 3.1M</div><div class="st-meta">64% of total</div></div>
+      <div class="stat"><div class="st-icon">🎬</div><div class="st-label">Media Revenue</div><div class="st-val">KES 1.2M</div><div class="st-meta">25% of total</div></div>
+      <div class="stat"><div class="st-icon">⭐</div><div class="st-label">Hospitality Revenue</div><div class="st-val">KES 480K</div><div class="st-meta">10% of total</div></div>
+    </div>
+    <div class="g2" style="margin-bottom:20px;">
+      <div class="card">
+        <div class="card-header"><div class="card-title">Revenue by Division</div></div>
+        <div style="padding:8px 0;">
+          ${[["Real Estate","🏠","var(--red)",64],["Creative Media","🎬","var(--div-med)",25],["Hospitality","⭐","var(--div-hosp)",11]].map(([name,icon,color,pct])=>`
+          <div style="margin-bottom:14px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+              <div style="font-size:13px;font-weight:500;">${icon} ${name}</div>
+              <div style="font-size:13px;font-weight:600;">${pct}%</div>
+            </div>
+            <div style="height:8px;background:var(--surface-2);border-radius:99px;overflow:hidden;"><div style="height:100%;width:${pct}%;background:${color};border-radius:99px;"></div></div>
+          </div>`).join('')}
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-title">User Growth</div></div>
+        <div style="padding:8px 0;">
+          ${[["Q1 2023",8],["Q2 2023",14],["Q3 2023",18],["Q4 2023",22],["Q1 2024",28]].map(([q,n],i,arr)=>{
+            const max=arr[arr.length-1][1];
+            const pct=Math.round(n/max*100);
+            return `<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+              <div style="width:70px;font-size:12px;color:var(--text-3);">${q}</div>
+              <div style="flex:1;height:6px;background:var(--surface-2);border-radius:99px;overflow:hidden;"><div style="height:100%;width:${pct}%;background:var(--navy);border-radius:99px;"></div></div>
+              <div style="width:28px;font-size:12px;font-weight:600;text-align:right;">${n}</div>
+            </div>`;
+          }).join('')}
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header"><div class="card-title">Division Performance Summary</div></div>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Division</th><th>Active Clients</th><th>Staff</th><th>Transactions</th><th>Revenue YTD</th><th>Growth</th></tr></thead>
+        <tbody>
+          <tr><td><span class="badge b-re">🏠 Real Estate</span></td><td>4</td><td>2</td><td>8</td><td style="font-weight:600;">KES 3,100,000</td><td><span class="st-trend st-up">+22%</span></td></tr>
+          <tr><td><span class="badge b-med">🎬 Creative Media</span></td><td>2</td><td>2</td><td>4</td><td style="font-weight:600;">KES 1,200,000</td><td><span class="st-trend st-up">+15%</span></td></tr>
+          <tr><td><span class="badge b-hosp">⭐ Hospitality</span></td><td>2</td><td>1</td><td>3</td><td style="font-weight:600;">KES 480,000</td><td><span class="st-trend st-up">+31%</span></td></tr>
+        </tbody>
+      </table></div>
+    </div>`;
+}
+
+// ═══ SETTINGS ═══
+function renderSettings(){
+  if(!isSuperAdmin()){showPermDenied();return;}
+  document.getElementById('pageContent').innerHTML=`
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="showSettingsTab(this,'general')">General</button>
+      <button class="tab-btn" onclick="showSettingsTab(this,'email')">Email / SMS</button>
+      <button class="tab-btn" onclick="showSettingsTab(this,'security')">Security</button>
+      <button class="tab-btn" onclick="showSettingsTab(this,'django')">Django Config</button>
+    </div>
+    <div id="settingsGeneral" class="tab-pane active">
+      <div class="g2">
+        <div class="card">
+          <div class="card-header"><div class="card-title">Company Information</div></div>
+          <div class="fg"><label>Company Name</label><input type="text" value="Glonax Holdings Limited"></div>
+          <div class="fg"><label>Registration No.</label><input type="text" value="PVT-2018-GHL-0023"></div>
+          <div class="fg"><label>Physical Address</label><input type="text" value="Gate House Nakuru, 5th Floor, Suite 506"></div>
+          <div class="form-row">
+            <div class="fg"><label>Primary Phone</label><input type="text" value="0732 028 129"></div>
+            <div class="fg"><label>Secondary Phone</label><input type="text" value="0716 517 561"></div>
+          </div>
+          <button class="btn btn-red btn-sm" onclick="showToast('Settings saved','success')">Save Changes</button>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">Active Divisions</div></div>
+          ${[["🏠","Commercial Agencies","Real Estate","active"],["🎬","Creative Media","Media","active"],["⭐","Hospitality Academy","Hospitality","active"]].map(([icon,name,short,status])=>`
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border);">
+            <div style="display:flex;align-items:center;gap:10px;"><span style="font-size:18px;">${icon}</span><div><div style="font-size:14px;font-weight:500;">${name}</div><div style="font-size:11px;color:var(--text-3);">${short}</div></div></div>
+            <div style="display:flex;align-items:center;gap:8px;"><span class="badge b-green">${status}</span><button class="btn btn-surface btn-xs">Configure</button></div>
+          </div>`).join('')}
+        </div>
+      </div>
+    </div>
+    <div id="settingsEmail" class="tab-pane">
+      <div class="card">
+        <div class="card-header"><div class="card-title">Email & SMS Configuration</div></div>
+        <div class="form-row">
+          <div class="fg"><label>SMTP Host</label><input value="smtp.gmail.com"></div>
+          <div class="fg"><label>SMTP Port</label><input value="587"></div>
+        </div>
+        <div class="form-row">
+          <div class="fg"><label>From Email</label><input value="noreply@glonaxholdings.co.ke"></div>
+          <div class="fg"><label>From Name</label><input value="Glonax Holdings Limited"></div>
+        </div>
+        <div class="fg"><label>Africa's Talking API Key (SMS)</label><input type="password" value="atsk_••••••••••••••"></div>
+        <div style="display:flex;gap:8px;margin-top:8px;">
+          <button class="btn btn-surface btn-sm" onclick="showToast('Test email sent','success')">Test Email</button>
+          <button class="btn btn-surface btn-sm" onclick="showToast('Test SMS sent','success')">Test SMS</button>
+          <button class="btn btn-red btn-sm" onclick="showToast('Email settings saved','success')">Save</button>
+        </div>
+      </div>
+    </div>
+    <div id="settingsSecurity" class="tab-pane">
+      <div class="card">
+        <div class="card-header"><div class="card-title">Security Settings</div></div>
+        <div class="cb-row"><input type="checkbox" id="s1" checked><label for="s1">Enforce 2FA for all admin accounts</label><small>Recommended</small></div>
+        <div class="cb-row"><input type="checkbox" id="s2" checked><label for="s2">Lock account after 5 failed login attempts</label></div>
+        <div class="cb-row"><input type="checkbox" id="s3"><label for="s3">Require strong passwords (12+ chars, symbols)</label></div>
+        <div class="cb-row"><input type="checkbox" id="s4" checked><label for="s4">Log all admin actions to audit trail</label></div>
+        <div class="cb-row"><input type="checkbox" id="s5" checked><label for="s5">Send security alerts via email</label></div>
+        <div class="form-row" style="margin-top:14px;">
+          <div class="fg"><label>Session Timeout (minutes)</label><input type="number" value="120"></div>
+          <div class="fg"><label>Password Expiry (days)</label><input type="number" value="90"></div>
+        </div>
+        <button class="btn btn-red btn-sm" onclick="showToast('Security settings saved','success')">Save Security Settings</button>
+      </div>
+    </div>
+    <div id="settingsDjango" class="tab-pane">
+      <div class="card">
+        <div class="card-header"><div class="card-title">Django Configuration Reference</div></div>
+        <div style="font-size:13px;color:var(--text-2);line-height:1.8;margin-bottom:16px;">This admin UI is designed to work alongside Django's built-in admin. These settings map to your <code style="background:var(--surface-2);padding:2px 6px;border-radius:4px;">settings.py</code> configuration.</div>
+        ${[
+          {key:"INSTALLED_APPS",val:"'django.contrib.admin' + glonax custom apps"},
+          {key:"AUTH_USER_MODEL",val:"accounts.GlonaxUser (custom)"},
+          {key:"AUTHENTICATION_BACKENDS",val:"ModelBackend + DivisionScopeBackend"},
+          {key:"LOGIN_URL",val:"/admin/auth/login/"},
+          {key:"MEDIA_ROOT",val:"/var/www/glonax/media/"},
+          {key:"DEFAULT_AUTO_FIELD",val:"BigAutoField"},
+        ].map(s=>`<div style="display:flex;gap:12px;padding:9px 0;border-bottom:1px solid var(--border);">
+          <code style="background:var(--surface-2);padding:3px 8px;border-radius:4px;font-size:12px;white-space:nowrap;">${s.key}</code>
+          <span style="font-size:13px;color:var(--text-2);flex:1;">${s.val}</span>
+        </div>`).join('')}
+        <div style="margin-top:16px;padding:14px;background:var(--info-bg);border:1px solid var(--info-border);border-radius:var(--r);font-size:13px;color:var(--info);">
+          <strong>Django Groups Mapping:</strong> Each division maps to a Django Group. Division managers are assigned to <code>re_managers</code> / <code>media_managers</code> / <code>hosp_managers</code> groups. Superusers retain all default Django superuser privileges.
+        </div>
+      </div>
+    </div>`;
+}
+
+function showSettingsTab(btn,id){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  document.getElementById(`settings${id.charAt(0).toUpperCase()+id.slice(1)}`).classList.add('active');
+}
+
+// ═══ MY PROFILE ═══
+function renderMyProfile(){
+  const meta=ADMIN_ROLES_META[adminUser.role]||{};
+  document.getElementById('pageContent').innerHTML=`
+    <div class="g2">
+      <div class="card">
+        <div class="card-header"><div class="card-title">My Admin Profile</div></div>
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:20px;border-bottom:1px solid var(--border);">
+          <div style="width:56px;height:56px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#fff;">${initials(adminUser.name)}</div>
+          <div><div style="font-family:var(--font-display);font-size:19px;font-weight:600;">${adminUser.name}</div>
+          <div style="font-size:13px;color:var(--text-3);">${adminUser.email}</div>
+          <span class="badge b-re" style="margin-top:5px;">${meta.label||adminUser.role}</span></div>
+        </div>
+        <div id="mpAlert" class="alert"></div>
+        <div class="fg"><label>Full Name</label><input id="mp_name" value="${adminUser.name}"></div>
+        <div class="fg"><label>Email</label><input id="mp_email" value="${adminUser.email}"></div>
+        <div class="fg"><label>Phone</label><input placeholder="+254 7XX XXX XXX"></div>
+        <button class="btn btn-red btn-sm" onclick="saveMyProfile()">Save Changes</button>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:16px;">
+          <div class="card-header"><div class="card-title">Change Password</div></div>
+          <div class="fg"><label>Current Password</label><input type="password" placeholder="••••••••"></div>
+          <div class="fg"><label>New Password</label><input type="password" placeholder="Min. 8 characters"></div>
+          <div class="fg"><label>Confirm Password</label><input type="password" placeholder="Repeat"></div>
+          <button class="btn btn-outline btn-sm" onclick="showToast('Password updated successfully','success')">Update Password</button>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">Access Summary</div></div>
+          <div style="font-size:13px;color:var(--text-2);margin-bottom:14px;">Your role determines which divisions and features you can access.</div>
+          ${getVisibleDivisions().map(div=>`<div style="display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);">
+            <span style="font-size:16px;">${DIVS[div].icon}</span>
+            <span style="font-size:13px;font-weight:500;">${DIVS[div].name}</span>
+            <span class="badge b-green" style="margin-left:auto;">Access Granted</span>
+          </div>`).join('')}
+        </div>
+      </div>
+    </div>`;
+}
+
+function saveMyProfile(){
+  adminUser.name=document.getElementById('mp_name').value||adminUser.name;
+  adminUser.email=document.getElementById('mp_email').value||adminUser.email;
+  document.getElementById('sbName').textContent=adminUser.name;
+  document.getElementById('sbAvatar').textContent=initials(adminUser.name);
+  const al=document.getElementById('mpAlert');al.className='alert alert-success';al.textContent='Profile saved.';al.style.display='block';
+  setTimeout(()=>al.style.display='none',2500);
+}
+
+// ═══ USER MODAL ═══
+function openUserModal(id=null,prefDiv=null,prefRole=null){
+  document.getElementById('userModalTitle').textContent=id?'Edit User':'Add User';
+  document.getElementById('userModalAlert').style.display='none';
+  if(!id){
+    ['um_fname','um_lname','um_email','um_phone','um_idno','um_city','um_area','um_pass','um_pass2'].forEach(f=>document.getElementById(f).value='');
+    document.getElementById('um_role').value=prefRole||'client';
+    document.getElementById('um_status').value='active';
+  } else {
+    const u=USERS.find(x=>x.id===id);
+    if(u){
+      document.getElementById('um_fname').value=u.fname;
+      document.getElementById('um_lname').value=u.lname;
+      document.getElementById('um_email').value=u.email;
+      document.getElementById('um_phone').value=u.phone;
+      document.getElementById('um_idno').value=u.idno;
+      document.getElementById('um_city').value=u.city;
+      document.getElementById('um_area').value=u.area;
+      document.getElementById('um_role').value=u.role;
+      document.getElementById('um_status').value=u.status;
+    }
+  }
+  buildDivisionCbx(prefDiv);
+  handleRoleChange();
+  openModal('userModal');
+}
+
+function buildDivisionCbx(prefDiv){
+  const avail=isSuperAdmin()?Object.keys(DIVS):[adminUser.division].filter(Boolean);
+  const cbx=document.getElementById('divisionCbx');
+  cbx.innerHTML=avail.map(div=>{
+    const d=DIVS[div];
+    return `<div class="cb-row">
+      <input type="checkbox" id="div_${div}" name="divs" value="${div}" ${div===prefDiv||(!prefDiv&&avail.length===1)?'checked':''}>
+      <label for="div_${div}" style="display:flex;align-items:center;gap:7px;">${d.icon} ${d.name}</label>
+      <small>${d.short}</small>
+    </div>`;
+  }).join('');
+}
+
+function handleRoleChange(){
+  const role=document.getElementById('um_role').value;
+  const sps=document.getElementById('staffPermsSection');
+  const da=document.getElementById('divisionAssign');
+  if(['staff','manager'].includes(role)){
+    sps.style.display='block';
+    const perms=['View Clients','Add/Edit Clients','View Transactions','Approve Transactions','Upload Documents','Generate Reports','Send Notifications'];
+    document.getElementById('staffPermsCbx').innerHTML=perms.map((p,i)=>`
+      <div class="cb-row">
+        <input type="checkbox" id="perm_${i}" ${i<(role==='manager'?7:3)?'checked':''}>
+        <label for="perm_${i}">${p}</label>
+      </div>`).join('');
+  } else {sps.style.display='none';}
+  da.style.display=role==='superadmin'?'none':'block';
+}
+
+function saveUser(){
+  const fname=document.getElementById('um_fname').value.trim();
+  const lname=document.getElementById('um_lname').value.trim();
+  const email=document.getElementById('um_email').value.trim();
+  const al=document.getElementById('userModalAlert');
+  if(!fname||!lname||!email){al.className='alert alert-danger';al.textContent='Name and email are required.';al.style.display='block';return;}
+  const divs=[...document.querySelectorAll('[name=divs]:checked')].map(c=>c.value);
+  const newUser={
+    id:USERS.length+1,fname,lname,email,
+    phone:document.getElementById('um_phone').value,
+    role:document.getElementById('um_role').value,
+    status:document.getElementById('um_status').value,
+    divisions:divs.length?divs:['real-estate'],
+    city:document.getElementById('um_city').value,
+    area:document.getElementById('um_area').value,
+    idno:document.getElementById('um_idno').value,
+    joined:new Date().toISOString().split('T')[0],
+    lastLogin:'Never',
+  };
+  USERS.push(newUser);
+  al.className='alert alert-success';al.textContent=`User ${fname} ${lname} created successfully!`;al.style.display='block';
+  setTimeout(()=>{closeModal('userModal');navigateTo(currentPage);showToast(`User ${fname} ${lname} created`,'success');},1500);
+}
+
+// ═══ VIEW USER ═══
+function viewUser(id){
+  const u=USERS.find(x=>x.id===id);
+  if(!u) return;
+  document.getElementById('userDetailBody').innerHTML=`
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:22px;padding-bottom:20px;border-bottom:1px solid var(--border);">
+      <div style="width:58px;height:58px;border-radius:50%;background:${avatarColor(u.role)};display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#fff;">${initials(`${u.fname} ${u.lname}`)}</div>
+      <div>
+        <div style="font-family:var(--font-display);font-size:20px;font-weight:600;">${u.fname} ${u.lname}</div>
+        <div style="font-size:13px;color:var(--text-3);">${u.email} · ${u.phone}</div>
+        <div style="margin-top:6px;display:flex;gap:6px;">
+          <span class="badge ${roleBadge(u.role)}">${roleLabel(u.role)}</span>
+          <span class="badge ${statusBadge(u.status)}">${u.status}</span>
+        </div>
+      </div>
+    </div>
+    <div class="g2">
+      <div>
+        <div class="fs-title">Personal Details</div>
+        ${[["ID No.",u.idno],["Location",`${u.area}, ${u.city}`],["Joined",u.joined],["Last Login",u.lastLogin]].map(([l,v])=>`
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;">
+          <span style="color:var(--text-3);">${l}</span><span style="font-weight:500;">${v||'—'}</span>
+        </div>`).join('')}
+      </div>
+      <div>
+        <div class="fs-title">Division Profiles</div>
+        ${u.divisions.map(div=>`<div style="display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);">
+          <span>${DIVS[div]?.icon}</span><span style="font-size:13px;font-weight:500;flex:1;">${DIVS[div]?.name||div}</span>
+          <span class="badge b-green">Active</span>
+        </div>`).join('')}
+      </div>
+    </div>
+    <div style="margin-top:16px;">
+      <div class="fs-title">Quick Actions</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="btn btn-surface btn-sm" onclick="showToast('Password reset email sent','success')">Reset Password</button>
+        <button class="btn btn-surface btn-sm" onclick="showToast('Welcome email sent','success')">Send Welcome Email</button>
+        <button class="btn btn-surface btn-sm" onclick="showToast('Generating client statement...','info')">Generate Statement</button>
+        ${isSuperAdmin()?`<button class="btn btn-danger btn-sm" onclick="confirmAction('Suspend ${u.fname}?','This prevents portal access.',()=>{suspendUser(${u.id});closeModal('userDetailModal')})">Suspend Account</button>`:''}
+      </div>
+    </div>`;
+  openModal('userDetailModal');
+}
+
+function suspendUser(id){
+  const u=USERS.find(x=>x.id===id);
+  if(u){u.status='suspended';showToast(`${u.fname} ${u.lname} suspended`,'info');}
+  navigateTo(currentPage);
+}
+
+// ═══ NOTIFICATIONS ═══
+function showNotifModal(){
+  document.getElementById('notifModalBody').innerHTML=SYSTEM_NOTIFS.map(n=>`
+    <div class="act-item">
+      <div class="act-icon" style="background:${n.read?'var(--surface-2)':'var(--red-a08)'};">${n.icon}</div>
+      <div><div class="act-text"><strong>${n.title}</strong> — ${n.msg}</div><div class="act-time">${n.time}</div></div>
+      ${!n.read?'<div style="width:7px;height:7px;border-radius:50%;background:var(--red);flex-shrink:0;margin-top:4px;"></div>':''}
+    </div>`).join('');
+  openModal('notifModal');
+}
+
+// ═══ CONFIRM ═══
+function confirmAction(title,msg,cb){
+  document.getElementById('confirmTitle').textContent=title;
+  document.getElementById('confirmMsg').textContent=msg;
+  document.getElementById('confirmBtn').onclick=()=>{cb();closeModal('confirmModal');};
+  openModal('confirmModal');
+}
+
+// ═══ PERM DENIED ═══
+function showPermDenied(){
+  document.getElementById('pageContent').innerHTML=`
+    <div class="perm-denied">
+      <h4>🔒 Access Restricted</h4>
+      <p>You don't have permission to view this section. Contact your Super Administrator if you need access.</p>
+    </div>`;
+}
+
+// ═══ MODALS ═══
+function openModal(id){document.getElementById(id).classList.add('open');}
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+document.querySelectorAll('.modal-backdrop').forEach(b=>b.addEventListener('click',e=>{if(e.target===b)b.classList.remove('open');}));
+
+// ═══ TOAST ═══
+let toastTimer;
+function showToast(msg,type='info'){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.className=`show ${type}`;
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>t.className='',3000);
+}
+
+// ═══ HELPERS ═══
+function initials(n){return (n||'?').split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);}
+function avatarColor(role){const m={superadmin:'#6D28D9',manager:'var(--red)',staff:'#1E3A5F',finance:'#78350F',client:'#374151'};return m[role]||'#374151';}
+function roleBadge(r){const m={superadmin:'b-superuser',manager:'b-re',staff:'b-blue',finance:'b-amber',client:'b-gray'};return m[r]||'b-gray';}
+function roleLabel(r){const m={superadmin:'Super Admin',manager:'Manager',staff:'Staff',finance:'Finance',client:'Client'};return m[r]||r;}
+function statusBadge(s){const m={active:'b-green',pending:'b-amber',suspended:'b-red',inactive:'b-gray'};return m[s]||'b-gray';}
+function divBadge(d){const m={'real-estate':'b-re','media':'b-med','hospitality':'b-hosp'};return m[d]||'b-gray';}
+
+// Enter to login
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&document.getElementById('authScreen').style.display!=='none')doAdminLogin();});
+</script>
+</body>
+</html>

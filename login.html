@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login — Glonax Holdings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<script src="https://kit.fontawesome.com/a8ba985590.js" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="toast" id="toast"><div class="toast-icon">✦</div><div><strong id="toastTitle"></strong><span id="toastMsg"></span></div></div>
+
+<div class="auth-page">
+  <!-- LEFT -->
+  <div class="auth-left">
+    <div class="auth-left-bg"></div><div class="auth-left-grid"></div>
+    <div class="auth-left-content">
+      <div class="auth-logo">
+        <img src="./logo.jpg" alt="Glonax">
+        <div class="auth-logo-text">Glonax Holdings<span>Limited</span></div>
+      </div>
+      <div class="auth-left-headline">Welcome<br>Back to<br><em>Glonax</em></div>
+      <p class="auth-left-sub">Sign in to manage your property, media, and hospitality services — all from one powerful client portal.</p>
+      <div class="auth-divisions">
+        <div class="auth-div-badge">
+          <div class="auth-div-icon"><i class="fa-solid fa-house-chimney-window"></i></div>
+          <div class="auth-div-info"><h5>Commercial Agencies</h5><p>Real Estate · Property · Conveyancing</p></div>
+          <div class="auth-div-tag">Active</div>
+        </div>
+        <div class="auth-div-badge">
+          <div class="auth-div-icon"><i class="fa-solid fa-icons"></i></div>
+          <div class="auth-div-info"><h5>Creative Media</h5><p>Branding · Web · Social Media</p></div>
+          <div class="auth-div-tag">Active</div>
+        </div>
+        <div class="auth-div-badge">
+          <div class="auth-div-icon"><i class="fa-solid fa-hotel"></i></div>
+          <div class="auth-div-info"><h5>Hospitality Academy</h5><p>Training · Placement · Coaching</p></div>
+          <div class="auth-div-tag">Active</div>
+        </div>
+      </div>
+    </div>
+    <div class="auth-left-footer">
+      <p>© 2025 Glonax Holdings Limited · Gate House Nakuru, 5th Floor, Suite 506</p>
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="auth-right">
+    <div class="auth-form-wrap">
+      <div class="auth-form-header">
+        <a href="./index.html"><img src="./logo.png" alt="Glonax" style="height:38px;margin-bottom:18px;display:block"></a>
+        <h2>Sign <em>In</em></h2>
+        <p>Enter your credentials to access your client portal</p>
+      </div>
+
+      <div class="auth-alert" id="loginAlert"></div>
+      <div class="fg"><label>Email Address</label><input type="email" id="loginEmail" placeholder="you@example.com" autocomplete="email"></div>
+      <div class="fg">
+        <div class="fg-row">
+          <label>Password</label>
+          <a href=""></a>
+        </div>
+        <input type="password" id="loginPassword" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <div class="fg-row">
+        <label></label>
+        <a href="./password_reset.html" class="fg-forgot">Forgot password?</a>
+    </div>
+      <button class="auth-submit" onclick="doLogin()">Sign In →</button>
+
+      <div class="auth-divider">or continue with</div>
+      <button class="auth-social-btn" onclick="showToast('Google','Google sign-in coming soon.')">
+        <span style="font-size:18px"><img src="./googlelogo.png" alt="" srcset=""></span> Continue with Google
+      </button>
+
+      <div class="auth-footer-link">Don't have an account? <a href="./register.html">Create one free</a></div>
+    </div>
+  </div>
+</div>
+<script src="./script.js"></script>
+</body>
+</html>

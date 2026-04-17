@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog Post — Glonax Holdings Limited</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<script src="https://kit.fontawesome.com/a8ba985590.js" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div id="loader"><div class="loader-logo"><img src="./logo.png" alt=""></div><div class="loader-bar"><div class="loader-bar-fill"></div></div></div>
+<div class="toast" id="toast"><div class="toast-icon">✦</div><div><strong id="toastTitle"></strong><span id="toastMsg"></span></div></div>
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<nav id="mainNav">
+  <div class="nav-logo" onclick="window.location.href='./index.html'"><img src="./logo.png" alt=""><div class="nav-brand">Glonax Holdings<span>Limited</span></div></div>
+  <div class="nav-links">
+    <a href="./index.html">Home</a>
+    <a href="./blog.html" style="color:var(--red)">Blog</a>
+    <a href="./about.html">About</a>
+    <a href="./index.html#contact-cta">Contact</a>
+    <a href="#" class="nav-cta" onclick="openModal('login');return false">Login</a>
+  </div>
+  <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()"><div class="theme-toggle-thumb"><span class="theme-toggle-icon" id="themeIcon">☀</span></div></button>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="./index.html" onclick="closeMobileMenu()">Home</a>
+  <a href="./blog.html" onclick="closeMobileMenu()">Blog</a>
+  <a href="./about.html" onclick="closeMobileMenu()">About</a>
+  <a href="#" onclick="openModal('login');closeMobileMenu();return false" style="color:var(--red)">Login / Register</a>
+</div>
+
+<main style="background:var(--bg);padding-top:72px">
+  <div class="blog-detail-wrap">
+    <!-- ─── ARTICLE ─── -->
+    <article>
+      <div class="article-hero reveal">
+        <div class="article-cat">Real Estate</div>
+        <h1 class="article-title">Nakuru Real Estate 2025: What Buyers and Investors Need to Know</h1>
+        <div class="article-meta">
+          <div class="meta-author">
+            <div class="meta-avatar">
+              <img src="./account.jpg" alt="" srcset="">
+            </div>
+            <div><div class="meta-author-name">Glonax Real Estate Team</div><div class="meta-author-title">Commercial Agencies Division</div></div>
+          </div>
+          <div class="meta-divider"></div>
+          <div class="meta-detail"><i class="fa-solid fa-calendar-days"></i> June 2025</div>
+          <div class="meta-divider"></div>
+          <div class="meta-detail">⏱ 8 min read</div>
+          <div class="meta-divider"></div>
+          <div class="meta-detail">👁 1,240 views</div>
+        </div>
+      </div>
+
+      <div class="article-banner reveal">
+        <img src="./blog1.png" alt="" srcset="">
+      </div>
+
+      <div class="article-content reveal">
+        <p>The Nakuru property market is undergoing a significant transformation. Following the city's elevation to county status, increased infrastructure investment, and growing domestic migration from Nairobi, demand for residential and commercial properties has surged in ways few anticipated just three years ago.</p>
+
+        <p>For buyers, sellers, landlords, and investors, 2025 presents both substantial opportunity and important risks. Here is what you need to understand before making your next move in the Nakuru property market.</p>
+
+        <h2>Why Nakuru is Attracting Investors</h2>
+        <p>Nakuru's elevation to city status in 2021 was the first signal of things to come. Since then, the county government has invested heavily in road infrastructure, public facilities, and business development zones. The Nakuru–Naivasha highway expansion and ongoing SGR extension proposals have made the city increasingly attractive to investors who were previously focused solely on Nairobi and Mombasa.</p>
+
+        <p>The result? Property values in key areas like Milimani, Racecourse, and Nakuru West have appreciated by an estimated 18–25% over the past 24 months — outperforming many Nairobi suburbs on a percentage basis.</p>
+
+        <blockquote>"Nakuru represents one of Kenya's most compelling property investment opportunities in 2025. The combination of infrastructure growth, population expansion, and relatively accessible land prices creates a window that serious investors should not ignore."</blockquote>
+
+        <h2>Key Areas to Watch in 2025</h2>
+        <p>Not all parts of Nakuru are performing equally. Our agents have identified five key zones showing the strongest activity:</p>
+        <ul>
+          <li><strong>Milimani:</strong> Premium residential demand remains high. Rents for 3-bedroom units range from KES 20,000–35,000/month.</li>
+          <li><strong>Nakuru West:</strong> Strong buyer interest for land and new builds. Land prices from KES 800K–2M per 50×100 plot.</li>
+          <li><strong>Lanet:</strong> Emerging corridor driven by industrial and transport proximity. High rental yield potential.</li>
+          <li><strong>Racecourse:</strong> Established mid-to-high end residential. Steady appreciation, popular with professionals.</li>
+          <li><strong>CBD & Surrounds:</strong> Commercial spaces in high demand post-COVID recovery. Office and retail rentals rebounding.</li>
+        </ul>
+
+        <h2>What Buyers Need to Know About Due Diligence</h2>
+        <p>One of the most common mistakes first-time buyers make in Nakuru — and across Kenya — is skipping proper due diligence. With the land market becoming more active, fraudulent listings and unclear title deeds have also increased. Here's what to check before committing to any purchase:</p>
+        <ul>
+          <li>Verify the title deed at the local land registry</li>
+          <li>Confirm the seller's identity against the title</li>
+          <li>Check for any encumbrances, charges, or cautions on the title</li>
+          <li>Conduct a physical survey with a registered surveyor</li>
+          <li>Engage a licensed conveyancer for the transfer process</li>
+        </ul>
+
+        <h2>The Role of Professional Conveyancing</h2>
+        <p>Many buyers attempt to handle property transfers without professional legal support — and many of them end up in expensive disputes. Conveyancing in Kenya involves multiple steps, each with specific legal and regulatory requirements. A licensed conveyancer ensures the process is clean, compliant, and protects your investment from day one.</p>
+
+        <p>At Glonax Commercial Agencies, our conveyancing team handles all aspects of the transfer process — from initial search to title registration — giving our clients complete peace of mind throughout their transaction.</p>
+
+        <h2>Investment Returns: Rental Yields in Nakuru</h2>
+        <p>For investors considering rental properties, Nakuru currently offers gross rental yields of 6–9% annually in most residential areas — competitive with Nairobi's 4–6% average. The relative affordability of acquisition prices compared to Nairobi makes the yield gap even more compelling.</p>
+
+        <p>Professional property management is essential to maintaining these yields. Without consistent tenant screening, maintenance management, and rent collection, investment properties quickly become liabilities rather than assets.</p>
+      </div>
+
+      <!-- Tags -->
+      <div class="article-tags reveal">
+        <span class="a-tag">Nakuru</span><span class="a-tag">Real Estate</span><span class="a-tag">Property Investment</span><span class="a-tag">Conveyancing</span><span class="a-tag">2025</span><span class="a-tag">Kenya</span>
+      </div>
+
+      <!-- Share -->
+      <div class="share-row reveal">
+        <span class="share-label">Share:</span>
+        <button class="share-btn" onclick="showToast('Shared','Link copied to clipboard.')"><i class="fa-brands fa-square-x-twitter"></i> Twitter</button>
+        <button class="share-btn" onclick="showToast('Shared','Link copied to clipboard.')"><i class="fa-brands fa-linkedin"></i> LinkedIn</button>
+        <button class="share-btn" onclick="showToast('Shared','Link copied to clipboard.')"><i class="fa-brands fa-facebook"></i> Facebook</button>
+        <button class="share-btn" onclick="showToast('Copied','Link copied!')">🔗 Copy Link</button>
+      </div>
+
+      <!-- Author -->
+      <div class="author-box reveal">
+        <div class="author-box-avatar">
+          <img src="./account.jpg" alt="" srcset="">
+        </div>
+        <div>
+          <div class="author-box-name">Glonax Real Estate Team</div>
+          <div class="author-box-role">Commercial Agencies Division</div>
+          <p class="author-box-bio">Our real estate team comprises licensed estate agents, conveyancers, and investment consultants with deep expertise in the Kenyan property market. We publish regular insights to help clients make informed decisions.</p>
+        </div>
+      </div>
+
+      <!-- Comments -->
+      <div class="comments-section reveal">
+        <div class="comments-title"><i class="fa-regular fa-comments"></i> 3 Comments</div>
+        <div class="comment-card">
+          <div class="comment-header"><span class="comment-name">Peter M.</span><span class="comment-date">June 12, 2025</span></div>
+          <p class="comment-body">Excellent breakdown — especially the section on due diligence. I lost money on a property in Nakuru years ago because I skipped the title search. Would love to see a follow-up on tenant-landlord disputes.</p>
+        </div>
+        <div class="comment-card">
+          <div class="comment-header"><span class="comment-name">Alice N.</span><span class="comment-date">June 14, 2025</span></div>
+          <p class="comment-body">The rental yield data is really helpful. I've been comparing Nakuru vs Nairobi for a rental investment and this confirms what I'd been hearing. Glonax team — do you manage properties in Lanet?</p>
+        </div>
+        <div class="comment-card">
+          <div class="comment-header"><span class="comment-name">James K.</span><span class="comment-date">June 15, 2025</span></div>
+          <p class="comment-body">Would be good to see data on commercial property specifically — office and retail. Are there any mixed-use developments coming up in the CBD?</p>
+        </div>
+      </div>
+
+      <!-- Comment Form -->
+      <div class="comment-form-wrap reveal">
+        <h3>Leave a Comment</h3>
+        <p>Your email will not be published. Thoughtful, relevant comments are always welcome.</p>
+        <div class="form-row">
+          <div class="form-group"><label>Your Name</label><input type="text" placeholder="Jane Doe"></div>
+          <div class="form-group"><label>Email Address</label><input type="email" placeholder="you@example.com"></div>
+        </div>
+        <div class="form-group"><label>Your Comment</label><textarea placeholder="Share your thoughts on this article..."></textarea></div>
+        <button class="btn-primary" onclick="showToast('Comment Posted ✦','Your comment has been submitted for review.')">Post Comment</button>
+      </div>
+
+      <!-- Related -->
+      <div class="related-section reveal">
+        <div class="related-title">Related Articles</div>
+        <div class="related-grid">
+          <div class="related-card" onclick="showToast('Article','Loading article...')">
+            <div class="related-img">
+              <img src="./realestate1.jpg" alt="">
+            </div>
+            <div class="related-body"><div class="related-cat">Real Estate</div><div class="related-card-title">Understanding Conveyancing in Kenya: A Complete Guide for First-Time Buyers</div><div class="related-read">Read More</div></div>
+          </div>
+          <div class="related-card" onclick="showToast('Article','Loading article...')">
+            <div class="related-img">
+              <img src="./hospitality1.jpg" alt="">
+            </div>
+            <div class="related-body"><div class="related-cat">Hospitality</div><div class="related-card-title">How to Land a 5-Star Hotel Job Abroad: A Step-by-Step Guide</div><div class="related-read">Read More</div></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ─── SIDEBAR ─── -->
+    <aside class="blog-sidebar-wrap">
+      <div class="sidebar-widget">
+        <div class="sidebar-widget-title">Table of Contents</div>
+        <ul class="toc-list">
+          <li class="toc-item"><a href="#">Why Nakuru is Attracting Investors</a></li>
+          <li class="toc-item"><a href="#">Key Areas to Watch in 2025</a></li>
+          <li class="toc-item"><a href="#">Due Diligence for Buyers</a></li>
+          <li class="toc-item"><a href="#">The Role of Conveyancing</a></li>
+          <li class="toc-item"><a href="#">Investment Returns & Yields</a></li>
+        </ul>
+      </div>
+      <div class="nl-widget">
+        <h4>Get Insights</h4>
+        <p>Property updates, market data, and Glonax news direct to your inbox.</p>
+        <input type="email" class="nl-input" placeholder="your@email.com">
+        <button class="nl-btn" onclick="showToast('Subscribed ✦','You\'re on the list!')">Subscribe</button>
+      </div>
+      <div class="sidebar-widget">
+        <div class="sidebar-widget-title">Recent Posts</div>
+        <div class="recent-post" onclick="showToast('Article','Loading...')"><div class="rp-thumb">
+          <img src="./media1.jpg" alt="" srcset="">
+        </div>
+        <div><div class="rp-title">5 Branding Mistakes Kenyan SMEs Make</div><div class="rp-date">May 2025</div></div></div>
+        <div class="recent-post" onclick="showToast('Article','Loading...')"><div class="rp-thumb">
+          <img src="./hospitality1.jpg" alt="" srcset="">
+        </div><div><div class="rp-title">How to Land a 5-Star Hotel Job Abroad</div><div class="rp-date">April 2025</div></div></div>
+        <div class="recent-post" onclick="showToast('Article','Loading...')"><div class="rp-thumb">
+          <img src="./glonax1.jpg" alt="" srcset="">
+        </div><div><div class="rp-title">Glonax Holdings: A New Chapter</div><div class="rp-date">Feb 2025</div></div></div>
+      </div>
+      <div class="sidebar-widget">
+        <div class="sidebar-widget-title">Need Property Help?</div>
+        <p style="font-size:13px;color:var(--text-secondary);line-height:1.7;font-weight:300;margin-bottom:20px">Our licensed agents are available to answer your questions about buying, selling, renting, or investing.</p>
+        <a href="./realestate.html#inquiry" class="btn-primary" style="text-decoration:none;text-align:center;display:block">Book Inquiry</a>
+      </div>
+    </aside>
+  </div>
+</main>
+<script src="./script.js"></script>
+</body>
+</html>

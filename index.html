@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glonax Holdings Limited</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="shortcut icon" href="./logo.png" type="image/svg+xml">
+<script src="https://kit.fontawesome.com/a8ba985590.js" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<!-- Loader -->
+<div id="loader">
+  <div class="loader-logo"><img src="./logo.png" alt="" srcset=""></div>
+  <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+  <div class="toast-icon">✦</div>
+  <div><strong id="toastTitle"></strong><span id="toastMsg"></span></div>
+</div>
+
+<!-- Scroll Progress -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="nav-logo" onclick="scrollTo(0,0)">
+    <img src="./logo.jpg" alt="" srcset="">
+    <div class="nav-brand">
+      Glonax Holdings
+      <span>Limited</span>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#why">Why Us</a>
+    <a href="#contact-cta">Contact</a>
+    <a href="./blog.html">Our Blog</a>
+    <a href="./login.html" class="nav-cta">Login</a>
+  </div>
+  <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle theme" aria-label="Toggle dark/light mode"><div class="theme-toggle-thumb"><span class="theme-toggle-icon" id="themeIcon">☀</span></div></button>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMobileMenu()">About</a>
+  <a href="#services" onclick="closeMobileMenu()">Services</a>
+  <a href="#why" onclick="closeMobileMenu()">Why Us</a>
+  <a href="#contact-cta" onclick="closeMobileMenu()">Contact</a>
+  <a href="./blog.html" onclick="closeMobileMenu()">Our Blog</a>
+  <a href="./login.html" onclick="closeMobileMenu(); return false;" style="color:var(--red)">Login</a>
+</div>
+
+<!-- ─── HERO ─── -->
+<section id="hero">
+  <!-- ─── HERO VIDEO BACKGROUND ─── -->
+  <div id="hero-video-layer" aria-hidden="true">
+    <video class="hero-vid active" autoplay muted loop playsinline
+      src="./baner1.mp4"></video>
+  </div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <h1 class="hero-h1">
+        Where <em>Vision</em><br>Meets<br>Excellence
+      </h1>
+      <p class="hero-sub">A multi-disciplinary holding company delivering world-class services across Real Estate, Creative Media, and Hospitality within Kenya and beyond.</p>
+      <div class="hero-btns">
+        <a href="#services" class="btn-primary">Explore Services</a>
+        <a href="#" class="btn-outline" onclick="openModal('register'); return false;">Create Account</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-logo-card" style="animation-delay:0.2s">
+        <div class="hero-icons"><i class="fa-solid fa-house-chimney-window"></i></div>
+        <div class="hlc-info">
+          <h4>Commercial Agencies</h4>
+          <p>Property, Land & Conveyancing</p>
+        </div>
+        <div class="hlc-badge">Active</div>
+      </div>
+      <div class="hero-logo-card" style="animation-delay:0.4s">
+        <div class="hero-icons"><i class="fa-solid fa-icons"></i></div>
+        <div class="hlc-info">
+          <h4>Creative Media</h4>
+          <p>Content, Branding & Digital</p>
+        </div>
+        <div class="hlc-badge">Active</div>
+      </div>
+      <div class="hero-logo-card" style="animation-delay:0.6s">
+        <div class="hero-icons"><i class="fa-solid fa-hotel"></i></div>
+        <div class="hlc-info">
+          <h4>Hospitality Academy</h4>
+          <p>Training & International/Local Placement</p>
+        </div>
+        <div class="hlc-badge">Active</div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">3</div>
+          <div class="stat-lbl">Divisions</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">500+</div>
+          <div class="stat-lbl">Clients</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">5★</div>
+          <div class="stat-lbl">Rated</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item">Real Estate & Property Management</span>
+    <span class="ticker-item">Creative Media & Branding</span>
+    <span class="ticker-item">Hospitality Training</span>
+    <span class="ticker-item">Architectural Drawing</span>
+    <span class="ticker-item">Investment Consultancy</span>
+    <span class="ticker-item">Company Registration</span>
+    <span class="ticker-item">Interior Design</span>
+    <span class="ticker-item">Staff Outsourcing</span>
+    <span class="ticker-item">Web Development</span>
+    <span class="ticker-item">Real Estate & Property Management</span>
+    <span class="ticker-item">Creative Media & Branding</span>
+    <span class="ticker-item">Hospitality Training</span>
+    <span class="ticker-item">Architectural Drawing</span>
+    <span class="ticker-item">Investment Consultancy</span>
+    <span class="ticker-item">Company Registration</span>
+    <span class="ticker-item">Interior Design</span>
+    <span class="ticker-item">Staff Outsourcing</span>
+    <span class="ticker-item">Web Development</span>
+  </div>
+</div>
+
+<!-- ─── ABOUT ─── -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="section-label">Who We Are</div>
+        <h2 class="section-title">Defined by <em>Exceptional</em> Service & Expertise</h2>
+        <p>Glonax Holdings Limited is a dynamic, multi-division company delivering excellence across real estate, creative services, and hospitality training. We combine industry expertise with innovation to provide solutions that drive growth, enhance value, and position our clients for long-term success.</p>
+        <p>Our commitment is to deliver measurable results, build lasting relationships, and elevate every client's ambitions to new heights — whether you're investing in property, building a brand, or training for global hospitality.</p>
+      </div>
+      <div class="about-text reveal reveal-delay-2">
+        <ul class="about-list">
+          <li>Licensed Estate Agents & Property Managers</li>
+          <li>Certified Hospitality Training Professionals</li>
+          <li>Award-winning Creative & Media Solutions</li>
+          <li>Trusted Investment & Business Consultants</li>
+          <li>Accredited Company Registration Agents</li>
+        </ul>
+        <div class="about-btns">
+          <a href="./about.html" class="btn-primary">More about us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SERVICES ─── -->
+<section id="services">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Our Divisions</div>
+      <h2 class="section-title">Three Pillars of <em>Excellence</em></h2>
+      <p class="section-sub">Each division is purpose-built with dedicated expertise, ensuring world-class service delivery within every domain we operate in.</p>
+    </div>
+    <div class="divisions-grid">
+      <!-- Real Estate -->
+      <div class="division-card reveal reveal-delay-1">
+        <!-- <div class="division-icon">🏠</div> -->
+        <div class="division-name">Commercial Agencies</div>
+        <div class="division-tagline">Real Estate Division</div>
+        <p class="division-desc">Comprehensive property solutions from acquisition to management, with deep local expertise in the Kenyan market and beyond.</p>
+        <div class="division-services">
+          <span class="div-tag">Estate Management</span>
+          <span class="div-tag">Buy & Sell</span>
+          <span class="div-tag">Construction</span>
+          <span class="div-tag">Landscaping</span>
+          <span class="div-tag">Conveyancing</span>
+          <span class="div-tag">Valuations</span>
+          <span class="div-tag">Architecture</span>
+          <span class="div-tag">Tax Returns</span>
+          <span class="div-tag">Project Finance</span>
+        </div>
+        <a href="./realestate.html" class="division-cta">Explore More</a>
+      </div>
+      <!-- Media -->
+      <div class="division-card reveal reveal-delay-2">
+        <!-- <div class="division-icon">🎬</div> -->
+        <div class="division-name">Creative Media</div>
+        <div class="division-tagline">Media & Digital Division</div>
+        <p class="division-desc">From concept to viral — we craft compelling digital narratives, premium audio/visual content, and scalable brand experiences.</p>
+        <div class="division-services">
+          <span class="div-tag">Content Creation</span>
+          <span class="div-tag">Audio/Video</span>
+          <span class="div-tag">Web Dev</span>
+          <span class="div-tag">Social Media</span>
+          <span class="div-tag">Brand Marketing</span>
+          <span class="div-tag">Advertising</span>
+        </div>
+        <a href="./media.html" class="division-cta">Explore More</a>
+      </div>
+      <!-- Hospitality -->
+      <div class="division-card reveal reveal-delay-3">
+        <!-- <div class="division-icon">⭐</div> -->
+        <div class="division-name">Premium International Hospitality Academy</div>
+        <div class="division-tagline">Training & Placement Division</div>
+        <p class="division-desc">Five-star hospitality training that opens doors globally. We prepare professionals for the world's most prestigious establishments.</p>
+        <div class="division-services">
+          <span class="div-tag">5★ Training</span>
+          <span class="div-tag">International Jobs</span>
+          <span class="div-tag">Interview Prep</span>
+          <span class="div-tag">Personal Branding</span>
+          <span class="div-tag">Staff Outsourcing</span>
+          <span class="div-tag">Image Coaching</span>
+        </div>
+        <a href="./hospitality.html" class="division-cta" >Explore More</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WHY US ─── -->
+<section id="why">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Why Choose Us</div>
+      <h2 class="section-title">Built on <em>Trust</em> & Performance</h2>
+      <p class="section-sub">Every engagement is backed by deep expertise, ethical practice, and a relentless drive to exceed expectations.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-num">01</div>
+        <h4>Multi-Domain Expertise</h4>
+        <p>Three specialized divisions under one roof, meaning seamless cross-service solutions for clients with diverse needs.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-num">02</div>
+        <h4>Local Knowledge, Global Standards</h4>
+        <p>Deep-rooted in Nakuru with connections to international markets — delivering globally competitive results locally.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-3">
+        <div class="why-num">03</div>
+        <h4>End-to-End Service</h4>
+        <p>From consulting to execution, we walk the entire journey with every client — no hand-off, no gaps.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-4">
+        <div class="why-num">04</div>
+        <h4>Verified, Accredited Professionals</h4>
+        <p>Our teams are trained, certified, and continuously updated with the latest industry practices and regulations.</p>
+      </div>
+    </div>
+    <div class="about-btns">
+      <a href="./testimonials.html" class="btn-primary">Get to Know More</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONTACT CTA ─── -->
+<div id="contact-cta">
+  <div class="cta-inner">
+    <div class="cta-text">
+      <h2>Ready to Work with the Best?</h2>
+      <p>Gate House Nakuru, 5th Floor, Suite 506 · 0732 028 129 · 0716 517 561</p>
+    </div>
+    <div class="cta-btns">
+      <a href="tel:+254732028129" class="btn-white">Call Us Now</a>
+      <a href="#" class="btn-ghost" onclick="openModal('register'); return false;">Create Account</a>
+    </div>
+  </div>
+</div>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="data:image/jpeg;base64,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" alt="Glonax Holdings">
+        <p>Defined by exceptional service and expertise. A multi-division holding company serving Kenya and beyond from the heart of Nakuru.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-btn" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" class="social-btn" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="social-btn" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-btn" title="Instagram"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="">home</a></li>
+          <li><a href="#">Login</a></li>
+          <li><a href="#">Register</a></li>
+          <li><a href="./media.html#media-services">Media Services</a></li>
+          <li><a href="./hospitality.html#hosp-services">Hospitality Services</a></li>
+          <li><a href="./realestate.html#re-services">Realestate Services</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Get Help</h5>
+        <ul>
+          <li><a href="./testimonials.html#faq">FAQs</a></li>
+          <li><a href="#">WhatsApp</a></li>
+          <li><a href="#">Call Support</a></li>
+          <li><a href="testimonials.html#submit-testimonial">Give feedback</a></li>
+          <li><a href="#">Get Free Quote</a></li>
+          <li><a href="#">Engage live Support</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Get in touch</h5>
+        <div class="footer-contact-item"><span><i class="fa-solid fa-location-dot"></i></span> Gate House Nakuru, 5th Floor, Suite 506</div>
+        <div class="footer-contact-item"><span><i class="fa-solid fa-phone"></i></span> 0783 517 561</div>
+        <div class="footer-contact-item"><span><i class="fa-solid fa-envelope"></i></span> info@glonaxltd.com</div>
+        <div class="footer-contact-item"><span><i class="fa-solid fa-globe"></i></span> www.glonaxltd.com</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Glonax Holdings Limited. All rights reserved.</p>
+      <p><a href="#">Terms and Conditions</a> || <a href="#">Privacy Policy</a></p>
+    </div>
+  </div>
+</footer>
+<script src="./script.js"></script>
+</body>
+</html>

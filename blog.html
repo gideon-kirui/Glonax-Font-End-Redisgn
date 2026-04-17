@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Glonax Holdings Limited</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<script src="https://kit.fontawesome.com/a8ba985590.js" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<!-- Loader -->
+<div id="loader">
+  <div class="loader-logo"><img src="./logo.png" alt=""></div>
+  <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+  <div class="toast-icon">✦</div>
+  <div><strong id="toastTitle"></strong><span id="toastMsg"></span></div>
+</div>
+
+<!-- Scroll Progress -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="nav-logo" onclick="window.location.href='./index.html'">
+    <img src="./logo.png" alt="">
+    <div class="nav-brand">
+      Glonax Holdings
+      <span>Limited</span>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="./index.html">Home</a>
+    <a href="./about.html">About</a>
+    <a href="./testimonials.html">Testimonials</a>
+    <a href="./blog.html" style="color:var(--red)">Blog</a>
+    <a href="./index.html#contact-cta">Contact</a>
+    <a href="#" class="nav-cta" onclick="openModal('login'); return false;">Login</a>
+  </div>
+  <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle theme" aria-label="Toggle dark/light mode"><div class="theme-toggle-thumb"><span class="theme-toggle-icon" id="themeIcon">☀</span></div></button>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="./index.html" onclick="closeMobileMenu()">Home</a>
+  <a href="./about.html" onclick="closeMobileMenu()">About</a>
+  <a href="./testimonials.html" onclick="closeMobileMenu()">Testimonials</a>
+  <a href="./blog.html" onclick="closeMobileMenu()">Blog</a>
+  <a href="./index.html#contact-cta" onclick="closeMobileMenu()">Contact</a>
+  <a href="#" onclick="openModal('login'); closeMobileMenu(); return false;" style="color:var(--red)">Login / Register</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-inner">
+    <div class="breadcrumb">
+      <a href="./index.html">Home</a>
+      <span>/</span>
+      <span style="color:rgba(255,255,255,0.6)">Blog</span>
+    </div>
+    <div class="page-hero-eyebrow">Insights & Updates</div>
+    <h1>The Glonax <em>Blog</em></h1>
+    <p class="page-hero-sub">Expert insights on real estate, creative trends, and hospitality industry developments — straight from the Glonax Holdings team.</p>
+  </div>
+</section>
+
+<!-- BLOG SECTION -->
+<section id="blog-posts">
+  <div class="section-inner">
+    <div class="blog-layout">
+
+      <!-- MAIN CONTENT -->
+      <div class="blog-main">
+        <!-- Filters -->
+        <div class="blog-filters">
+          <button class="blog-filter-btn active" onclick="filterBlog(this,'all')">All Posts</button>
+          <button class="blog-filter-btn" onclick="filterBlog(this,'real-estate')">Real Estate</button>
+          <button class="blog-filter-btn" onclick="filterBlog(this,'media')">Creative Media</button>
+          <button class="blog-filter-btn" onclick="filterBlog(this,'hospitality')">Hospitality</button>
+          <button class="blog-filter-btn" onclick="filterBlog(this,'news')">Company News</button>
+        </div>
+
+        <!-- Featured Post -->
+        <div class="blog-featured reveal" data-category="real-estate" onclick="showToast('Blog Post','Full article coming soon — stay tuned!')">
+          <div class="blog-featured-img">
+            <img src="./blog1.png" alt="" srcset="">
+          </div>
+          <div class="blog-featured-body">
+            <div class="blog-tag">Real Estate</div>
+            <h2>Nakuru Real Estate 2025: What Buyers and Investors Need to Know</h2>
+            <p class="blog-excerpt">The Nakuru property market is undergoing a significant transformation following the city's elevation to county status. Here's what you need to know before making your next move...</p>
+            <div class="blog-meta">
+              <span>June 2025</span>
+              <div class="blog-meta-divider"></div>
+              <span>8 min read</span>
+              <div class="blog-meta-divider"></div>
+              <span>Glonax Real Estate Team</span>
+            </div>
+            <a href="#" class="blog-read-more" onclick="showToast('Coming Soon','Full post launching shortly.'); return false;">Read Article</a>
+          </div>
+        </div>
+
+        <!-- Blog Grid -->
+        <div class="blog-grid" id="blogGrid">
+          <div class="blog-card reveal reveal-delay-1" data-category="media" onclick="showToast('Blog Post','Full article coming soon!')">
+            <div class="blog-card-img">
+              <img src="./media1.jpg" alt="" srcset="">
+            </div>
+            <div class="blog-card-body">
+              <div class="blog-card-tag">Creative Media</div>
+              <h3>5 Branding Mistakes Kenyan SMEs Make (And How to Fix Them)</h3>
+              <p class="blog-card-excerpt">Your brand is your first impression. Here are the most common errors we see — and the straightforward solutions that transform how clients perceive your business.</p>
+              <div class="blog-card-meta">
+                <span>May 2025</span>
+                <span>·</span>
+                <span>6 min read</span>
+              </div>
+              <a href="./blogdetail.html" class="blog-card-read" >Read More</a>
+            </div>
+          </div>
+
+          <div class="blog-card reveal reveal-delay-2" data-category="hospitality" onclick="showToast('Blog Post','Full article coming soon!')">
+            <div class="blog-card-img">
+              <img src="./hospitality1.jpg" alt="" srcset="">
+            </div>
+            <div class="blog-card-body">
+              <div class="blog-card-tag">Hospitality</div>
+              <h3>How to Land a 5-Star Hotel Job Abroad: A Step-by-Step Guide</h3>
+              <p class="blog-card-excerpt">International hospitality careers are more accessible than you think — if you prepare correctly. Our Academy Director shares the exact steps our graduates follow to secure positions in Dubai, Qatar, and Europe.</p>
+              <div class="blog-card-meta">
+                <span>April 2025</span>
+                <span>·</span>
+                <span>10 min read</span>
+              </div>
+              <a href="./blogdetail.html" class="blog-card-read" >Read More</a>
+            </div>
+          </div>
+
+          <div class="blog-card reveal" data-category="real-estate" onclick="showToast('Blog Post','Full article coming soon!')">
+            <div class="blog-card-img">
+              <img src="./realestate1.jpg" alt="" srcset="">
+            </div>
+            <div class="blog-card-body">
+              <div class="blog-card-tag">Real Estate</div>
+              <h3>Understanding Conveyancing in Kenya: A Complete Guide for First-Time Buyers</h3>
+              <p class="blog-card-excerpt">Buying property in Kenya involves several legal steps many first-time buyers don't know about. We break down the entire conveyancing process from offer to title transfer.</p>
+              <div class="blog-card-meta">
+                <span>March 2025</span>
+                <span>·</span>
+                <span>7 min read</span>
+              </div>
+              <a href="#" class="blog-card-read" onclick="showToast('Coming Soon','Full post launching shortly.'); return false;">Read More</a>
+            </div>
+          </div>
+
+          <div class="blog-card reveal reveal-delay-1" data-category="news" onclick="showToast('Blog Post','Full article coming soon!')">
+            <div class="blog-card-img">
+              <img src="./glonax1.jpg" alt="" srcset="">
+            </div>
+            <div class="blog-card-body">
+              <div class="blog-card-tag">Company News</div>
+              <h3>Glonax Holdings: A New Chapter of Growth and Excellence</h3>
+              <p class="blog-card-excerpt">From Glonax Commercial Agencies to Glonax Holdings Limited — our rebrand marks a bold new chapter. Here's our story, our vision, and what our evolution means for our clients.</p>
+              <div class="blog-card-meta">
+                <span>February 2025</span>
+                <span>·</span>
+                <span>5 min read</span>
+              </div>
+              <a href="#" class="blog-card-read" onclick="showToast('Coming Soon','Full post launching shortly.'); return false;">Read More</a>
+            </div>
+          </div>
+        </div>
+        <!-- Pagination -->
+        <div class="pagination">
+          <button class="page-btn active">1</button>
+          <button class="page-btn" onclick="showToast('More Posts','Additional posts coming soon.')">2</button>
+          <button class="page-btn" onclick="showToast('More Posts','Additional posts coming soon.')">3</button>
+          <button class="page-btn" onclick="showToast('More Posts','Additional posts coming soon.')">→</button>
+        </div>
+        {% include "website/pages/pagination.html" with page=posts %}
+      </div>
+
+      <!-- SIDEBAR -->
+      <aside class="blog-sidebar">
+        <!-- Search -->
+        <div class="sidebar-widget reveal">
+          <div class="sidebar-widget-title">Search</div>
+          <div style="display:flex;gap:8px;">
+            <input type="text" id="blogSearch" placeholder="Search articles..."
+              style="flex:1;background:var(--input-bg);border:1px solid var(--input-border);border-radius:4px;padding:10px 14px;color:var(--text-primary);font-family:'DM Sans',sans-serif;font-size:13px;outline:none;">
+            <button onclick="showToast('Search','Search coming soon.')" style="background:var(--red);color:#fff;border:none;border-radius:4px;padding:10px 16px;cursor:pointer;font-size:14px;"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </div>
+        </div>
+
+        <!-- Categories -->
+        <div class="sidebar-widget reveal">
+          <div class="sidebar-widget-title">Categories</div>
+          <ul class="category-list">
+            <li class="category-item" onclick="filterBlog(document.querySelector('.blog-filter-btn'),'all')">
+              All Posts <span class="category-count">7</span>
+            </li>
+            <li class="category-item" onclick="filterBlog(document.querySelectorAll('.blog-filter-btn')[1],'real-estate')">
+              Real Estate <span class="category-count">2</span>
+            </li>
+            <li class="category-item" onclick="filterBlog(document.querySelectorAll('.blog-filter-btn')[2],'media')">
+              Creative Media <span class="category-count">2</span>
+            </li>
+            <li class="category-item" onclick="filterBlog(document.querySelectorAll('.blog-filter-btn')[3],'hospitality')">
+              Hospitality <span class="category-count">2</span>
+            </li>
+            <li class="category-item" onclick="filterBlog(document.querySelectorAll('.blog-filter-btn')[4],'news')">
+              Company News <span class="category-count">1</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="newsletter-widget reveal">
+          <h4>Stay in the Loop</h4>
+          <p>Get Glonax insights, market updates, and exclusive content delivered to your inbox.</p>
+          <div class="newsletter-input-wrap">
+            <input type="email" id="nlEmail" placeholder="your@email.com">
+            <button onclick="subscribeNewsletter()">Subscribe</button>
+          </div>
+        </div>
+
+        <!-- Recent Posts -->
+        <div class="sidebar-widget reveal">
+          <div class="sidebar-widget-title">Recent Posts</div>
+          <div class="recent-post" onclick="showToast('Article','Coming soon.')">
+            <div class="rp-thumb">
+              <img src="./blog1.png" alt="" srcset="">
+            </div>
+            <div>
+              <div class="rp-title">Nakuru Real Estate 2025: What Buyers and Investors Need to Know</div>
+              <div class="rp-date">June 2025</div>
+            </div>
+          </div>
+          <div class="recent-post" onclick="showToast('Article','Coming soon.')">
+            <div class="rp-thumb">
+              <img src="./media1.jpg" alt="" srcset="">
+            </div>
+            <div>
+              <div class="rp-title">5 Branding Mistakes Kenyan SMEs Make</div>
+              <div class="rp-date">May 2025</div>
+            </div>
+          </div>
+          <div class="recent-post" onclick="showToast('Article','Coming soon.')">
+            <div class="rp-thumb">
+              <img src="./hospitality1.jpg" alt="" srcset="">
+            </div>
+            <div>
+              <div class="rp-title">How to Land a 5-Star Hotel Job Abroad</div>
+              <div class="rp-date">April 2025</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tags -->
+        <div class="sidebar-widget reveal">
+          <div class="sidebar-widget-title">Tags</div>
+          <div class="tags-cloud">
+            <span class="tag-pill">Nakuru</span>
+            <span class="tag-pill">Property</span>
+            <span class="tag-pill">Real Estate</span>
+            <span class="tag-pill">Branding</span>
+            <span class="tag-pill">Digital Media</span>
+            <span class="tag-pill">Hospitality</span>
+            <span class="tag-pill">Training</span>
+            <span class="tag-pill">Kenya</span>
+            <span class="tag-pill">Investment</span>
+            <span class="tag-pill">Social Media</span>
+            <span class="tag-pill">Placement</span>
+            <span class="tag-pill">Conveyancing</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div id="contact-cta">
+  <div class="cta-inner">
+    <div class="cta-text">
+      <h2>Have a Topic You'd Like Us to Cover?</h2>
+      <p>Gate House Nakuru, 5th Floor, Suite 506 · 0732 028 129 · 0716 517 561</p>
+    </div>
+    <div class="cta-btns">
+      <a href="tel:+254732028129" class="btn-white">Contact Us</a>
+      <a href="#" class="btn-ghost" onclick="openModal('register'); return false;">Create Account</a>
+    </div>
+  </div>
+</div>
+<script src="./script.js"></script>
+</body>
+</html>

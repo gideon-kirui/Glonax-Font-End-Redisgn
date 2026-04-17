@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Account — Glonax Holdings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="toast" id="toast"><div class="toast-icon">✦</div><div><strong id="toastTitle"></strong><span id="toastMsg"></span></div></div>
+
+<div class="auth-page">
+  <!-- LEFT -->
+  <div class="auth-left">
+    <div class="auth-left-bg"></div><div class="auth-left-grid"></div>
+    <div class="auth-left-content">
+      <div class="auth-logo"><img src="./logo.jpg" alt="Glonax"><div class="auth-logo-text">Glonax Holdings<span>Limited</span></div></div>
+      <div class="auth-left-headline">Join the<br>Glonax<br><em>Family</em></div>
+      <p class="auth-left-sub">One account. Multiple profiles. Full access to real estate services, creative media solutions, and world-class hospitality training.</p>
+      <div class="auth-steps">
+        <div class="auth-step"><div class="auth-step-num">1</div><div><h5>Create Your Account</h5><p>Register with your name, email, and phone number.</p></div></div>
+        <div class="auth-step"><div class="auth-step-num">2</div><div><h5>Choose Your Division(s)</h5><p>Select one or more service profiles — you can add more later.</p></div></div>
+        <div class="auth-step"><div class="auth-step-num">3</div><div><h5>Verify Your Identity</h5><p>We'll send a one-time code to your phone to confirm.</p></div></div>
+        <div class="auth-step"><div class="auth-step-num">4</div><div><h5>Access Your Portal</h5><p>Manage everything — services, documents, messages — in one place.</p></div></div>
+      </div>
+    </div>
+    <div class="auth-left-footer"><p>© 2025 Glonax Holdings Limited · Gate House Nakuru, 5th Floor, Suite 506</p></div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="auth-right">
+    <div class="auth-form-wrap">
+      <div class="auth-form-header">
+        <a href="./index.html"><img src="./logo.png" alt="Glonax" style="height:38px;margin-bottom:18px;display:block"></a>
+        <h2>Create Your <em>Account</em></h2>
+        <p>Join 500+ clients already using the Glonax portal</p>
+      </div>
+
+      <div class="auth-alert" id="regAlert"></div>
+
+      <!-- Form fields -->
+      <div class="form-row">
+        <div class="fg"><label>First Name</label><input type="text" id="regFirst" placeholder="Gideon" autocomplete="given-name"></div>
+        <div class="fg"><label>Last Name</label><input type="text" id="regLast" placeholder="Kirui" autocomplete="family-name"></div>
+      </div>
+      <div class="fg"><label>Email Address</label><input type="email" id="regEmail" placeholder="kirui@example.com" autocomplete="email"></div>
+      <div class="fg"><label>Phone Number</label><input type="tel" id="regPhone" placeholder="+254 7XX XXX XXX" autocomplete="tel"></div>
+      <div class="fg">
+        <label>Password</label>
+        <input type="password" id="regPass" placeholder="Create a strong password (min 8 chars)" autocomplete="new-password" oninput="checkPw(this.value)">
+        <div class="password-strength"><div class="pws-fill" id="pwsFill"></div></div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:5px" id="pwsLabel">Enter a password</div>
+      </div>
+      <div class="fg"><label>Confirm Password</label><input type="password" id="regPassConfirm" placeholder="Repeat password" autocomplete="new-password"></div>
+
+      <p class="auth-terms">By creating an account you agree to our <a href="./index.html">Terms & Conditions</a> and <a href="./index.html">Privacy Policy</a>. Your data is protected under the Kenya Data Protection Act, 2019.</p>
+
+      <button class="auth-submit" id="regBtn" onclick="doRegister()">Create Account </button>
+
+      <div class="auth-footer-link">Already have an account? <a href="./login.html">Sign in </a></div>
+    </div>
+  </div>
+</div>
+<script src="./script.js"></script>
+</body>
+</html>

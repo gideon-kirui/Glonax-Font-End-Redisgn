@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — Glonax Holdings Limited</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+<style>
+
+</style>
+</head>
+<body>
+
+<!-- Loader -->
+<div id="loader">
+  <div class="loader-logo"><img src="./logo.png" alt=""></div>
+  <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+  <div class="toast-icon">✦</div>
+  <div><strong id="toastTitle"></strong><span id="toastMsg"></span></div>
+</div>
+
+<!-- Scroll Progress -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="nav-logo" onclick="window.location.href='./index.html'">
+    <img src="./logo.png" alt="">
+    <div class="nav-brand">
+      Glonax Holdings
+      <span>Limited</span>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="./index.html">Home</a>
+    <a href="#our-story">Our Story</a>
+    <a href="#core-values">Values</a>
+    <a href="#team">Our Team</a>
+    <a href="./index.html#contact-cta">Contact</a>
+    <a href="#" class="nav-cta" onclick="openModal('login'); return false;">Login</a>
+  </div>
+  <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle theme" aria-label="Toggle dark/light mode"><div class="theme-toggle-thumb"><span class="theme-toggle-icon" id="themeIcon">☀</span></div></button>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="./index.html" onclick="closeMobileMenu()">Home</a>
+  <a href="#our-story" onclick="closeMobileMenu()">Our Story</a>
+  <a href="#core-values" onclick="closeMobileMenu()">Values</a>
+  <a href="#team" onclick="closeMobileMenu()">Our Team</a>
+  <a href="./index.html#contact-cta" onclick="closeMobileMenu()">Contact</a>
+  <a href="#" onclick="openModal('login'); closeMobileMenu(); return false;" style="color:var(--red)">Login / Register</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-inner">
+    <div class="breadcrumb">
+      <a href="./index.html">Home</a>
+      <span>/</span>
+      <span style="color:rgba(255,255,255,0.6)">About Us</span>
+    </div>
+    <div class="page-hero-eyebrow">Who We Are</div>
+    <h1>Built on <em>Purpose</em>,<br>Driven by <em>Excellence</em></h1>
+    <p class="page-hero-sub">Glonax Holdings Limited is a premier multi-division corporation redefining how Kenyans access real estate, creative, and hospitality services.</p>
+  </div>
+</section>
+
+<!-- MISSION & VISION -->
+<section id="mission-vision">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Our Foundation</div>
+      <h2 class="section-title">The Principles That <em>Guide</em> Us</h2>
+      <p class="section-sub">Everything we build is rooted in a clear mission and a bold vision for the future of service excellence in Kenya.</p>
+    </div>
+    <div class="mv-grid">
+      <div class="mv-card reveal reveal-delay-1">
+        <div class="mv-num">01</div>
+        <div class="mv-label">Our Mission</div>
+        <h3>Empowering Ambitions,<br>Delivering Results</h3>
+        <p>To deliver world-class, multi-disciplinary professional services across real estate, creative media, and hospitality training — making excellence accessible and transformative for every client, institution, and community we serve across Kenya and beyond.</p>
+        <p style="margin-top:16px">We are committed to ethical practice, measurable outcomes, and long-term relationships that create lasting value in every engagement.</p>
+      </div>
+      <div class="mv-card reveal reveal-delay-2">
+        <div class="mv-num">02</div>
+        <div class="mv-label">Our Vision</div>
+        <h3>Kenya's Leading<br>Multi-Division Holding</h3>
+        <p>To be the most trusted and impactful holding company in East Africa — recognized for our ability to integrate diverse professional disciplines into unified, seamless solutions that uplift businesses, individuals, and communities.</p>
+        <p style="margin-top:16px">We envision a future where every client interaction with Glonax is defined by competence, care, and transformative impact.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stats-strip-inner">
+    <div class="strip-stat reveal">
+      <div class="strip-num">2018</div>
+      <div class="strip-lbl">Year Founded</div>
+    </div>
+    <div class="strip-stat reveal reveal-delay-1">
+      <div class="strip-num">500+</div>
+      <div class="strip-lbl">Clients Served</div>
+    </div>
+    <div class="strip-stat reveal reveal-delay-2">
+      <div class="strip-num">3</div>
+      <div class="strip-lbl">Core Divisions</div>
+    </div>
+    <div class="strip-stat reveal reveal-delay-3">
+      <div class="strip-num">5★</div>
+      <div class="strip-lbl">Client Rating</div>
+    </div>
+  </div>
+</div>
+
+<!-- CORE VALUES -->
+<section id="core-values">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">What We Stand For</div>
+      <h2 class="section-title">Our Core <em>Values</em></h2>
+      <p class="section-sub">These values are not just words on a wall — they are the operating principles behind every decision, service, and relationship at Glonax.</p>
+    </div>
+    <div class="values-grid">
+      <div class="value-card reveal reveal-delay-1">
+        <div class="value-num">01</div>
+        <h4>Excellence in Every Detail</h4>
+        <p>We hold ourselves to the highest standard in everything — from how we answer the phone to how we close a property deal. No detail is too small, no client too minor.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-2">
+        <div class="value-num">02</div>
+        <h4>Integrity Without Compromise</h4>
+        <p>Trust is our currency. We operate with full transparency in all transactions, communications, and partnerships — standing firm in our ethics even when it costs us.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-3">
+        <div class="value-num">03</div>
+        <h4>Innovation & Adaptability</h4>
+        <p>Markets evolve. We evolve with them. Our teams continuously adopt new tools, methodologies, and approaches to stay ahead of industry shifts and client expectations.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-1">
+        <div class="value-num">04</div>
+        <h4>Community Impact</h4>
+        <p>We are deeply rooted in Nakuru and the broader Kenyan community. Our success is measured not just by revenue, but by the livelihoods we improve and the opportunities we create.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-2">
+        <div class="value-num">05</div>
+        <h4>Client Confidentiality</h4>
+        <p>Your information, your property, your plans — we treat them with the same discretion we would want for ourselves. Our clients' privacy is sacred.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-3">
+        <div class="value-num">06</div>
+        <h4>Results-Driven Partnership</h4>
+        <p>We don't just deliver services — we deliver outcomes. Every engagement begins with understanding your goals and ends when those goals are measurably achieved.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUR STORY -->
+<section id="our-story">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Our Journey</div>
+      <h2 class="section-title">The Glonax <em>Story</em></h2>
+    </div>
+    <div class="story-grid">
+      <div class="story-timeline reveal">
+        <div class="timeline-item">
+          <div class="timeline-dot">18</div>
+          <div class="timeline-content">
+            <div class="timeline-year">2018</div>
+            <h4>The Beginning — Commercial Agencies</h4>
+            <p>Founded as Glonax Commercial Agencies Limited, we started with a singular focus: making property ownership and management accessible, transparent, and trustworthy in Nakuru.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">20</div>
+          <div class="timeline-content">
+            <div class="timeline-year">2020</div>
+            <h4>Expanding Into Creative Media</h4>
+            <p>Recognizing the growing demand for quality content and branding in Kenya, we launched our Creative Media division — bringing storytelling and digital excellence to local and regional clients.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">22</div>
+          <div class="timeline-content">
+            <div class="timeline-year">2022</div>
+            <h4>Hospitality Academy Launch</h4>
+            <p>We opened the Premium International Hospitality Academy, creating a structured pathway for Kenyan youth to access world-class hospitality training and international placement opportunities.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">25</div>
+          <div class="timeline-content">
+            <div class="timeline-year">2025</div>
+            <h4>Holdings — One Roof, Three Divisions</h4>
+            <p>Rebranded as Glonax Holdings Limited, unifying our three divisions under one powerful umbrella with a shared vision, shared values, and shared commitment to excellence.</p>
+          </div>
+        </div>
+      </div>
+      <div class="story-text reveal reveal-delay-2">
+        <p>Glonax Holdings Limited was born from a simple but powerful belief: that Kenyans deserve access to professional, trustworthy, and world-class services — not just in Nairobi, but in every corner of the country.</p>
+        <p>What started as a boutique real estate firm in Nakuru has grown into one of the region's most distinctive multi-division holding companies — with deep expertise in property, creative media, and hospitality training.</p>
+        <div class="story-quote">
+          <blockquote>"We don't just serve clients — we build futures. Every property transaction, every brand we build, every professional we train carries the Glonax promise of excellence."</blockquote>
+          <cite>— Glonax Holdings Leadership</cite>
+        </div>
+        <p>Today, from our offices at Gate House Nakuru — 5th Floor, Suite 506 — we serve hundreds of clients across Kenya, with a team of certified professionals who share one non-negotiable standard: excellence.</p>
+        <div class="about-btns">
+          <a href="./index.html#services" class="btn-primary">Our Services</a>
+          <a href="./index.html#contact-cta" class="btn-outline" style="color:var(--text-primary);border-color:var(--card-border);">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Stewards of Growth</div>
+      <h2 class="section-title">The <em>Glonax</em> Team</h2>
+      <p class="section-sub">Our strength is our people — certified, experienced, and deeply committed to delivering excellence across every division we operate.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card reveal reveal-delay-1">
+        <div class="team-avatar">
+          <img src="./Mary.jpeg" alt="" srcset="">
+        </div>
+        <div class="team-info">
+          <div class="team-name">Mary Munyora</div>
+          <div class="team-title">Director & Founder</div>
+          <div class="team-divider"></div>
+          <p class="team-bio">
+            Internationally trained hospitality professional guiding the Premium Academy's curriculum, placement partnerships, and student development.
+          </p>
+          <div class="team-division-tags">
+            <span class="team-tag">Hospitality Training</span>
+            <span class="team-tag">Student Placement</span>
+          </div>
+        </div>
+      </div>
+      <div class="team-card reveal reveal-delay-2">
+        <div class="team-avatar">
+          <img src="./account.jpg" alt="" srcset="">
+        </div>
+        <div class="team-info">
+          <div class="team-name">Simon Kuria</div>
+          <div class="team-title">Director and Co-Founder</div>
+          <div class="team-divider"></div>
+          <p class="team-bio">Experienced administrator with strong administrative expertise in property management, documentation, compliance, and coordination of conveyancing and investment processes across the Rift Valley region</p>
+          <div class="team-division-tags">
+            <span class="team-tag">Compliance</span>
+            <span class="team-tag">Process Coordination</span>
+          </div>
+        </div>
+      </div>
+      <div class="team-card reveal reveal-delay-3">
+        <div class="team-avatar">
+          <img src="./Gidi.jpg" alt="" srcset="">
+        </div>
+        <div class="team-info">
+          <div class="team-name">Gideon Kirui</div>
+          <div class="team-title">ICT Executive</div>
+          <div class="team-divider"></div>
+          <p class="team-bio">Award-winning ICT executive leading Glonax’s technology division — driving digital transformation, systems architecture, cybersecurity, and innovative IT solutions.</p>
+          <div class="team-division-tags">
+            <span class="team-tag">IT Strategy</span>
+            <span class="team-tag">Cybersecurity</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div id="contact-cta">
+  <div class="cta-inner">
+    <div class="cta-text">
+      <h2>Ready to Work with the Best?</h2>
+      <p>Gate House Nakuru, 5th Floor, Suite 506 · 0732 028 129 · 0716 517 561</p>
+    </div>
+    <div class="cta-btns">
+      <a href="tel:+254732028129" class="btn-white">Call Us Now</a>
+      <a href="#" class="btn-ghost" onclick="openModal('register'); return false;">Create Account</a>
+    </div>
+  </div>
+</div>
+<script src="./script.js"></script>
+</body>
+</html>

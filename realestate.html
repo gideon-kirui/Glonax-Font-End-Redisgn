@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Real Estate — Glonax Commercial Agencies</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<script src="https://kit.fontawesome.com/a8ba985590.js" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<!-- Loader -->
+<div id="loader"><div class="loader-logo"><img src="./logo.png" alt=""></div><div class="loader-bar"><div class="loader-bar-fill"></div></div></div>
+<!-- Toast -->
+<div class="toast" id="toast"><div class="toast-icon">✦</div><div><strong id="toastTitle"></strong><span id="toastMsg"></span></div></div>
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="nav-logo" onclick="window.location.href='./index.html'">
+    <img src="./logo.png" alt=""><div class="nav-brand">Glonax Holdings<span>Limited</span></div>
+  </div>
+  <div class="nav-links">
+    <a href="./index.html">Home</a>
+    <a href="#properties" style="color:var(--red)">Properties</a>
+    <a href="#re-services">Services</a>
+    <a href="#inquiry">Inquire</a>
+    <a href="./index.html#contact-cta">Contact</a>
+    <a href="#" class="nav-cta" onclick="openModal('login');return false">Login</a>
+  </div>
+  <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()"><div class="theme-toggle-thumb"><span class="theme-toggle-icon" id="themeIcon">☀</span></div></button>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="./index.html" onclick="closeMobileMenu()">Home</a>
+  <a href="#properties" onclick="closeMobileMenu()">Properties</a>
+  <a href="#re-services" onclick="closeMobileMenu()">Services</a>
+  <a href="#inquiry" onclick="closeMobileMenu()">Inquire</a>
+  <a href="#" onclick="openModal('login');closeMobileMenu();return false" style="color:var(--red)">Login / Register</a>
+</div>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div><div class="page-hero-grid"></div>
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="./index.html">Home</a><span>/</span><span style="color:rgba(255,255,255,.6)">Real Estate</span></div>
+    <div class="page-hero-eyebrow">Commercial Agencies Division</div>
+    <h1>Find Your Perfect<br><em>Property</em> in Kenya</h1>
+    <p class="page-hero-sub">From Nakuru to the nation — browse vacant units, properties for sale, land, and commercial spaces. Backed by licensed agents and full legal support.</p>
+    <div style="display:flex;gap:16px;flex-wrap:wrap">
+      <a href="#properties" class="btn-primary">Browse Properties</a>
+      <a href="#inquiry" class="btn-outline">Book a Consultation</a>
+    </div>
+  </div>
+</section>
+
+<!-- SEARCH BAR -->
+<div class="search-bar-wrap">
+  <div class="search-bar-inner">
+    <div class="search-group">
+      <label>Looking To</label>
+      <select id="s-intent"><option>Rent</option><option>Buy</option><option>Sell</option><option>Invest</option></select>
+    </div>
+    <div class="search-group">
+      <label>Property Type</label>
+      <select id="s-type"><option value="">Any</option><option>Apartment</option><option>House</option><option>Land</option><option>Commercial</option><option>AirBnB</option></select>
+    </div>
+    <div class="search-group" style="flex:2">
+      <label>Location</label>
+      <input type="text" id="s-loc" placeholder="Street, area, or town...">
+    </div>
+    <div class="search-group">
+      <label>Max Budget (KES)</label>
+      <select id="s-budget"><option value="">Any</option><option>20,000</option><option>50,000</option><option>100,000</option><option>500,000</option><option>1,000,000+</option></select>
+    </div>
+    <button class="search-btn-main" onclick="showToast('Searching…','Results will appear shortly.')"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+  </div>
+</div>
+
+<!-- FEATURED PROPERTY -->
+<div id="featured-prop" style="padding-top:80px">
+  <div class="prop-section-inner">
+    <div class="section-label reveal">Featured Listing</div>
+    <h2 class="section-title reveal">Property of the <em>Week</em></h2>
+  </div>
+  <div class="featured-prop-card reveal" style="max-width:1100px;margin:32px auto 0">
+    <div class="fp-img">
+      <img src="./property1.jpg" alt="">
+      <span class="fp-badge"><i class="fa-solid fa-sun"></i> Featured</span>
+    </div>
+    <div class="fp-body">
+      <div class="fp-label">For Rent · Residential</div>
+      <div class="fp-title">Milimani Luxury Apartment</div>
+      <div class="fp-price">KES 25,000 / mo</div>
+      <p class="fp-desc">Newly renovated 3-bedroom luxury apartment in the heart of Milimani Estate, Nakuru. Modern finishes, secure parking, backup generator, and stunning views. Ideal for professionals and families.</p>
+      <div class="fp-meta">
+        <div class="fp-meta-item"><i class="fa-solid fa-bed"></i> <span>3 Bedrooms</span></div>
+        <div class="fp-meta-item"><i class="fa-solid fa-shower"></i> <span>2 Bathrooms</span></div>
+        <div class="fp-meta-item"><i class="fa-solid fa-ruler-combined"></i> <span>1,430 sqft</span></div>
+        <div class="fp-meta-item"><i class="fa-solid fa-square-parking"></i> <span>Parking</span></div>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a href="#inquiry" class="btn-primary" style="text-decoration:none">Request a Viewing</a>
+        <button class="btn-outline" style="color:var(--text-primary);border-color:var(--card-border)" onclick="showToast('Saved ✦','Property saved to your shortlist.')"><i class="fa-regular fa-floppy-disk"></i> Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ALL PROPERTIES -->
+<section id="properties">
+  <div class="prop-section-inner">
+    <div class="reveal"><div class="section-label">Listings</div><h2 class="section-title">Available <em>Properties</em></h2><p class="section-sub">Browse all current listings across Nakuru and Kenya. Updated regularly by our licensed agents.</p></div>
+    <div class="prop-tabs">
+      <button class="prop-tab active" onclick="filterProps(this,'all')">All Listings</button>
+      <button class="prop-tab" onclick="filterProps(this,'rent')">For Rent</button>
+      <button class="prop-tab" onclick="filterProps(this,'sale')">For Sale</button>
+      <button class="prop-tab" onclick="filterProps(this,'land')">Land</button>
+      <button class="prop-tab" onclick="filterProps(this,'commercial')">Commercial</button>
+      <button class="prop-tab" onclick="filterProps(this,'vacant')">Vacant Units</button>
+    </div>
+    <div class="prop-grid" id="propGrid">
+      <!-- Card 1 -->
+      <div class="prop-card reveal" data-cat="rent vacant">
+        <div class="prop-img">
+          <img src="./property2.jfif" alt="">
+          <span class="prop-badge badge-rent">For Rent</span><span class="prop-price">KES 20,000</span>
+        </div>
+        <div class="prop-body">
+          <div class="prop-title">Milimani Homes — Unit 4B</div>
+          <div class="prop-address"><i class="fa-solid fa-location-dot"></i>Milimani Estate, Nakuru</div>
+          <div class="prop-meta">
+            <div class="prop-meta-item"><i class="fa-solid fa-bed"></i> 3 Bed</div>
+            <div class="prop-meta-item"><i class="fa-solid fa-shower"></i> 2 Bath</div>
+            <div class="prop-meta-item"><i class="fa-solid fa-ruler-combined"></i> 1,430 sqft</div>
+            <div class="prop-meta-item"><i class="fa-solid fa-square-parking"></i> Parking</div>
+          </div>
+          <div class="prop-divider"></div>
+          <div class="prop-actions">
+            <a href="#inquiry" class="btn-prop-primary" style="text-decoration:none">Inquire</a>
+            <button class="btn-prop-ghost" onclick="showToast('Saved','Added to shortlist.')"><i class="fa-solid fa-thumbs-up"></i></button>
+          </div>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="prop-card reveal reveal-delay-1" data-cat="sale">
+        <div class="prop-img">
+          <img src="./property3.jfif" alt="">
+          <span class="prop-badge badge-sale">For Sale</span><span class="prop-price">KES 4.5M</span></div>
+        <div class="prop-body">
+          <div class="prop-title">Nakuru West Bungalow</div>
+          <div class="prop-address"><i class="fa-solid fa-location-dot"></i> Nakuru West, Nakuru</div>
+          <div class="prop-meta">
+            <div class="prop-meta-item"><i class="fa-solid fa-bed"></i> 3 Bed</div>
+            <div class="prop-meta-item"><i class="fa-solid fa-shower"></i> 2 Bath</div>
+            <div class="prop-meta-item"><i class="fa-solid fa-ruler-combined"></i> 1,430 sqft</div>
+            <div class="prop-meta-item"><i class="fa-solid fa-square-parking"></i> Parking</div>
+          </div>
+          <div class="prop-divider"></div>
+          <div class="prop-actions">
+            <a href="#inquiry" class="btn-prop-primary" style="text-decoration:none">Inquire</a>
+            <button class="btn-prop-ghost" onclick="showToast('Saved','Added to shortlist.')"><i class="fa-solid fa-thumbs-up"></i></button>
+          </div>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="prop-card reveal reveal-delay-2" data-cat="land">
+        <div class="prop-img">
+          <img src="./land1.jfif" alt="">
+          <span class="prop-badge badge-new">New</span><span class="prop-price">KES 1.8M</span></div>
+        <div class="prop-body">
+          <div class="prop-title">Lanet Road — 0.5 Acres</div>
+          <div class="prop-address"><i class="fa-solid fa-location-dot"></i> Lanet, Nakuru</div>
+          <div class="prop-meta">
+            <div class="prop-meta-item"><i class="fa-solid fa-bed"></i> 3 Bed</div>
+            <div class="prop-meta-item"><i class="fa-solid fa-shower"></i> 2 Bath</div>
+            <div class="prop-meta-item"><i class="fa-solid fa-ruler-combined"></i> 1,430 sqft</div>
+            <div class="prop-meta-item"><i class="fa-solid fa-square-parking"></i> Parking</div>
+          </div>
+          <div class="prop-divider"></div>
+          <div class="prop-actions">
+            <a href="#inquiry" class="btn-prop-primary" style="text-decoration:none">Inquire</a>
+            <button class="btn-prop-ghost" onclick="showToast('Saved','Added to shortlist.')"><i class="fa-solid fa-thumbs-up"></i></button>
+          </div>
+        </div>
+      </div>
+      <!-- Card 4 -->
+      <div class="prop-card reveal" data-cat="commercial">
+        <div class="prop-img">
+          <img src="./property5.jpeg" alt="">
+          <span class="prop-badge badge-rent">For Rent</span><span class="prop-price">KES 45,000</span></div>
+        <div class="prop-body">
+          <div class="prop-title">Gate House Office Suite 4A</div>
+          <div class="prop-address"><i class="fa-solid fa-location-dot"></i>Gate House, Nakuru CBD</div>
+          <div class="prop-meta">
+            <div class="prop-meta-item"><i class="fa-solid fa-bed"></i> 3 Bed</div>
+            <div class="prop-meta-item"><i class="fa-solid fa-shower"></i> 2 Bath</div>
+            <div class="prop-meta-item"><i class="fa-solid fa-ruler-combined"></i> 1,430 sqft</div>
+            <div class="prop-meta-item"><i class="fa-solid fa-square-parking"></i> Parking</div>
+          </div>
+          <div class="prop-divider"></div>
+          <div class="prop-actions">
+            <a href="#inquiry" class="btn-prop-primary" style="text-decoration:none">Inquire</a>
+            <button class="btn-prop-ghost" onclick="showToast('Saved','Added to shortlist.')"><i class="fa-solid fa-thumbs-up"></i></button>
+          </div>
+        </div>
+      </div>
+      <!-- Card 5 -->
+      <div class="prop-card reveal reveal-delay-1" data-cat="rent vacant">
+        <div class="prop-img">
+          <img src="./property2.jfif" alt="">
+          <span class="prop-badge badge-rent">For Rent</span><span class="prop-price">KES 15,000</span></div>
+        <div class="prop-body">
+          <div class="prop-title">Flamingo Bedsitter</div>
+          <div class="prop-address"><i class="fa-solid fa-location-dot"></i> Flamingo Estate, Nakuru</div>
+          <div class="prop-meta">
+            <div class="prop-meta-item"><i class="fa-solid fa-bed"></i> 3 Bed</div>
+            <div class="prop-meta-item"><i class="fa-solid fa-shower"></i> 2 Bath</div>
+            <div class="prop-meta-item"><i class="fa-solid fa-ruler-combined"></i> 1,430 sqft</div>
+            <div class="prop-meta-item"><i class="fa-solid fa-square-parking"></i> Parking</div>
+          </div>
+          <div class="prop-divider"></div>
+          <div class="prop-actions">
+            <a href="#inquiry" class="btn-prop-primary" style="text-decoration:none">Inquire</a>
+            <button class="btn-prop-ghost" onclick="showToast('Saved','Added to shortlist.')"><i class="fa-solid fa-thumbs-up"></i></button>
+          </div>
+        </div>
+      </div>
+      <!-- Card 6 -->
+      <div class="prop-card reveal reveal-delay-2" data-cat="sale">
+        <div class="prop-img">
+          <img src="./property1.jpg" alt="">
+          <span class="prop-badge badge-featured"><i class="fa-solid fa-sun"></i> Featured</span><span class="prop-price">KES 8.2M</span></div>
+        <div class="prop-body">
+          <div class="prop-title">Racecourse Estate Home</div>
+          <div class="prop-address"><i class="fa-solid fa-location-dot"></i> Racecourse, Nakuru</div>
+          <div class="prop-meta">
+            <div class="prop-meta-item"><i class="fa-solid fa-bed"></i> 3 Bed</div>
+            <div class="prop-meta-item"><i class="fa-solid fa-shower"></i> 2 Bath</div>
+            <div class="prop-meta-item"><i class="fa-solid fa-ruler-combined"></i> 1,430 sqft</div>
+            <div class="prop-meta-item"><i class="fa-solid fa-square-parking"></i> Parking</div>
+          </div>
+          <div class="prop-divider"></div>
+          <div class="prop-actions">
+            <a href="#inquiry" class="btn-prop-primary" style="text-decoration:none">Inquire</a>
+            <button class="btn-prop-ghost" onclick="showToast('Saved','Added to shortlist.')"><i class="fa-solid fa-thumbs-up"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Load More -->
+    <div style="text-align:center;margin-top:48px">
+      <button class="btn-outline" style="color:var(--text-primary);border-color:var(--card-border)" onclick="showToast('Loading…','More listings coming soon.')">Load More Listings</button>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="re-services">
+  <div class="section-inner">
+    <div class="reveal"><div class="section-label">What We Offer</div><h2 class="section-title">Our Real Estate <em>Services</em></h2><p class="section-sub">End-to-end property solutions — from first inquiry to final title transfer, we walk every step with you.</p></div>
+    <div class="services-grid">
+      <div class="service-card-re reveal"><div class="sc-num">01</div><div class="sc-title">Estate & Property Management</div><p class="sc-desc">Comprehensive management of residential and commercial properties — tenant relations, maintenance, and rent collection.</p><a href="#inquiry" class="sc-link">Book Inquiry</a></div>
+      <div class="service-card-re reveal reveal-delay-1"><div class="sc-num">02</div><div class="sc-title">Buying & Selling of Property / Land</div><p class="sc-desc">Facilitating property transactions with expert guidance, due diligence, and negotiation support from search to signature.</p><a href="#inquiry" class="sc-link">Book Inquiry</a></div>
+      <div class="service-card-re reveal reveal-delay-2"><div class="sc-num">03</div><div class="sc-title">Conveyancing</div><p class="sc-desc">Legal transfer of property ownership — efficient, secure, and fully compliant with Kenyan land law. Title deed processing included.</p><a href="#inquiry" class="sc-link">Book Inquiry</a></div>
+      <div class="service-card-re reveal reveal-delay-3"><div class="sc-num">04</div><div class="sc-title">Valuations</div><p class="sc-desc">Accurate property and land valuations for sales, purchases, or investment decisions by certified professionals.</p><a href="#inquiry" class="sc-link">Book Inquiry</a></div>
+      <div class="service-card-re reveal"><div class="sc-num">05</div><div class="sc-title">Architectural Drawing</div><p class="sc-desc">Professional architectural plans for residential, commercial, and industrial developments — approved and compliant.</p><a href="#inquiry" class="sc-link">Book Inquiry</a></div>
+      <div class="service-card-re reveal reveal-delay-1"><div class="sc-num">06</div><div class="sc-title">Construction & Landscaping</div><p class="sc-desc">Full construction contracting and outdoor landscaping services — from foundations to garden design.</p><a href="#inquiry" class="sc-link">Book Inquiry</a></div>
+      <div class="service-card-re reveal reveal-delay-2"><div class="sc-num">07</div><div class="sc-title">Investment Consultancy</div><p class="sc-desc">Expert real estate investment advisory — identifying opportunities and maximising ROI for clients at every budget level.</p><a href="#inquiry" class="sc-link">Book Inquiry</a></div>
+      <div class="service-card-re reveal reveal-delay-3"><div class="sc-num">08</div><div class="sc-title">Tax Returns & Company Registration</div><p class="sc-desc">Property-related tax filing and business registration for real estate companies, landlords, and investors.</p><a href="#inquiry" class="sc-link">Book Inquiry</a></div>
+    </div>
+    <!-- Load More -->
+    <div style="text-align:center;margin-top:48px">
+      <button class="btn-outline" style="color:var(--text-primary);border-color:var(--card-border)" onclick="showToast('Loading…','More listings coming soon.')">Load More Listings</button>
+    </div>
+  </div>
+</section>
+
+<!-- INQUIRY -->
+<section id="inquiry">
+  <div class="section-inner">
+    <div class="reveal"><div class="section-label">Get in Touch</div><h2 class="section-title">Book a Property <em>Consultation</em></h2><p class="section-sub">Whether you're buying, selling, renting, or investing — our agents are ready to guide you. Fill the form below to get started.</p></div>
+    <div class="inquiry-grid">
+      <div class="inquiry-form-card reveal">
+        <h3>Property Inquiry Form</h3>
+        <p>Tell us what you need and we'll connect you with the right agent within 24 hours.</p>
+        <div class="form-row">
+          <div class="form-group"><label>Full Name</label><input type="text" placeholder="Your full name"></div>
+          <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="+254 7XX XXX XXX"></div>
+        </div>
+        <div class="form-group"><label>Email Address</label><input type="email" placeholder="you@example.com"></div>
+        <div class="form-row">
+          <div class="form-group"><label>Service Needed</label><select><option>Estate Management</option><option>Buy Property</option><option>Sell Property</option><option>Rent a Property</option><option>Conveyancing</option><option>Valuation</option><option>Investment Advice</option></select></div>
+          <div class="form-group"><label>Budget Range</label><select><option>Under KES 20,000/mo</option><option>KES 20K–50K/mo</option><option>KES 50K–200K</option><option>KES 200K–1M</option><option>Over KES 1M</option></select></div>
+        </div>
+        <div class="form-group"><label>Message / Details</label><textarea placeholder="Describe the property you're looking for, your timeline, or any specific requirements..."></textarea></div>
+        <button class="btn-primary" style="width:100%;padding:16px" onclick="showToast('Inquiry Sent ✦','Our team will contact you within 24 hours.')">Submit Inquiry</button>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="inquiry-info-item"><div class="inq-icon"><i class="fa-solid fa-location-dot"></i></div><div class="inq-content"><h4>Visit Our Office</h4><p>Gate House Nakuru, 5th Floor, Suite 506. Open Monday–Saturday, 8am–6pm.</p></div></div>
+        <div class="inquiry-info-item"><div class="inq-icon"><i class="fa-solid fa-phone-volume"></i></div><div class="inq-content"><h4>Call Us Directly</h4><p>0732 028 129 · 0716 517 561 · 0783 517 561</p></div></div>
+        <div class="inquiry-info-item"><div class="inq-icon"><i class="fa-solid fa-truck-fast"></i></div><div class="inq-content"><h4>Fast Response</h4><p>All property inquiries are acknowledged within 24 hours. Complex cases within 48 hours.</p></div></div>
+        <div class="inquiry-info-item"><div class="inq-icon"><i class="fa-solid fa-building-lock"></i></div><div class="inq-content"><h4>Confidential Service</h4><p>All client information is handled with full discretion in compliance with the Kenya Data Protection Act.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS MARQUEE -->
+<div id="re-partners">
+  <div class="partners-inner">
+    <div class="reveal"><div class="section-label">Our Network</div><h2 class="section-title">Trusted <em>Partners</em></h2></div>
+    <div class="marquee-wrap">
+      <div class="marquee-track-p">
+        <div class="partner-logo">KCB Bank</div><div class="partner-logo">Equity Bank</div><div class="partner-logo">Stanbic</div><div class="partner-logo">Co-op Bank</div><div class="partner-logo">NCA Kenya</div><div class="partner-logo">Land Reg.</div>
+        <div class="partner-logo">KCB Bank</div><div class="partner-logo">Equity Bank</div><div class="partner-logo">Stanbic</div><div class="partner-logo">Co-op Bank</div><div class="partner-logo">NCA Kenya</div><div class="partner-logo">Land Reg.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA + FOOTER + MODALS (shared) -->
+<div id="contact-cta"><div class="cta-inner"><div class="cta-text"><h2>Ready to Find Your Property?</h2><p>Gate House Nakuru, 5th Floor, Suite 506 · 0732 028 129 · 0716 517 561</p></div><div class="cta-btns"><a href="tel:+254732028129" class="btn-white">Call Us Now</a><a href="#inquiry" class="btn-ghost">Book Consultation</a></div></div></div>
+<script src="./script.js"></script>
+</body>
+</html>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Testimonials — Glonax Holdings Limited</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<script src="https://kit.fontawesome.com/a8ba985590.js" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<!-- Loader -->
+<div id="loader">
+  <div class="loader-logo"><img src="./logo.png" alt=""></div>
+  <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+  <div class="toast-icon">✦</div>
+  <div><strong id="toastTitle"></strong><span id="toastMsg"></span></div>
+</div>
+
+<!-- Scroll Progress -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="nav-logo" onclick="window.location.href='./index.html'">
+    <img src="./logo.png" alt="">
+    <div class="nav-brand">
+      Glonax Holdings
+      <span>Limited</span>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="./index.html">Home</a>
+    <a href="./about.html">About</a>
+    <a href="#video-testimonials">Video Reviews</a>
+    <a href="#faq">FAQs</a>
+    <a href="./index.html#contact-cta">Contact</a>
+    <a href="#" class="nav-cta" onclick="openModal('login'); return false;">Login</a>
+  </div>
+  <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle theme" aria-label="Toggle dark/light mode"><div class="theme-toggle-thumb"><span class="theme-toggle-icon" id="themeIcon">☀</span></div></button>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="./index.html" onclick="closeMobileMenu()">Home</a>
+  <a href="./about.html" onclick="closeMobileMenu()">About</a>
+  <a href="#video-testimonials" onclick="closeMobileMenu()">Video Reviews</a>
+  <a href="#faq" onclick="closeMobileMenu()">FAQs</a>
+  <a href="./index.html#contact-cta" onclick="closeMobileMenu()">Contact</a>
+  <a href="#" onclick="openModal('login'); closeMobileMenu(); return false;" style="color:var(--red)">Login / Register</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-inner">
+    <div class="breadcrumb">
+      <a href="./index.html">Home</a>
+      <span>/</span>
+      <span style="color:rgba(255,255,255,0.6)">Testimonials</span>
+    </div>
+    <div class="page-hero-eyebrow">Client Stories</div>
+    <h1>What Our Clients<br><em>Say About Us</em></h1>
+    <p class="page-hero-sub">Real stories from real clients — discover how Glonax Holdings has transformed property investments, built powerful brands, and launched successful hospitality careers.</p>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="testi-stats">
+  <div class="testi-stats-inner">
+    <div class="ts-stat reveal">
+      <div class="ts-num">500+</div>
+      <div class="ts-lbl">Happy Clients</div>
+    </div>
+    <div class="ts-stat reveal reveal-delay-1">
+      <div class="ts-num">5.0</div>
+      <div class="ts-lbl">Average Rating</div>
+    </div>
+    <div class="ts-stat reveal reveal-delay-2">
+      <div class="ts-num">98%</div>
+      <div class="ts-lbl">Would Recommend</div>
+    </div>
+    <div class="ts-stat reveal reveal-delay-3">
+      <div class="ts-num">3</div>
+      <div class="ts-lbl">Divisions Rated</div>
+    </div>
+  </div>
+</div>
+
+<!-- VIDEO TESTIMONIALS -->
+<section id="video-testimonials">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Video Testimonials</div>
+      <h2 class="section-title">Hear It From <em>Them</em></h2>
+      <p class="section-sub">Watch our clients share their genuine Glonax experience — from first contact to final delivery. Real people. Real results.</p>
+    </div>
+    <div class="yt-grid">
+      <!-- Replace src URLs with actual YouTube embed links -->
+      <div class="yt-card reveal reveal-delay-1">
+        <div class="yt-embed">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/s-4p1OGRPeA?si=PfJojRVnwTCb6e5Y" 
+          title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; 
+          clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="yt-info">
+          <div class="yt-client">Mercy Muiruri</div>
+          <div class="yt-division">Hospitality</div>
+          <p class="yt-desc">Journey of Mercy Muiruri from Nakuru City, Kenya on her career growth  
+            from working in a Kenyan night club to being a hostess in Roxel 
+            Hotel a 5 -star Hotel in Doha, Qatar</p>
+        </div>
+      </div>
+      <div class="yt-card reveal reveal-delay-2">
+        <div class="yt-embed">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/9dK7Rh5Tl0U?si=GiQM1jhOBoYmfBLO" 
+          title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
+          encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" 
+          allowfullscreen></iframe>
+        </div>
+        <div class="yt-info">
+          <div class="yt-client">Glonax Holdings Limitted</div>
+          <div class="yt-division">Hospitality</div>
+          <p class="yt-desc">The best way to succeed in hospitality Industry</p>
+        </div>
+      </div>
+      <div class="yt-card reveal reveal-delay-3">
+        <div class="yt-embed">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/dDaanwZAq0Y?si=TwBdRefOwWqn503o" 
+          title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
+          gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="yt-info">
+          <div class="yt-client">Glonax Holdings Limitted</div>
+          <div class="yt-division">Real Estate</div>
+          <p class="yt-desc">An insight from glonax paint masters</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEXT TESTIMONIALS -->
+<section id="text-testimonials">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Written Reviews</div>
+      <h2 class="section-title">Client <em>Experiences</em></h2>
+      <p class="section-sub">Feedback from clients across our three divisions — each story reflects our commitment to delivering real, lasting value.</p>
+    </div>
+
+    <div class="filter-tabs">
+      <button class="filter-tab active" onclick="filterTestimonials(this, 'all')">All Reviews</button>
+      <button class="filter-tab" onclick="filterTestimonials(this, 'real-estate')">Real Estate</button>
+      <button class="filter-tab" onclick="filterTestimonials(this, 'media')">Creative Media</button>
+      <button class="filter-tab" onclick="filterTestimonials(this, 'hospitality')">Hospitality</button>
+    </div>
+
+    <div class="testimonials-masonry" id="testimonialsMasonry">
+      <div class="testi-card reveal" data-division="real-estate">
+        <span class="testi-quote-mark">"</span>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">Glonax handled the conveyancing for my 3-acre plot in Nakuru East flawlessly. They explained every step, ensured all documents were in order, and delivered on time. I felt completely at ease throughout the process.</p>
+        <div class="testi-divider"></div>
+        <div class="testi-name">J. Mwangi</div>
+        <div class="testi-role">Property Buyer</div>
+        <span class="testi-tag">Real Estate</span>
+      </div>
+      <div class="testi-card reveal reveal-delay-1" data-division="media">
+        <span class="testi-quote-mark">"</span>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">The rebrand Glonax Media did for us was transformational. Our social media engagement tripled within the first month. Their team understood our vision and translated it into something far more powerful than we imagined.</p>
+        <div class="testi-divider"></div>
+        <div class="testi-name">P. Njoroge</div>
+        <div class="testi-role">SME Business Owner</div>
+        <span class="testi-tag">Creative Media</span>
+      </div>
+      <div class="testi-card reveal reveal-delay-2" data-division="hospitality">
+        <span class="testi-quote-mark">"</span>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">The Hospitality Academy prepared me beyond what I expected. The trainers are world-class, the curriculum is rigorous, and they genuinely care about your placement. I secured a position in Dubai 3 months after graduating.</p>
+        <div class="testi-divider"></div>
+        <div class="testi-name">A. Kiprotich</div>
+        <div class="testi-role">Academy Graduate · Dubai Placement</div>
+        <span class="testi-tag">Hospitality</span>
+      </div>
+      <div class="testi-card reveal reveal-delay-1" data-division="real-estate">
+        <span class="testi-quote-mark">"</span>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">I was skeptical about outsourcing property management, but Glonax proved me wrong. They found me quality tenants, handle all maintenance, and provide monthly reports. It's completely hands-off for me. Best investment decision I've made.</p>
+        <div class="testi-divider"></div>
+        <div class="testi-name">R. Kamau</div>
+        <div class="testi-role">Landlord — 4 Properties</div>
+        <span class="testi-tag">Real Estate</span>
+      </div>
+      <div class="testi-card reveal" data-division="media">
+        <span class="testi-quote-mark">"</span>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">Our website was outdated and poorly performing. Glonax Media redesigned it completely — cleaner, faster, and with a clear conversion strategy. Our online inquiries doubled in 6 weeks. Exceptional work.</p>
+        <div class="testi-divider"></div>
+        <div class="testi-name">F. Otieno</div>
+        <div class="testi-role">NGO Director</div>
+        <span class="testi-tag">Creative Media</span>
+      </div>
+      <div class="testi-card reveal reveal-delay-2" data-division="hospitality">
+        <span class="testi-quote-mark">"</span>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">As an employer, I've hired several Glonax Academy graduates. Every single one arrives polished, professional, and ready to work at a high level. The training standard is genuinely world-class. We'll keep recruiting from them.</p>
+        <div class="testi-divider"></div>
+        <div class="testi-name">S. Kariuki</div>
+        <div class="testi-role">Hotel HR Manager</div>
+        <span class="testi-tag">Hospitality</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUBMIT TESTIMONIAL -->
+<section id="submit-testimonial">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Share Your Story</div>
+      <h2 class="section-title">Leave a <em>Testimonial</em></h2>
+      <p class="section-sub">Your experience matters. Share your Glonax story and help others make informed decisions about their property, media, or hospitality journey.</p>
+    </div>
+    <div class="submit-grid">
+      <div class="submit-form-card reveal">
+        <h3>Submit Your Review</h3>
+        <p>Fill in the form below and our team will review and publish your testimonial.</p>
+        <div class="form-group">
+          <label>Your Full Name</label>
+          <input type="text" id="testiName" placeholder="John Doe">
+        </div>
+        <div class="form-group">
+          <label>Your Role / Profession</label>
+          <input type="text" id="testiRole" placeholder="e.g. Property Buyer, Business Owner">
+        </div>
+        <div class="form-group">
+          <label>Service Division</label>
+          <select id="testiDivision">
+            <option value="">Select Division</option>
+            <option value="real-estate">Real Estate (Commercial Agencies)</option>
+            <option value="media">Creative Media</option>
+            <option value="hospitality">Hospitality Academy</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Your Rating</label>
+          <div class="star-rating" id="starRating">
+            <button class="star-btn" data-val="1" onclick="setRating(1)">★</button>
+            <button class="star-btn" data-val="2" onclick="setRating(2)">★</button>
+            <button class="star-btn" data-val="3" onclick="setRating(3)">★</button>
+            <button class="star-btn" data-val="4" onclick="setRating(4)">★</button>
+            <button class="star-btn" data-val="5" onclick="setRating(5)">★</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Your Testimonial</label>
+          <textarea id="testiText" placeholder="Share your experience with Glonax Holdings..."></textarea>
+        </div>
+        <input type="hidden" id="testiRating" value="0">
+        <button class="btn-primary" style="width:100%;padding:16px;" onclick="submitTestimonial()">Submit Testimonial</button>
+      </div>
+      <div class="submit-info reveal reveal-delay-2">
+        <div class="submit-info-item">
+          <div class="submit-info-icon"><i class="fa-solid fa-envelope-circle-check"></i></div>
+          <div class="submit-info-content">
+            <h4>Verified Reviews Only</h4>
+            <p>All testimonials are verified by our team before publication to ensure authenticity and maintain the trust of our community.</p>
+          </div>
+        </div>
+        <div class="submit-info-item">
+          <div class="submit-info-icon"><i class="fa-solid fa-user-shield"></i></div>
+          <div class="submit-info-content">
+            <h4>Privacy Protected</h4>
+            <p>Your personal information is handled with full discretion. We only publish your name and role — never contact details or private information.</p>
+          </div>
+        </div>
+        <div class="submit-info-item">
+          <div class="submit-info-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+          <div class="submit-info-content">
+            <h4>Published Within 48 Hours</h4>
+            <p>Once submitted, our team reviews your testimonial and publishes it within 2 business days. You'll receive confirmation via email.</p>
+          </div>
+        </div>
+        <div class="submit-info-item">
+          <div class="submit-info-icon">🎥</div>
+          <div class="submit-info-content">
+            <h4>Want to Record a Video?</h4>
+            <p>We welcome video testimonials too. Contact us at 0732 028 129 to schedule a brief recording session at our offices or via WhatsApp video.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Common Questions</div>
+      <h2 class="section-title">Frequently Asked <em>Questions</em></h2>
+      <p class="section-sub">Everything you need to know about working with Glonax Holdings Limited — across our three divisions.</p>
+    </div>
+    <div class="faq-grid">
+      <!-- Real Estate -->
+      <div class="faq-item reveal" onclick="toggleFaq(this)">
+        <button class="faq-question">
+          <span class="faq-q-text">How does property management work at Glonax?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>We handle everything on your behalf — tenant sourcing, screening, rent collection, maintenance coordination, and monthly reporting. You stay informed without being burdened. Our fee structure is transparent and agreed upon upfront.</p>
+        </div>
+      </div>
+      <div class="faq-item reveal reveal-delay-1" onclick="toggleFaq(this)">
+        <button class="faq-question">
+          <span class="faq-q-text">Can Glonax help me buy land or property?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Absolutely. Our licensed estate agents will help you identify suitable properties, conduct due diligence, negotiate on your behalf, and handle all conveyancing and title transfer processes. We guide you from search to signature.</p>
+        </div>
+      </div>
+      <div class="faq-item reveal" onclick="toggleFaq(this)">
+        <button class="faq-question">
+          <span class="faq-q-text">What media and branding services does Glonax offer?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Our Creative Media division covers brand identity, logo design, website development, social media management, content creation (photos, videos, reels), digital advertising campaigns, and full marketing strategy. We work with startups, SMEs, and established organizations.</p>
+        </div>
+      </div>
+      <div class="faq-item reveal reveal-delay-1" onclick="toggleFaq(this)">
+        <button class="faq-question">
+          <span class="faq-q-text">How does the Hospitality Academy placement work?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Upon completing the training program, students are connected to our partner network of hotels, resorts, and hospitality employers both locally and internationally — including the UAE, Qatar, and Europe. We support your application, CV, and interview preparation throughout.</p>
+        </div>
+      </div>
+      <div class="faq-item reveal" onclick="toggleFaq(this)">
+        <button class="faq-question">
+          <span class="faq-q-text">What are the fees for Glonax services?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Fees vary by service type and scope. We offer transparent pricing with no hidden costs — all fees are discussed and agreed upon before any engagement begins. Contact us for a free consultation and quote tailored to your specific needs.</p>
+        </div>
+      </div>
+      <div class="faq-item reveal reveal-delay-1" onclick="toggleFaq(this)">
+        <button class="faq-question">
+          <span class="faq-q-text">Where are you located and how do I contact you?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>We are located at Gate House Nakuru, 5th Floor, Suite 506. You can reach us by phone at 0732 028 129 or 0716 517 561, or find us on social media as @glonaxholdings. Walk-ins are welcome during business hours (Mon–Sat, 8am–6pm).</p>
+        </div>
+      </div>
+      <div class="faq-item reveal" onclick="toggleFaq(this)">
+        <button class="faq-question">
+          <span class="faq-q-text">Does Glonax offer company registration services?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Yes. We are accredited company registration agents. We assist with business name search and registration, company incorporation, CR12 applications, and related compliance filings with the Business Registration Service (BRS) in Kenya.</p>
+        </div>
+      </div>
+      <div class="faq-item reveal reveal-delay-1" onclick="toggleFaq(this)">
+        <button class="faq-question">
+          <span class="faq-q-text">Can I create an online account to manage my services?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Yes! You can register for a client account on our platform (click "Create Account" in the navigation). Your dashboard will allow you to track service requests, view documents, communicate with your assigned agent, and manage your profile across all three divisions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div id="contact-cta">
+  <div class="cta-inner">
+    <div class="cta-text">
+      <h2>Ready to Write Your Own Success Story?</h2>
+      <p>Gate House Nakuru, 5th Floor, Suite 506 · 0732 028 129 · 0716 517 561</p>
+    </div>
+    <div class="cta-btns">
+      <a href="tel:+254732028129" class="btn-white">Call Us Now</a>
+      <a href="#" class="btn-ghost" onclick="openModal('register'); return false;">Create Account</a>
+    </div>
+  </div>
+</div>
+<script src="./script.js"></script>
+</body>
+</html>
